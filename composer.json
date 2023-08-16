@@ -1,0 +1,24 @@
+{
+    "name": "ferror/asyncapi-doc-bundle",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Ferror\\AsyncapiDocBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ferror\\AsyncapiDocBundle\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php": "^8.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.3"
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    }
+}
