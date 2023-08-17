@@ -23,6 +23,7 @@
         "symfony/var-dumper": "^6.3"
     },
     "scripts": {
-        "test": "vendor/bin/phpunit"
+        "test": "vendor/bin/phpunit",
+        "coverage": "vendor/bin/phpunit --coverage-html=var/coverage"
     }
 }

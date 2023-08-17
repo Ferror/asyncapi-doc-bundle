@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ferror\AsyncapiDocBundle\Tests\Integration;
+namespace Ferror\AsyncapiDocBundle\Tests;
 
 use Ferror\AsyncapiDocBundle\Symfony\Controller\SpecificationController;
 use PHPUnit\Framework\TestCase;
