@@ -7,7 +7,7 @@ namespace Ferror\AsyncapiDocBundle;
 use Ferror\AsyncapiDocBundle\Tests\UserSignedUp;
 use ReflectionClass;
 
-class Documentation
+class ReflectionDocumentation
 {
     public function document(): array
     {

@@ -7,9 +7,9 @@ namespace Ferror\AsyncapiDocBundle;
 enum PropertyType: string
 {
     case STRING = 'string';
-    case BOOL = 'boolean';
+    case BOOLEAN = 'boolean';
     case DATE = 'date';
     case DATETIME = 'date-time';
-    case INT = 'integer';
+    case INTEGER = 'integer';
     case ENUM = 'enum';
 }

@@ -7,7 +7,7 @@ namespace Ferror\AsyncapiDocBundle\Attribute;
 use Attribute;
 use Ferror\AsyncapiDocBundle\PropertyType;
 
-#[Attribute(Attribute::TARGET_CLASS)]
+#[Attribute(Attribute::TARGET_PROPERTY | Attribute::TARGET_CLASS)]
 readonly class Property
 {
     public function __construct(

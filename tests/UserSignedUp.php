@@ -15,8 +15,8 @@ readonly class UserSignedUp
     public string $name;
     #[Property(name: 'email', type: PropertyType::STRING, description: 'Email of the user', format: 'email', example: 'john@example')]
     public string $email;
-    #[Property(name: 'age', type: PropertyType::STRING, description: 'Age of the user', format: 'int', example: '18')]
+    #[Property(name: 'age', type: PropertyType::INTEGER, description: 'Age of the user', format: 'int', example: '18')]
     public int $age;
-    #[Property(name: 'isCitizen', type: PropertyType::BOOL, description: 'Is user a citizen', format: 'boolean', example: 'true')]
+    #[Property(name: 'isCitizen', type: PropertyType::BOOLEAN, description: 'Is user a citizen', format: 'boolean', example: 'true')]
     public bool $isCitizen;
 }

@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Ferror\AsyncapiDocBundle\Tests;
 
-use Ferror\AsyncapiDocBundle\Documentation;
+use Ferror\AsyncapiDocBundle\ReflectionDocumentation;
 use PHPUnit\Framework\TestCase;
 
-class DocumentationTest extends TestCase
+class ReflectionDocumentationTest extends TestCase
 {
     public function test(): void
     {
-        $documentation = new Documentation();
+        $documentation = new ReflectionDocumentation();
 
         $expected = [
             'name' => 'UserSignedUp',
