@@ -14,7 +14,8 @@ class ClassFetcherTest extends TestCase
         $fetcher = new ClassFetcher();
 
         $expected = [
-            UserSignedUp::class
+            UserSignedUp::class,
+            PaymentExecuted::class,
         ];
 
         $this->assertEquals($expected, $fetcher->get());

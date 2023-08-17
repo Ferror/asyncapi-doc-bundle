@@ -24,6 +24,10 @@ channels:
     subscribe:
       message:
         \$ref: '#/components/messages/UserSignedUp'
+  payment_executed:
+    subscribe:
+      message:
+        \$ref: '#/components/messages/PaymentExecuted'
 components:
   messages:
     UserSignedUp:
@@ -50,6 +54,20 @@ components:
             description: 'Is user a citizen'
             format: boolean
             example: 'true'
+    PaymentExecuted:
+      payload:
+        type: object
+        properties:
+          amount:
+            type: integer
+            description: 'Payment amount'
+            format: number
+            example: '1000'
+          createdAt:
+            type: date-time
+            description: 'Creation date'
+            format: datetime
+            example: '2023-11-23 13:41:21'
 
 YAML;
 

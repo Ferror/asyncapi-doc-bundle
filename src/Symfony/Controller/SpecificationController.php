@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Ferror\AsyncapiDocBundle\Symfony\Controller;
 
 use Ferror\AsyncapiDocBundle\AttributeDocumentation;
+use Ferror\AsyncapiDocBundle\ClassFetcher;
 use Ferror\AsyncapiDocBundle\Schema;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Yaml\Yaml;
@@ -13,8 +14,23 @@ class SpecificationController
 {
     public function __invoke(): Response
     {
+        $finder = new ClassFetcher();
         $documentation = new AttributeDocumentation();
         $gen = new Schema();
+
+        $classes = $finder->get();
+
+        $channels = [];
+        $messages = [];
+
+        foreach ($classes as $class) {
+            $document = $documentation->document($class);
+            $channel = $gen->renderChannels($document);
+            $message = $gen->render($document);
+
+            $channels[key($channel)] = $channel[key($channel)];
+            $messages[key($message)] = $message[key($message)];
+        }
 
         $schema = Yaml::dump(
             [
@@ -24,17 +40,9 @@ class SpecificationController
                     'version' => '1.0.0',
                     'description' => 'This service is in charge of processing user signups',
                 ],
-                'channels' => [
-                    'user_signed_up' => [
-                        'subscribe' => [
-                            'message' => [
-                                '$ref' => '#/components/messages/UserSignedUp',
-                            ],
-                        ],
-                    ],
-                ],
+                'channels' => $channels,
                 'components' => [
-                    'messages' => $gen->render($documentation->document()),
+                    'messages' => $messages,
                 ],
             ],
             10,

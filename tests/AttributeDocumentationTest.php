@@ -15,6 +15,7 @@ class AttributeDocumentationTest extends TestCase
 
         $expected = [
             'name' => 'UserSignedUp',
+            'channel' => 'user_signed_up',
             'properties' => [
                 [
                     'name' => 'name',
@@ -51,6 +52,6 @@ class AttributeDocumentationTest extends TestCase
             ],
         ];
 
-        $this->assertEquals($expected, $documentation->document());
+        $this->assertEquals($expected, $documentation->document(UserSignedUp::class));
     }
 }

@@ -11,6 +11,15 @@ readonly class Message
 {
     public function __construct(
         public string $name,
+        public string $channel,
     ) {
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'name' => $this->name,
+            'channel' => $this->channel,
+        ];
     }
 }

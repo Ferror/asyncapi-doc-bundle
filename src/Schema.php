@@ -35,4 +35,17 @@ class Schema
 
         return $message;
     }
+
+    public function renderChannels(array $document): array
+    {
+        $channel[$document['channel']] = [
+            'subscribe' => [
+                'message' => [
+                    '$ref' => '#/components/messages/' . $document['name'],
+                ],
+            ],
+        ];
+
+        return $channel;
+    }
 }

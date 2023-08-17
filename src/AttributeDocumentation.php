@@ -6,20 +6,19 @@ namespace Ferror\AsyncapiDocBundle;
 
 use Ferror\AsyncapiDocBundle\Attribute\Message;
 use Ferror\AsyncapiDocBundle\Attribute\Property;
-use Ferror\AsyncapiDocBundle\Tests\UserSignedUp;
 use ReflectionAttribute;
 use ReflectionClass;
 
 class AttributeDocumentation
 {
-    public function document(): array
+    public function document(string $class): array
     {
-        $reflection = new ReflectionClass(UserSignedUp::class);
+        $reflection = new ReflectionClass($class);
         /** @var ReflectionAttribute<Message>[] $messageAttribute */
         $messageAttributes = $reflection->getAttributes(Message::class);
         $properties = $reflection->getProperties();
 
-        $message['name'] = $messageAttributes[0]->newInstance()->name;
+        $message = $messageAttributes[0]->newInstance()->toArray();
 
         foreach ($properties as $property) {
             /** @var ReflectionAttribute<Property>[] $propertyAttributes */

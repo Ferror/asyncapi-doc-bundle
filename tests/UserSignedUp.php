@@ -8,7 +8,7 @@ use Ferror\AsyncapiDocBundle\Attribute\Message;
 use Ferror\AsyncapiDocBundle\Attribute\Property;
 use Ferror\AsyncapiDocBundle\PropertyType;
 
-#[Message(name: 'UserSignedUp')]
+#[Message(name: 'UserSignedUp', channel: 'user_signed_up')]
 readonly class UserSignedUp
 {
     #[Property(name: 'name', type: PropertyType::STRING, description: 'Name of the user', format: 'string', example: 'John')]
