@@ -4,31 +4,14 @@ declare(strict_types=1);
 
 namespace Ferror\AsyncapiDocBundle\Tests;
 
+use Ferror\AsyncapiDocBundle\YamlSchema;
 use PHPUnit\Framework\TestCase;
-use ReflectionClass;
 
-class DocumentatorTest extends TestCase
+class YamlSchemaTest extends TestCase
 {
     public function test(): void
     {
-        $message = [];
-
-        $reflection = new ReflectionClass(UserSignedUp::class);
-        $properties = $reflection->getProperties();
-
-        $message['name'] = $reflection->getShortName();
-
-        foreach ($properties as $property) {
-            $type = $property->getType();
-            $name = $property->getName();
-
-            $message['properties'][] = [
-                'name' => $name,
-                'type' => $type->getName(),
-            ];
-        }
-
-        $expected = [
+        $document = [
             'name' => 'UserSignedUp',
             'properties' => [
                 [
@@ -50,6 +33,26 @@ class DocumentatorTest extends TestCase
             ],
         ];
 
-        $this->assertEquals($expected, $message);
+        $schema = new YamlSchema();
+
+        $specification = $schema->render($document);
+
+        $expectedSpecification = <<<YAML
+UserSignedUp:
+  payload:
+    type: object
+    properties:
+      name:
+        type: string
+      email:
+        type: string
+      age:
+        type: integer
+      isCitizen:
+        type: boolean
+
+YAML;
+
+        $this->assertEquals($expectedSpecification, $specification);
     }
 }
