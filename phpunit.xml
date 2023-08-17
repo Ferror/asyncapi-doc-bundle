@@ -10,6 +10,7 @@
          failOnRisky="true"
          failOnWarning="true"
          colors="true"
+         displayDetailsOnTestsThatTriggerWarnings="true"
 >
     <testsuites>
         <testsuite name="all">

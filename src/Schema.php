@@ -1,0 +1,38 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Ferror\AsyncapiDocBundle;
+
+class Schema
+{
+    public function render(array $document): array
+    {
+        $properties = [];
+
+        foreach ($document['properties'] as $property) {
+            $properties[$property['name']]['type'] = PropertyTypeTranslator::translate($property['type']);
+
+            if (isset($property['description'])) {
+                $properties[$property['name']]['description'] = $property['description'];
+            }
+
+            if (isset($property['format'])) {
+                $properties[$property['name']]['format'] = $property['format'];
+            }
+
+            if (isset($property['example'])) {
+                $properties[$property['name']]['example'] = $property['example'];
+            }
+        }
+
+        $message[$document['name']] = [
+            'payload' => [
+                'type' => 'object',
+                'properties' => $properties,
+            ],
+        ];
+
+        return $message;
+    }
+}

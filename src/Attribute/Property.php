@@ -18,4 +18,15 @@ readonly class Property
         public string $example,
     ) {
     }
+
+    public function toArray(): array
+    {
+        return [
+            'name' => $this->name,
+            'type' => $this->type->value,
+            'description' => $this->description,
+            'format' => $this->format,
+            'example' => $this->example,
+        ];
+    }
 }

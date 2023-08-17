@@ -25,10 +25,7 @@ class AttributeDocumentation
             /** @var ReflectionAttribute<Property>[] $propertyAttributes */
             $propertyAttributes = $property->getAttributes(Property::class);
 
-            $message['properties'][] = [
-                'name' => $propertyAttributes[0]->newInstance()->name,
-                'type' => $propertyAttributes[0]->newInstance()->type->value
-            ];
+            $message['properties'][] = $propertyAttributes[0]->newInstance()->toArray();
         }
 
         return $message;

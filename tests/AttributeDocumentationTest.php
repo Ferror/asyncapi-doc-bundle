@@ -19,18 +19,34 @@ class AttributeDocumentationTest extends TestCase
                 [
                     'name' => 'name',
                     'type' => 'string',
+                    'description' => 'Name of the user',
+                    'example' => 'John',
+                    'format' => 'string',
+
                 ],
                 [
                     'name' => 'email',
                     'type' => 'string',
+                    'description' => 'Email of the user',
+                    'format' => 'email',
+                    'example' => 'john@example',
+
                 ],
                 [
                     'name' => 'age',
                     'type' => 'integer',
+                    'description' => 'Age of the user',
+                    'format' => 'int',
+                    'example' => '18',
+
                 ],
                 [
                     'name' => 'isCitizen',
                     'type' => 'boolean',
+                    'description' => 'Is user a citizen',
+                    'format' => 'boolean',
+                    'example' => 'true',
+
                 ],
             ],
         ];
