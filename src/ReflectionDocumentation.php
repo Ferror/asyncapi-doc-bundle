@@ -6,6 +6,7 @@ namespace Ferror\AsyncapiDocBundle;
 
 use Ferror\AsyncapiDocBundle\Tests\UserSignedUp;
 use ReflectionClass;
+use ReflectionNamedType;
 
 class ReflectionDocumentation
 {
@@ -17,6 +18,7 @@ class ReflectionDocumentation
         $message['name'] = $reflection->getShortName();
 
         foreach ($properties as $property) {
+            /** @var ReflectionNamedType|null $type */
             $type = $property->getType();
             $name = $property->getName();
 

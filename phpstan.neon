@@ -1,0 +1,8 @@
+parameters:
+    level: 7
+    paths:
+        - src
+        - tests
+    excludePaths:
+        - tests/UserSignedUp.php
+        - tests/PaymentExecuted.php
