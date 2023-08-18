@@ -47,7 +47,7 @@ components:
           age:
             type: integer
             description: 'Age of the user'
-            format: int
+            format: int32
             example: '18'
           isCitizen:
             type: boolean
@@ -59,14 +59,14 @@ components:
         type: object
         properties:
           amount:
-            type: integer
+            type: number
             description: 'Payment amount'
-            format: number
+            format: float
             example: '1000'
           createdAt:
-            type: date-time
+            type: string
             description: 'Creation date'
-            format: datetime
+            format: date-time
             example: '2023-11-23 13:41:21'
 
 YAML;

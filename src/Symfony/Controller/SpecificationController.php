@@ -28,8 +28,11 @@ class SpecificationController
             $channel = $gen->renderChannels($document);
             $message = $gen->render($document);
 
-            $channels[key($channel)] = $channel[key($channel)];
-            $messages[key($message)] = $message[key($message)];
+            $channelKey = key($channel);
+            $messageKey = key($message);
+
+            $channels[$channelKey] = $channel[$channelKey];
+            $messages[$messageKey] = $message[$messageKey];
         }
 
         $schema = Yaml::dump(

@@ -37,7 +37,7 @@ class AttributeDocumentationTest extends TestCase
                     'name' => 'age',
                     'type' => 'integer',
                     'description' => 'Age of the user',
-                    'format' => 'int',
+                    'format' => 'int32',
                     'example' => '18',
 
                 ],

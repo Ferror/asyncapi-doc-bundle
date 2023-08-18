@@ -9,9 +9,10 @@ class PropertyTypeTranslator
     public static function translate(string $type): string
     {
         return match ($type) {
-            'bool' => 'boolean',
-            'int' => 'integer',
-            default => $type,
+            'bool', 'boolean' => 'boolean',
+            'int', 'integer' => 'integer',
+            'float', 'number' => 'number',
+            default => 'string',
         };
     }
 }
