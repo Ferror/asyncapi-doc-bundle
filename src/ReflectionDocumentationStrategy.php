@@ -7,7 +7,7 @@ namespace Ferror\AsyncapiDocBundle;
 use ReflectionClass;
 use ReflectionNamedType;
 
-class ReflectionDocumentationStrategy implements DocumentationStrategy
+class ReflectionDocumentationStrategy implements DocumentationStrategyInterface
 {
     /**
      * @param class-string $class

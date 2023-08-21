@@ -7,7 +7,7 @@ namespace Ferror\AsyncapiDocBundle\Tests;
 use Ferror\AsyncapiDocBundle\ReflectionDocumentationStrategy;
 use PHPUnit\Framework\TestCase;
 
-class ReflectionDocumentationTest extends TestCase
+class ReflectionDocumentationStrategyTest extends TestCase
 {
     public function test(): void
     {

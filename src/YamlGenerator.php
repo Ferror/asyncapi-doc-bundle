@@ -6,18 +6,18 @@ namespace Ferror\AsyncapiDocBundle;
 
 use Symfony\Component\Yaml\Yaml;
 
-readonly class Generator
+readonly class YamlGenerator
 {
     public function __construct(
-        private ClassFetcher $classFetcher,
-        private DocumentationStrategy $documentationStrategy,
+        private ClassFinderInterface $classFinder,
+        private DocumentationStrategyInterface $documentationStrategy,
         private Schema $schema,
     ) {
     }
 
     public function generate(): string
     {
-        $classes = $this->classFetcher->get();
+        $classes = $this->classFinder->find();
 
         $channels = [];
         $messages = [];

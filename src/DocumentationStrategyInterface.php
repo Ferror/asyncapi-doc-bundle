@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace Ferror\AsyncapiDocBundle;
 
-interface DocumentationStrategy
+interface DocumentationStrategyInterface
 {
+    /**
+     * @param class-string $class
+     */
     public function document(string $class): array;
 }

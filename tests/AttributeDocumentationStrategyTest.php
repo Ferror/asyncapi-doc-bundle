@@ -7,7 +7,7 @@ namespace Ferror\AsyncapiDocBundle\Tests;
 use Ferror\AsyncapiDocBundle\AttributeDocumentationStrategy;
 use PHPUnit\Framework\TestCase;
 
-class AttributeDocumentationTest extends TestCase
+class AttributeDocumentationStrategyTest extends TestCase
 {
     public function test(): void
     {

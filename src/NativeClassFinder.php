@@ -8,14 +8,14 @@ use Ferror\AsyncapiDocBundle\Attribute\Message;
 use ReflectionClass;
 use ReflectionException;
 
-class ClassFetcher
+class NativeClassFinder implements ClassFinderInterface
 {
     /**
      * @return class-string[]
      *
      * @throws ReflectionException
      */
-    public function get(): array
+    public function find(): array
     {
         $allClasses = get_declared_classes();
 

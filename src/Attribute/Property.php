@@ -26,7 +26,7 @@ readonly class Property
             'name' => $this->name,
             'type' => $this->type->value,
             'description' => $this->description,
-            'format' => $this->format->value,
+            'format' => $this->format?->value,
             'example' => $this->example,
         ];
     }

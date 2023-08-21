@@ -9,7 +9,7 @@ use Ferror\AsyncapiDocBundle\Attribute\Property;
 use ReflectionAttribute;
 use ReflectionClass;
 
-class AttributeDocumentationStrategy implements DocumentationStrategy
+class AttributeDocumentationStrategy implements DocumentationStrategyInterface
 {
     /**
      * @param class-string $class
