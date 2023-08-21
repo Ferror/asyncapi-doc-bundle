@@ -39,7 +39,7 @@ class Schema
     public function renderChannels(array $document): array
     {
         $channel[$document['channel']] = [
-            'subscribe' => [
+            $document['channelType'] => [
                 'message' => [
                     '$ref' => '#/components/messages/' . $document['name'],
                 ],

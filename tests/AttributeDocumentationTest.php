@@ -16,6 +16,7 @@ class AttributeDocumentationTest extends TestCase
         $expected = [
             'name' => 'UserSignedUp',
             'channel' => 'user_signed_up',
+            'channelType' => 'subscribe',
             'properties' => [
                 [
                     'name' => 'name',

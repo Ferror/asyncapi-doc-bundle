@@ -15,8 +15,8 @@ readonly class Property
         public string $name,
         public PropertyType $type,
         public string $description,
-        public Format $format,
-        public string $example,
+        public ?Format $format = null,
+        public ?string $example = null,
     ) {
     }
 
