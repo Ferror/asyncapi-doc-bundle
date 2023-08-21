@@ -4,15 +4,17 @@ declare(strict_types=1);
 
 namespace Ferror\AsyncapiDocBundle;
 
-use Ferror\AsyncapiDocBundle\Tests\UserSignedUp;
 use ReflectionClass;
 use ReflectionNamedType;
 
-class ReflectionDocumentation
+class ReflectionDocumentationStrategy implements DocumentationStrategy
 {
-    public function document(): array
+    /**
+     * @param class-string $class
+     */
+    public function document(string $class): array
     {
-        $reflection = new ReflectionClass(UserSignedUp::class);
+        $reflection = new ReflectionClass($class);
         $properties = $reflection->getProperties();
 
         $message['name'] = $reflection->getShortName();

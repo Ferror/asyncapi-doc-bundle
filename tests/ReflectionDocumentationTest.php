@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Ferror\AsyncapiDocBundle\Tests;
 
-use Ferror\AsyncapiDocBundle\ReflectionDocumentation;
+use Ferror\AsyncapiDocBundle\ReflectionDocumentationStrategy;
 use PHPUnit\Framework\TestCase;
 
 class ReflectionDocumentationTest extends TestCase
 {
     public function test(): void
     {
-        $documentation = new ReflectionDocumentation();
+        $documentation = new ReflectionDocumentationStrategy();
 
         $expected = [
             'name' => 'UserSignedUp',
@@ -35,6 +35,6 @@ class ReflectionDocumentationTest extends TestCase
             ],
         ];
 
-        $this->assertEquals($expected, $documentation->document());
+        $this->assertEquals($expected, $documentation->document(UserSignedUp::class));
     }
 }

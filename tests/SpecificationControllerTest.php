@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace Ferror\AsyncapiDocBundle\Tests;
 
+use Ferror\AsyncapiDocBundle\AttributeDocumentationStrategy;
+use Ferror\AsyncapiDocBundle\ClassFetcher;
+use Ferror\AsyncapiDocBundle\Generator;
+use Ferror\AsyncapiDocBundle\Schema;
 use Ferror\AsyncapiDocBundle\Symfony\Controller\SpecificationController;
 use PHPUnit\Framework\TestCase;
 
@@ -11,7 +15,13 @@ class SpecificationControllerTest extends TestCase
 {
     public function test(): void
     {
-        $controller = new SpecificationController();
+        $controller = new SpecificationController(
+            new Generator(
+                new ClassFetcher(),
+                new AttributeDocumentationStrategy(),
+                new Schema(),
+            )
+        );
 
         $expected = <<<YAML
 asyncapi: 2.6.0

@@ -9,8 +9,11 @@ use Ferror\AsyncapiDocBundle\Attribute\Property;
 use ReflectionAttribute;
 use ReflectionClass;
 
-class AttributeDocumentation
+class AttributeDocumentationStrategy implements DocumentationStrategy
 {
+    /**
+     * @param class-string $class
+     */
     public function document(string $class): array
     {
         $reflection = new ReflectionClass($class);

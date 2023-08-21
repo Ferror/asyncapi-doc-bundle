@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Ferror\AsyncapiDocBundle\Tests;
 
-use Ferror\AsyncapiDocBundle\AttributeDocumentation;
+use Ferror\AsyncapiDocBundle\AttributeDocumentationStrategy;
 use PHPUnit\Framework\TestCase;
 
 class AttributeDocumentationTest extends TestCase
 {
     public function test(): void
     {
-        $documentation = new AttributeDocumentation();
+        $documentation = new AttributeDocumentationStrategy();
 
         $expected = [
             'name' => 'UserSignedUp',
