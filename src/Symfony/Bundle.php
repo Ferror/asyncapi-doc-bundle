@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace Ferror\AsyncapiDocBundle\Symfony;
 
+use Ferror\AsyncapiDocBundle\AttributeDocumentationStrategy;
 use Ferror\AsyncapiDocBundle\NativeClassFinder;
+use Ferror\AsyncapiDocBundle\Schema;
+use Ferror\AsyncapiDocBundle\Symfony\Controller\SpecificationController;
+use Ferror\AsyncapiDocBundle\YamlGenerator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\Bundle\Bundle as SymfonyBundle;
 
 class Bundle extends SymfonyBundle
@@ -13,7 +18,28 @@ class Bundle extends SymfonyBundle
     public function build(ContainerBuilder $container): void
     {
         $container
-            ->register('ferror.asyncapi_doc_bundle.class_fetcher', NativeClassFinder::class)
+            ->register('ferror.asyncapi_doc_bundle.class_finder.native', NativeClassFinder::class)
+        ;
+
+        $container
+            ->register('ferror.asyncapi_doc_bundle.documentation.attributes', AttributeDocumentationStrategy::class)
+        ;
+
+        $container
+            ->register(Schema::class)
+        ;
+
+        $container
+            ->register('ferror.asyncapi_doc_bundle.generator.yaml', YamlGenerator::class)
+            ->addArgument(new Reference('ferror.asyncapi_doc_bundle.class_finder.native'))
+            ->addArgument(new Reference('ferror.asyncapi_doc_bundle.documentation.attributes'))
+            ->addArgument(new Reference(Schema::class))
+        ;
+
+        $container
+            ->register('ferror.asyncapi_doc_bundle.controller', SpecificationController::class)
+            ->addArgument(new Reference('ferror.asyncapi_doc_bundle.generator.yaml'))
+            ->addTag('controller.service_arguments')
         ;
     }
 }
