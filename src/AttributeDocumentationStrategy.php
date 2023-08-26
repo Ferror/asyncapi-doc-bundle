@@ -6,11 +6,16 @@ namespace Ferror\AsyncapiDocBundle;
 
 use Ferror\AsyncapiDocBundle\Attribute\Message;
 use Ferror\AsyncapiDocBundle\Attribute\Property;
+use Ferror\AsyncapiDocBundle\Attribute\PropertyInterface;
 use ReflectionAttribute;
 use ReflectionClass;
 
 class AttributeDocumentationStrategy implements DocumentationStrategyInterface
 {
+    public function __construct(private PropertyExtractor $propertyExtractor = new PropertyExtractor())
+    {
+    }
+
     /**
      * @param class-string $class
      */
@@ -19,15 +24,11 @@ class AttributeDocumentationStrategy implements DocumentationStrategyInterface
         $reflection = new ReflectionClass($class);
         /** @var ReflectionAttribute<Message>[] $messageAttribute */
         $messageAttributes = $reflection->getAttributes(Message::class);
-        $properties = $reflection->getProperties();
 
         $message = $messageAttributes[0]->newInstance()->toArray();
 
-        foreach ($properties as $property) {
-            /** @var ReflectionAttribute<Property>[] $propertyAttributes */
-            $propertyAttributes = $property->getAttributes(Property::class);
-
-            $message['properties'][] = $propertyAttributes[0]->newInstance()->toArray();
+        foreach ($this->propertyExtractor->extract($class) as $property) {
+            $message['properties'][] = $property->toArray();
         }
 
         return $message;

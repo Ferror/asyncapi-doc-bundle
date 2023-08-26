@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Ferror\AsyncapiDocBundle;
 
+/**
+ * AsyncAPI Format Types
+ */
 enum Format: string
 {
     case STRING = 'string';

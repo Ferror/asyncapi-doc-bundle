@@ -6,6 +6,7 @@ namespace Ferror\AsyncapiDocBundle\Tests;
 
 use Ferror\AsyncapiDocBundle\AttributeDocumentationStrategy;
 use Ferror\AsyncapiDocBundle\NativeClassFinder;
+use Ferror\AsyncapiDocBundle\PropertyExtractor;
 use Ferror\AsyncapiDocBundle\YamlGenerator;
 use Ferror\AsyncapiDocBundle\Schema;
 use Ferror\AsyncapiDocBundle\Symfony\Controller\SpecificationController;
@@ -18,7 +19,7 @@ class SpecificationControllerTest extends TestCase
         $controller = new SpecificationController(
             new YamlGenerator(
                 new NativeClassFinder(),
-                new AttributeDocumentationStrategy(),
+                new AttributeDocumentationStrategy(new PropertyExtractor()),
                 new Schema(),
             )
         );

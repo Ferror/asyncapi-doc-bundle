@@ -6,15 +6,13 @@ namespace Ferror\AsyncapiDocBundle\Attribute;
 
 use Attribute;
 use Ferror\AsyncapiDocBundle\Format;
-use Ferror\AsyncapiDocBundle\PropertyType;
-use Ferror\AsyncapiDocBundle\PropertyTypeTranslator;
 
-#[Attribute(Attribute::TARGET_PROPERTY | Attribute::TARGET_CLASS)]
-readonly class Property implements PropertyInterface
+#[Attribute(Attribute::TARGET_PROPERTY)]
+class PropertyEnum implements PropertyInterface
 {
     public function __construct(
         public string $name,
-        public PropertyType $type = PropertyType::STRING,
+        public string $enum,
         public string $description = '',
         public ?Format $format = null,
         public ?string $example = null,
@@ -24,9 +22,12 @@ readonly class Property implements PropertyInterface
 
     public function toArray(): array
     {
+        $refl = new \ReflectionEnum($this->enum);
+
         return [
             'name' => $this->name,
-            'type' => PropertyTypeTranslator::a($this->type),
+            'type' => 'string',
+            'enum' => $refl->getCases(),
             'description' => $this->description,
             'format' => $this->format?->value,
             'example' => $this->example,

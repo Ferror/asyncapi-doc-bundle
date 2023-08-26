@@ -5,13 +5,12 @@ declare(strict_types=1);
 namespace Ferror\AsyncapiDocBundle;
 
 /**
- * PHP Type to AsyncAPI Type
+ * AsyncAPI Types
  */
-enum PropertyType: string
+enum PropertyType
 {
-    case STRING = 'string';
-    case BOOLEAN = 'boolean';
-    case DATETIME = 'date-time';
-    case INTEGER = 'integer';
-    case FLOAT = 'number';
+    case STRING;
+    case BOOLEAN;
+    case INTEGER;
+    case FLOAT;
 }
