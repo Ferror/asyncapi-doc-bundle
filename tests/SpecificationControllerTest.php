@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Ferror\AsyncapiDocBundle\Tests;
 
-use Ferror\AsyncapiDocBundle\AttributeDocumentationStrategy;
-use Ferror\AsyncapiDocBundle\NativeClassFinder;
+use Ferror\AsyncapiDocBundle\ClassFinder\NativeClassFinder;
+use Ferror\AsyncapiDocBundle\DocumentationStrategy\AttributeDocumentationStrategy;
 use Ferror\AsyncapiDocBundle\PropertyExtractor;
-use Ferror\AsyncapiDocBundle\YamlGenerator;
 use Ferror\AsyncapiDocBundle\Schema;
 use Ferror\AsyncapiDocBundle\Symfony\Controller\SpecificationController;
+use Ferror\AsyncapiDocBundle\YamlGenerator;
 use PHPUnit\Framework\TestCase;
 
 class SpecificationControllerTest extends TestCase

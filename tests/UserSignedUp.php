@@ -6,8 +6,8 @@ namespace Ferror\AsyncapiDocBundle\Tests;
 
 use Ferror\AsyncapiDocBundle\Attribute\Message;
 use Ferror\AsyncapiDocBundle\Attribute\Property;
-use Ferror\AsyncapiDocBundle\Format;
-use Ferror\AsyncapiDocBundle\PropertyType;
+use Ferror\AsyncapiDocBundle\Schema\Format;
+use Ferror\AsyncapiDocBundle\Schema\PropertyType;
 
 #[Message(name: 'UserSignedUp', channel: 'user_signed_up')]
 readonly class UserSignedUp

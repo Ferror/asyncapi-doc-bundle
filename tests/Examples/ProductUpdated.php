@@ -11,8 +11,8 @@ use Ferror\AsyncapiDocBundle\Attribute\PropertyArray;
 use Ferror\AsyncapiDocBundle\Attribute\PropertyArrayObject;
 use Ferror\AsyncapiDocBundle\Attribute\PropertyEnum;
 use Ferror\AsyncapiDocBundle\Attribute\PropertyObject;
-use Ferror\AsyncapiDocBundle\Format;
-use Ferror\AsyncapiDocBundle\PropertyType;
+use Ferror\AsyncapiDocBundle\Schema\Format;
+use Ferror\AsyncapiDocBundle\Schema\PropertyType;
 
 #[Message(
     name: 'ProductUpdated',

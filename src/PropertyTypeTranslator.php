@@ -15,14 +15,4 @@ class PropertyTypeTranslator
             default => 'string',
         };
     }
-
-    public static function a(PropertyType $type): string
-    {
-        return match ($type) {
-            PropertyType::STRING => 'string',
-            PropertyType::BOOLEAN => 'boolean',
-            PropertyType::INTEGER => 'integer',
-            PropertyType::FLOAT => 'number',
-        };
-    }
 }

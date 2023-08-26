@@ -2,18 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Ferror\AsyncapiDocBundle;
+namespace Ferror\AsyncapiDocBundle\ClassFinder;
 
 use Ferror\AsyncapiDocBundle\Attribute\Message;
 use ReflectionClass;
-use ReflectionException;
 
 class NativeClassFinder implements ClassFinderInterface
 {
     /**
      * @return class-string[]
-     *
-     * @throws ReflectionException
      */
     public function find(): array
     {

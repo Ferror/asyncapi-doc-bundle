@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Ferror\AsyncapiDocBundle;
+namespace Ferror\AsyncapiDocBundle\DocumentationStrategy;
 
 use Ferror\AsyncapiDocBundle\Attribute\Message;
-use Ferror\AsyncapiDocBundle\Attribute\Property;
-use Ferror\AsyncapiDocBundle\Attribute\PropertyInterface;
+use Ferror\AsyncapiDocBundle\PropertyExtractor;
 use ReflectionAttribute;
 use ReflectionClass;
 
-class AttributeDocumentationStrategy implements DocumentationStrategyInterface
+readonly class AttributeDocumentationStrategy implements DocumentationStrategyInterface
 {
-    public function __construct(private PropertyExtractor $propertyExtractor = new PropertyExtractor())
-    {
+    public function __construct(
+        private PropertyExtractor $propertyExtractor = new PropertyExtractor()
+    ) {
     }
 
     /**
@@ -24,6 +24,10 @@ class AttributeDocumentationStrategy implements DocumentationStrategyInterface
         $reflection = new ReflectionClass($class);
         /** @var ReflectionAttribute<Message>[] $messageAttribute */
         $messageAttributes = $reflection->getAttributes(Message::class);
+
+        if (empty($messageAttributes)) {
+            throw new DocumentationStrategyException();
+        }
 
         $message = $messageAttributes[0]->newInstance()->toArray();
 

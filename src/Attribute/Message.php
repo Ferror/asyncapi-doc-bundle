@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Ferror\AsyncapiDocBundle\Attribute;
 
 use Attribute;
-use Ferror\AsyncapiDocBundle\ChannelType;
+use Ferror\AsyncapiDocBundle\Schema\ChannelType;
 
 #[Attribute(Attribute::TARGET_CLASS)]
 readonly class Message implements PropertyInterface

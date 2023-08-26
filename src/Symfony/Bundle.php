@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Ferror\AsyncapiDocBundle\Symfony;
 
-use Ferror\AsyncapiDocBundle\AttributeDocumentationStrategy;
-use Ferror\AsyncapiDocBundle\NativeClassFinder;
+use Ferror\AsyncapiDocBundle\ClassFinder\NativeClassFinder;
+use Ferror\AsyncapiDocBundle\DocumentationStrategy\AttributeDocumentationStrategy;
 use Ferror\AsyncapiDocBundle\Schema;
 use Ferror\AsyncapiDocBundle\Symfony\Controller\SpecificationController;
 use Ferror\AsyncapiDocBundle\YamlGenerator;

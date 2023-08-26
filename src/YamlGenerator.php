@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Ferror\AsyncapiDocBundle;
 
+use Ferror\AsyncapiDocBundle\ClassFinder\ClassFinderInterface;
+use Ferror\AsyncapiDocBundle\DocumentationStrategy\DocumentationStrategyInterface;
 use Symfony\Component\Yaml\Yaml;
 
 readonly class YamlGenerator

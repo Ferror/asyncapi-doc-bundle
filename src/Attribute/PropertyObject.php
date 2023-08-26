@@ -5,9 +5,6 @@ declare(strict_types=1);
 namespace Ferror\AsyncapiDocBundle\Attribute;
 
 use Attribute;
-use Ferror\AsyncapiDocBundle\Format;
-use Ferror\AsyncapiDocBundle\PropertyType;
-use Ferror\AsyncapiDocBundle\PropertyTypeTranslator;
 
 #[Attribute(Attribute::TARGET_PROPERTY | Attribute::TARGET_CLASS)]
 readonly class PropertyObject implements PropertyInterface

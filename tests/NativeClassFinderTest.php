@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Ferror\AsyncapiDocBundle\Tests;
 
-use Ferror\AsyncapiDocBundle\NativeClassFinder;
+use Ferror\AsyncapiDocBundle\ClassFinder\NativeClassFinder;
 use PHPUnit\Framework\TestCase;
 
 class NativeClassFinderTest extends TestCase

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Ferror\AsyncapiDocBundle\Tests;
 
-use Ferror\AsyncapiDocBundle\ReflectionDocumentationStrategy;
+use Ferror\AsyncapiDocBundle\DocumentationStrategy\ReflectionDocumentationStrategy;
 use PHPUnit\Framework\TestCase;
 
 class ReflectionDocumentationStrategyTest extends TestCase

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Ferror\AsyncapiDocBundle\Tests;
 
-use Ferror\AsyncapiDocBundle\AttributeDocumentationStrategy;
+use Ferror\AsyncapiDocBundle\DocumentationStrategy\AttributeDocumentationStrategy;
 use Ferror\AsyncapiDocBundle\PropertyExtractor;
 use PHPUnit\Framework\TestCase;
 
