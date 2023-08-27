@@ -12,7 +12,7 @@ use ReflectionClass;
 readonly class AttributeDocumentationStrategy implements DocumentationStrategyInterface
 {
     public function __construct(
-        private PropertyExtractor $propertyExtractor = new PropertyExtractor()
+        private PropertyExtractor $propertyExtractor = new PropertyExtractor(),
     ) {
     }
 
