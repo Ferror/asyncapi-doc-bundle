@@ -22,7 +22,7 @@ readonly class AttributeDocumentationStrategy implements DocumentationStrategyIn
     public function document(string $class): array
     {
         $reflection = new ReflectionClass($class);
-        /** @var ReflectionAttribute<Message>[] $messageAttribute */
+        /** @var ReflectionAttribute<Message>[] $messageAttributes */
         $messageAttributes = $reflection->getAttributes(Message::class);
 
         if (empty($messageAttributes)) {
