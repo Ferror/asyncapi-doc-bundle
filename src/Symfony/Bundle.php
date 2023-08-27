@@ -9,6 +9,7 @@ use Ferror\AsyncapiDocBundle\DocumentationStrategy\AttributeDocumentationStrateg
 use Ferror\AsyncapiDocBundle\Schema;
 use Ferror\AsyncapiDocBundle\Symfony\Console\DumpSpecificationConsole;
 use Ferror\AsyncapiDocBundle\Symfony\Controller\SpecificationController;
+use Ferror\AsyncapiDocBundle\Symfony\Controller\UserInterfaceController;
 use Ferror\AsyncapiDocBundle\YamlGenerator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
@@ -40,6 +41,11 @@ class Bundle extends SymfonyBundle
         $container
             ->register('ferror.asyncapi_doc_bundle.controller', SpecificationController::class)
             ->addArgument(new Reference('ferror.asyncapi_doc_bundle.generator.yaml'))
+            ->addTag('controller.service_arguments')
+        ;
+
+        $container
+            ->register('ferror.asyncapi_doc_bundle.controller.ui', UserInterfaceController::class)
             ->addTag('controller.service_arguments')
         ;
 
