@@ -8,16 +8,16 @@ use Attribute;
 use Ferror\AsyncapiDocBundle\Schema\ChannelType;
 
 #[Attribute(Attribute::TARGET_CLASS)]
-readonly class Message implements PropertyInterface
+class Message implements PropertyInterface
 {
     /**
      * @param PropertyInterface[] $properties
      */
     public function __construct(
-        public string $name,
-        public string $channel,
-        public array $properties = [],
-        public ChannelType $channelType = ChannelType::SUBSCRIBE,
+        public readonly string $name,
+        public readonly string $channel,
+        public readonly array $properties = [],
+        public readonly ChannelType $channelType = ChannelType::SUBSCRIBE,
     ) {
     }
 

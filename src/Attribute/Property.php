@@ -5,21 +5,21 @@ declare(strict_types=1);
 namespace Ferror\AsyncapiDocBundle\Attribute;
 
 use Attribute;
-use Ferror\AsyncapiDocBundle\PropertyTypeTranslator;
 use Ferror\AsyncapiDocBundle\Schema\Format;
 use Ferror\AsyncapiDocBundle\Schema\PropertyType;
 
-#[Attribute(Attribute::TARGET_PROPERTY | Attribute::TARGET_CLASS)]
-readonly class Property implements PropertyInterface
+#[Attribute(Attribute::TARGET_PROPERTY)]
+class Property extends AbstractProperty implements PropertyInterface
 {
     public function __construct(
-        public string $name,
-        public PropertyType $type = PropertyType::STRING,
-        public string $description = '',
-        public ?Format $format = null,
-        public ?string $example = null,
-        public bool $required = true,
+        string $name,
+        string $description = '',
+        public readonly PropertyType $type = PropertyType::STRING,
+        public readonly ?Format $format = null,
+        public readonly ?string $example = null,
+        public readonly bool $required = true,
     ) {
+        parent::__construct($name, $description);
     }
 
     public function toArray(): array

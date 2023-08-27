@@ -6,16 +6,17 @@ namespace Ferror\AsyncapiDocBundle\Attribute;
 
 use Attribute;
 
-#[Attribute(Attribute::TARGET_PROPERTY | Attribute::TARGET_CLASS)]
-readonly class PropertyObject implements PropertyInterface
+#[Attribute(Attribute::TARGET_PROPERTY)]
+class PropertyObject extends AbstractProperty implements PropertyInterface
 {
     public function __construct(
-        public string $name,
-        public string $class,
-        public string $description = '',
-        public array $items = [],
-        public bool $required = true,
+        string $name,
+        public readonly string $class,
+        string $description = '',
+        public readonly array $items = [],
+        public readonly bool $required = true,
     ) {
+        parent::__construct($name, $description);
     }
 
     public function toArray(): array

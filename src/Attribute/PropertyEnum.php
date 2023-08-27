@@ -6,28 +6,30 @@ namespace Ferror\AsyncapiDocBundle\Attribute;
 
 use Attribute;
 use Ferror\AsyncapiDocBundle\Schema\Format;
+use ReflectionEnum;
 
 #[Attribute(Attribute::TARGET_PROPERTY)]
-class PropertyEnum implements PropertyInterface
+class PropertyEnum extends AbstractProperty implements PropertyInterface
 {
     public function __construct(
-        public string $name,
+        string $name,
         public string $enum,
-        public string $description = '',
+        string $description = '',
         public ?Format $format = null,
         public ?string $example = null,
         public bool $required = true,
     ) {
+        parent::__construct($name, $description);
     }
 
     public function toArray(): array
     {
-        $refl = new \ReflectionEnum($this->enum);
+        $enum = new ReflectionEnum($this->enum);
 
         return [
             'name' => $this->name,
             'type' => 'string',
-            'enum' => $refl->getCases(),
+            'enum' => $enum->getCases(),
             'description' => $this->description,
             'format' => $this->format?->value,
             'example' => $this->example,

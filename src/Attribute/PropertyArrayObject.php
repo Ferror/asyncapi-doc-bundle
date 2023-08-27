@@ -7,17 +7,18 @@ namespace Ferror\AsyncapiDocBundle\Attribute;
 use Attribute;
 use Ferror\AsyncapiDocBundle\Schema\Format;
 
-#[Attribute(Attribute::TARGET_PROPERTY | Attribute::TARGET_CLASS)]
-readonly class PropertyArrayObject implements PropertyInterface
+#[Attribute(Attribute::TARGET_PROPERTY)]
+class PropertyArrayObject extends AbstractProperty implements PropertyInterface
 {
     public function __construct(
-        public string $name,
+        string $name,
         public string $class,
-        public string $description = '',
+        string $description = '',
         public ?Format $format = null,
         public ?string $example = null,
         public bool $required = true,
     ) {
+        parent::__construct($name, $description);
     }
 
     public function toArray(): array

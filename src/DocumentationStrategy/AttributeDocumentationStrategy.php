@@ -16,9 +16,6 @@ readonly class AttributeDocumentationStrategy implements DocumentationStrategyIn
     ) {
     }
 
-    /**
-     * @param class-string $class
-     */
     public function document(string $class): array
     {
         $reflection = new ReflectionClass($class);
