@@ -7,6 +7,7 @@ namespace Ferror\AsyncapiDocBundle\Symfony;
 use Ferror\AsyncapiDocBundle\ClassFinder\NativeClassFinder;
 use Ferror\AsyncapiDocBundle\DocumentationStrategy\AttributeDocumentationStrategy;
 use Ferror\AsyncapiDocBundle\Schema;
+use Ferror\AsyncapiDocBundle\Symfony\Console\DumpSpecificationConsole;
 use Ferror\AsyncapiDocBundle\Symfony\Controller\SpecificationController;
 use Ferror\AsyncapiDocBundle\YamlGenerator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -40,6 +41,14 @@ class Bundle extends SymfonyBundle
             ->register('ferror.asyncapi_doc_bundle.controller', SpecificationController::class)
             ->addArgument(new Reference('ferror.asyncapi_doc_bundle.generator.yaml'))
             ->addTag('controller.service_arguments')
+        ;
+
+        $container
+            ->register('ferror.asyncapi_doc_bundle.console', DumpSpecificationConsole::class)
+            ->addArgument(new Reference('ferror.asyncapi_doc_bundle.generator.yaml'))
+            ->addArgument(new Reference('ferror.asyncapi_doc_bundle.documentation.attributes'))
+            ->addArgument(new Reference(Schema::class))
+            ->addTag('console.command')
         ;
     }
 }

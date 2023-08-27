@@ -18,7 +18,15 @@
         </testsuite>
     </testsuites>
 
-    <source restrictDeprecations="true" restrictNotices="true" restrictWarnings="true">
+    <php>
+        <env name="KERNEL_CLASS" value="Ferror\AsyncapiDocBundle\Tests\Integration\Service\Kernel" />
+    </php>
+
+    <source
+        restrictDeprecations="true"
+        restrictNotices="true"
+        restrictWarnings="true"
+    >
         <include>
             <directory>src</directory>
         </include>

@@ -32,7 +32,7 @@ class AttributeDocumentationStrategyTest extends TestCase
                     'type' => 'string',
                     'description' => 'Email of the user',
                     'format' => 'email',
-                    'example' => 'john@example',
+                    'example' => 'john@example.com',
 
                 ],
                 [

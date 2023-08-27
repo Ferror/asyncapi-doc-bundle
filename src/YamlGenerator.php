@@ -8,7 +8,7 @@ use Ferror\AsyncapiDocBundle\ClassFinder\ClassFinderInterface;
 use Ferror\AsyncapiDocBundle\DocumentationStrategy\DocumentationStrategyInterface;
 use Symfony\Component\Yaml\Yaml;
 
-readonly class YamlGenerator
+readonly class YamlGenerator implements GeneratorInterface
 {
     public function __construct(
         private ClassFinderInterface $classFinder,
