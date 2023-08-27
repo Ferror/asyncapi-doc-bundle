@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Ferror\AsyncapiDocBundle\Symfony\Controller;
 
-use Ferror\AsyncapiDocBundle\GeneratorInterface;
 use Symfony\Component\HttpFoundation\Response;
 
 readonly class UserInterfaceController
