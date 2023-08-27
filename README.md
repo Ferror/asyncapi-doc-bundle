@@ -6,6 +6,18 @@
 composer require ferror/asyncapi-doc-bundle
 ```
 
+```php
+# config/bundles.php
+new Ferror\AsyncapiDocBundle\Symfony\Bundle()
+```
+```yaml
+# config/routes.yaml
+app.asyncapi_ui:
+    path: /asyncapi
+    methods: GET
+    controller: ferror.asyncapi_doc_bundle.controller
+```
+
 ## Usage
 
 ```php
