@@ -8,7 +8,9 @@ composer require ferror/asyncapi-doc-bundle
 
 ```php
 # config/bundles.php
-new Ferror\AsyncapiDocBundle\Symfony\Bundle()
+return [
+    Ferror\AsyncapiDocBundle\Symfony\Bundle::class => ['all' => true],
+];
 ```
 ```yaml
 # config/routes.yaml
