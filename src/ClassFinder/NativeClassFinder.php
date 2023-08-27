@@ -23,4 +23,14 @@ class NativeClassFinder implements ClassFinderInterface
             )
         );
     }
+
+    /**
+     * @return class-string[]
+     */
+    public function filter(callable $callable): array
+    {
+        $allClasses = get_declared_classes();
+
+        return array_values(array_filter($allClasses, $callable));
+    }
 }
