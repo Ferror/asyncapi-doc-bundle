@@ -37,4 +37,4 @@ jobs:
 
       - # Run AsyncAPI Validation
         name: AsyncAPI Validation
-        run: docker run --rm -v $(pwd):/app asyncapi/cli:0.54.3 /app/asyncapi.yaml
+        run: docker run --rm -v $(pwd):/app asyncapi/cli:0.54.3 validate /app/asyncapi.yaml
