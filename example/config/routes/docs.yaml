@@ -1,0 +1,9 @@
+ferror_asyncapi_doc_bundle_yaml:
+    path: /asyncapi
+    controller: ferror.asyncapi_doc_bundle.controller
+    methods: GET
+
+ferror_asyncapi_doc_bundle_html:
+    path: /asyncapi-ui
+    controller: ferror.asyncapi_doc_bundle.controller.ui
+    methods: GET

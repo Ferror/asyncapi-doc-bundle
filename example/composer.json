@@ -1,0 +1,57 @@
+{
+    "type": "project",
+    "license": "proprietary",
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=8.2",
+        "ferror/asyncapi-doc-bundle": "dev-master",
+        "symfony/console": "6.3.*",
+        "symfony/dotenv": "6.3.*",
+        "symfony/flex": "^2",
+        "symfony/framework-bundle": "6.3.*",
+        "symfony/runtime": "6.3.*",
+        "symfony/yaml": "6.3.*"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true,
+            "symfony/flex": true,
+            "symfony/runtime": true
+        },
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Tests\\": "tests/"
+        }
+    },
+    "repositories": {
+        "ferror/asyncapi-doc-bundle": {
+            "type": "path",
+            "url": "../"
+        }
+    },
+    "replace": {
+        "symfony/polyfill-ctype": "*",
+        "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-php72": "*",
+        "symfony/polyfill-php73": "*",
+        "symfony/polyfill-php74": "*",
+        "symfony/polyfill-php80": "*",
+        "symfony/polyfill-php81": "*"
+    },
+    "conflict": {
+        "symfony/symfony": "*"
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": false,
+            "require": "6.3.*"
+        }
+    }
+}
