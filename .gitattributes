@@ -1,0 +1,8 @@
+/.github                export-ignore
+/docs                   export-ignore
+/example                export-ignore
+/tests                  export-ignore
+.gitignore              export-ignore
+phpstan.neon            export-ignore
+phpunit.xml             export-ignore
+README.md               export-ignore
