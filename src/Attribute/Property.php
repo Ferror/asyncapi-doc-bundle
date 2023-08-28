@@ -24,12 +24,10 @@ class Property extends AbstractProperty implements PropertyInterface
 
     public function toArray(): array
     {
-        return [
-            'name' => $this->name,
+        return array_merge(parent::toArray(), [
             'type' => $this->type->value,
-            'description' => $this->description,
             'format' => $this->format?->value,
             'example' => $this->example,
-        ];
+        ]);
     }
 }

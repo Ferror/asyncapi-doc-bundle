@@ -26,13 +26,11 @@ class PropertyEnum extends AbstractProperty implements PropertyInterface
     {
         $enum = new ReflectionEnum($this->enum);
 
-        return [
-            'name' => $this->name,
+        return array_merge(parent::toArray(), [
             'type' => 'string',
             'enum' => $enum->getCases(),
-            'description' => $this->description,
             'format' => $this->format?->value,
             'example' => $this->example,
-        ];
+        ]);
     }
 }

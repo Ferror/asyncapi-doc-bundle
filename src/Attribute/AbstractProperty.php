@@ -11,4 +11,12 @@ abstract class AbstractProperty
         public string $description,
     ) {
     }
+
+    public function toArray(): array
+    {
+        return [
+            'name' => $this->name,
+            'description' => $this->description,
+        ];
+    }
 }

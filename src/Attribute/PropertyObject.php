@@ -21,11 +21,9 @@ class PropertyObject extends AbstractProperty implements PropertyInterface
 
     public function toArray(): array
     {
-        return [
-            'name' => $this->name,
+        return array_merge(parent::toArray(), [
             'type' => 'object',
-            'description' => $this->description,
             'items' => array_map(static fn(PropertyInterface $property) => $property->toArray(), $this->items),
-        ];
+        ]);
     }
 }
