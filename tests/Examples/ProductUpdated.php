@@ -26,7 +26,7 @@ use Ferror\AsyncapiDocBundle\Schema\PropertyType;
         new PropertyEnum(name: 'week', enum: Week::class),
         new PropertyObject(name: 'payment', class: Payment::class),
         new PropertyArrayObject(name: 'products', class: Product::class),
-        new PropertyArray(name: 'tags', itemsType: 'string'),
+        new PropertyArray(name: 'tags', itemsType: PropertyType::STRING),
     ],
 )]
 final readonly class ProductUpdated
