@@ -30,6 +30,7 @@ info:
   title: 'Account Service'
   version: 1.0.0
   description: 'This service is in charge of processing user signups'
+servers: {  }
 channels:
   user_signed_up:
     subscribe:

@@ -23,6 +23,7 @@ readonly class YamlGenerator implements GeneratorInterface
 
         $channels = [];
         $messages = [];
+        $servers = [];
 
         foreach ($classes as $class) {
             $document = $this->documentationStrategy->document($class);
@@ -44,6 +45,7 @@ readonly class YamlGenerator implements GeneratorInterface
                     'version' => '1.0.0',
                     'description' => 'This service is in charge of processing user signups',
                 ],
+                'servers' => $servers,
                 'channels' => $channels,
                 'components' => [
                     'messages' => $messages,

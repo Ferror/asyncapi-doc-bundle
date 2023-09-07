@@ -24,6 +24,7 @@ final readonly class Configuration implements ConfigurationInterface
                         ->scalarNode('protocol')->end()
                         ->scalarNode('description')->end()
                         ->arrayNode('security')->end()
+                    ->end()
                 ->end()
             ->end()
         ;
