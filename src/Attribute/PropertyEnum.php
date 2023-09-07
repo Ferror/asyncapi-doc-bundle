@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace Ferror\AsyncapiDocBundle\Attribute;
 
 use Attribute;
+use Ferror\AsyncapiDocBundle\PropertyTypeTranslator;
 use Ferror\AsyncapiDocBundle\Schema\Format;
 use ReflectionEnum;
+use ReflectionEnumBackedCase;
+use ReflectionEnumPureCase;
 
 #[Attribute(Attribute::TARGET_PROPERTY)]
 class PropertyEnum extends AbstractProperty implements PropertyInterface
@@ -27,8 +30,8 @@ class PropertyEnum extends AbstractProperty implements PropertyInterface
         $enum = new ReflectionEnum($this->enum);
 
         return array_merge(parent::toArray(), [
-            'type' => 'string',
-            'enum' => $enum->getCases(),
+            'type' => PropertyTypeTranslator::translate($enum->getBackingType()?->getName()),
+            'enum' => array_map(static fn (ReflectionEnumPureCase|ReflectionEnumBackedCase $case ) => $case->getBackingValue(), $enum->getCases()),
             'format' => $this->format?->value,
             'example' => $this->example,
         ]);
