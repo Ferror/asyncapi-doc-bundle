@@ -88,6 +88,10 @@ channels:
     subscribe:
       message:
         \$ref: '#/components/messages/PaymentExecuted'
+  product.created:
+    subscribe:
+      message:
+        \$ref: '#/components/messages/ProductCreated'
 components:
   messages:
     UserSignedUp:
@@ -128,6 +132,38 @@ components:
             description: 'Creation date'
             format: date-time
             example: '2023-11-23 13:41:21'
+    ProductCreated:
+      payload:
+        type: object
+        properties:
+          id:
+            type: integer
+            description: ''
+          amount:
+            type: number
+            description: ''
+          currency:
+            type: string
+            description: ''
+          isPaid:
+            type: boolean
+            description: ''
+          createdAt:
+            type: string
+            description: ''
+            format: date-time
+          week:
+            type: integer
+            description: ''
+          payment:
+            type: string
+            description: ''
+          products:
+            type: string
+            description: ''
+          tags:
+            type: string
+            description: ''
 
 
 YAML;

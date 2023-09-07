@@ -38,7 +38,7 @@ final readonly class ProductCreated
         public Payment $payment,
         #[PropertyArrayObject(name: 'products', class: Product::class)]
         public array $products,
-        #[PropertyArray(name: 'tags', itemsType: 'string')]
+        #[PropertyArray(name: 'tags', itemsType: PropertyType::STRING)]
         public array $tags,
     ) {
     }

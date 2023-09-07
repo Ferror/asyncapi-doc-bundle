@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ferror\AsyncapiDocBundle\Tests;
+namespace Ferror\AsyncapiDocBundle\Tests\Unit;
 
 use Ferror\AsyncapiDocBundle\Schema;
 use PHPUnit\Framework\TestCase;

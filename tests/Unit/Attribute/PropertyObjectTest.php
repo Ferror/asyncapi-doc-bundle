@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Attribute;
+namespace Ferror\AsyncapiDocBundle\Tests\Unit\Attribute;
 
 use Ferror\AsyncapiDocBundle\Attribute\Property;
 use Ferror\AsyncapiDocBundle\Attribute\PropertyObject;

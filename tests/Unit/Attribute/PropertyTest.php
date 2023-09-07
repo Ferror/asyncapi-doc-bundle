@@ -2,26 +2,26 @@
 
 declare(strict_types=1);
 
-namespace Attribute;
+namespace Ferror\AsyncapiDocBundle\Tests\Unit\Attribute;
 
-use Ferror\AsyncapiDocBundle\Attribute\PropertyArray;
+use Ferror\AsyncapiDocBundle\Attribute\Property;
 use Ferror\AsyncapiDocBundle\Schema\PropertyType;
 use PHPUnit\Framework\TestCase;
 
-class PropertyArrayTest extends TestCase
+class PropertyTest extends TestCase
 {
     public function testToArray(): void
     {
-        $property = new PropertyArray(
-            name: 'object-name',
-            itemsType: PropertyType::STRING,
+        $property = new Property(
+            name: 'name',
+            description: '',
+            type: PropertyType::STRING,
         );
 
         $expected = [
-            'name' => 'object-name',
+            'name' => 'name',
             'description' => '',
-            'type' => 'array',
-            'itemsType' => 'string',
+            'type' => 'string',
             'format' => null,
             'example' => null,
         ];
