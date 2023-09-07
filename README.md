@@ -14,10 +14,16 @@ return [
 ```
 ```yaml
 # config/routes.yaml
-app.asyncapi_ui:
+ferror_asyncapi_doc_bundle_yaml:
     path: /asyncapi
-    methods: GET
     controller: ferror.asyncapi_doc_bundle.controller
+    methods: GET
+
+ferror_asyncapi_doc_bundle_html:
+    path: /asyncapi-ui
+    controller: ferror.asyncapi_doc_bundle.controller.ui
+    methods: GET
+
 ```
 
 ## Usage
