@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Ferror\AsyncapiDocBundle\Tests\Integration;
 
 use Ferror\AsyncapiDocBundle\Tests\UserSignedUp;
+use RuntimeException;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
@@ -132,5 +133,11 @@ components:
 YAML;
 
         $this->assertEquals($expectedDisplay, $display);
+
+        $content = file_put_contents(dirname(__DIR__) . '/../var/asyncapi.yaml', $display);
+
+        if (false === $content) {
+            throw new RuntimeException('Schema file was not save');
+        }
     }
 }
