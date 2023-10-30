@@ -11,13 +11,13 @@ final readonly class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        $builder = new TreeBuilder('ferror_asyncapi_doc_bundle');
+        $builder = new TreeBuilder(Extension::BUNDLE_ALIAS);
         $root = $builder->getRootNode();
         $root
             ->children()
                 ->scalarNode('title')->end()
                 ->scalarNode('version')->end()
-                ->scalarNode('description')->end()
+                ->scalarNode('description')->defaultValue('')->end()
                 ->arrayNode('servers')
                     ->children()
                         ->scalarNode('url')->end()
