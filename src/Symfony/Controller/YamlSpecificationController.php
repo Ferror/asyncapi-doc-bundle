@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Ferror\AsyncapiDocBundle\Symfony\Controller;
 
-use Ferror\AsyncapiDocBundle\GeneratorInterface;
+use Ferror\AsyncapiDocBundle\YamlGenerator;
 use Symfony\Component\HttpFoundation\Response;
 
-readonly class SpecificationController
+final readonly class YamlSpecificationController
 {
     public function __construct(
-        private GeneratorInterface $generator,
+        private YamlGenerator $generator,
     ) {
     }
 

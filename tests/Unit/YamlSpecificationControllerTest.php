@@ -8,19 +8,22 @@ use Ferror\AsyncapiDocBundle\ClassFinder\NativeClassFinder;
 use Ferror\AsyncapiDocBundle\DocumentationStrategy\AttributeDocumentationStrategy;
 use Ferror\AsyncapiDocBundle\PropertyExtractor;
 use Ferror\AsyncapiDocBundle\Schema;
-use Ferror\AsyncapiDocBundle\Symfony\Controller\SpecificationController;
+use Ferror\AsyncapiDocBundle\SchemaGenerator;
+use Ferror\AsyncapiDocBundle\Symfony\Controller\YamlSpecificationController;
 use Ferror\AsyncapiDocBundle\YamlGenerator;
 use PHPUnit\Framework\TestCase;
 
-class SpecificationControllerTest extends TestCase
+class YamlSpecificationControllerTest extends TestCase
 {
     public function test(): void
     {
-        $controller = new SpecificationController(
+        $controller = new YamlSpecificationController(
             new YamlGenerator(
-                new NativeClassFinder(),
-                new AttributeDocumentationStrategy(new PropertyExtractor()),
-                new Schema(),
+                new SchemaGenerator(
+                    new NativeClassFinder(),
+                    new AttributeDocumentationStrategy(new PropertyExtractor()),
+                    new Schema(),
+                )
             )
         );
 

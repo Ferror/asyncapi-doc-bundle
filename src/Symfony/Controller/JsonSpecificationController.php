@@ -4,17 +4,23 @@ declare(strict_types=1);
 
 namespace Ferror\AsyncapiDocBundle\Symfony\Controller;
 
+use Ferror\AsyncapiDocBundle\JsonGenerator;
 use Symfony\Component\HttpFoundation\Response;
 
-final readonly class UserInterfaceController
+final readonly class JsonSpecificationController
 {
+    public function __construct(
+        private JsonGenerator $generator,
+    ) {
+    }
+
     public function __invoke(): Response
     {
         return new Response(
-            file_get_contents(__DIR__ . '/../Resources/index.html'),
+            $this->generator->generate(),
             200,
             [
-                'Content-Type' => 'text/html',
+                'Content-Type' => 'text/json',
             ]
         );
     }

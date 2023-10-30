@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Ferror\AsyncapiDocBundle;
 
-use Symfony\Component\Yaml\Yaml;
-
-final readonly class YamlGenerator implements GeneratorInterface
+final readonly class JsonGenerator implements GeneratorInterface
 {
     public function __construct(
         private SchemaGenerator $generator,
@@ -15,6 +13,6 @@ final readonly class YamlGenerator implements GeneratorInterface
 
     public function generate(): string
     {
-        return Yaml::dump($this->generator->generate(), 10, 2);
+        return json_encode($this->generator->generate(), JSON_THROW_ON_ERROR);
     }
 }

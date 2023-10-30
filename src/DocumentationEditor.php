@@ -6,7 +6,7 @@ namespace Ferror\AsyncapiDocBundle;
 
 use Ferror\AsyncapiDocBundle\DocumentationStrategy\PrioritisedDocumentationStrategy;
 
-readonly class DocumentationEditor
+final readonly class DocumentationEditor
 {
     /**
      * @param PrioritisedDocumentationStrategy[] $documentationStrategies
