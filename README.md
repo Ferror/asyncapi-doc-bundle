@@ -13,17 +13,27 @@ return [
 ];
 ```
 ```yaml
+# config/packages/asyncapi_doc_bundle.yaml
+ferror_asyncapi_doc_bundle:
+  title: 'Service Example API'
+  version: '1.2.3'
+```
+```yaml
 # config/routes.yaml
 ferror_asyncapi_doc_bundle_yaml:
-    path: /asyncapi
-    controller: ferror.asyncapi_doc_bundle.controller
+    path: /asyncapi.yaml
+    controller: ferror.asyncapi_doc_bundle.controller.yaml
     methods: GET
+
+ferror_asyncapi_doc_bundle_json:
+  path: /asyncapi.yaml
+  controller: ferror.asyncapi_doc_bundle.controller.json
+  methods: GET
 
 ferror_asyncapi_doc_bundle_html:
-    path: /asyncapi-ui
+    path: /asyncapi
     controller: ferror.asyncapi_doc_bundle.controller.ui
     methods: GET
-
 ```
 
 ## Usage
