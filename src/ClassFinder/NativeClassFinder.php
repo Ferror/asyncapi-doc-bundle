@@ -7,7 +7,7 @@ namespace Ferror\AsyncapiDocBundle\ClassFinder;
 use Ferror\AsyncapiDocBundle\Attribute\Message;
 use ReflectionClass;
 
-class NativeClassFinder implements ClassFinderInterface
+final readonly class NativeClassFinder implements ClassFinderInterface
 {
     /**
      * @return class-string[]

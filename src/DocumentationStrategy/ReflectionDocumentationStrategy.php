@@ -7,7 +7,7 @@ namespace Ferror\AsyncapiDocBundle\DocumentationStrategy;
 use ReflectionClass;
 use ReflectionNamedType;
 
-class ReflectionDocumentationStrategy implements DocumentationStrategyInterface
+final readonly class ReflectionDocumentationStrategy implements DocumentationStrategyInterface
 {
     /**
      * @param class-string $class
@@ -23,6 +23,10 @@ class ReflectionDocumentationStrategy implements DocumentationStrategyInterface
             /** @var ReflectionNamedType|null $type */
             $type = $property->getType();
             $name = $property->getName();
+
+            if ($type && !$type->allowsNull()) {
+                $message['required'][] = $name;
+            }
 
             $message['properties'][] = [
                 'name' => $name,

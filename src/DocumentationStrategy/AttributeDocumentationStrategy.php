@@ -9,7 +9,7 @@ use Ferror\AsyncapiDocBundle\PropertyExtractor;
 use ReflectionAttribute;
 use ReflectionClass;
 
-readonly class AttributeDocumentationStrategy implements DocumentationStrategyInterface
+final readonly class AttributeDocumentationStrategy implements DocumentationStrategyInterface
 {
     public function __construct(
         private PropertyExtractor $propertyExtractor = new PropertyExtractor(),

@@ -34,6 +34,12 @@ class ReflectionDocumentationStrategyTest extends TestCase
                     'type' => 'bool',
                 ],
             ],
+            'required' => [
+                'name',
+                'email',
+                'age',
+                'isCitizen',
+            ]
         ];
 
         $this->assertEquals($expected, $documentation->document(UserSignedUp::class));
