@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Ferror\AsyncapiDocBundle\Symfony;
 
+use Ferror\AsyncapiDocBundle\ClassFinder\ManualClassFinder;
 use Ferror\AsyncapiDocBundle\ClassFinder\NativeClassFinder;
 use Ferror\AsyncapiDocBundle\DocumentationStrategy\AttributeDocumentationStrategy;
 use Ferror\AsyncapiDocBundle\JsonGenerator;
@@ -33,6 +34,11 @@ final class Extension extends SymfonyExtension
 
         $container
             ->register('ferror.asyncapi_doc_bundle.class_finder.native', NativeClassFinder::class)
+        ;
+
+        $container
+            ->register('ferror.asyncapi_doc_bundle.class_finder.manual', ManualClassFinder::class)
+            ->addArgument($config['events'])
         ;
 
         $container

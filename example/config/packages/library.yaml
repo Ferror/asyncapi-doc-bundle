@@ -1,3 +1,5 @@
 ferror_asyncapi_doc_bundle:
   title: 'Service Example API'
   version: '1.2.3'
+  events:
+    - App\ProductCreated
