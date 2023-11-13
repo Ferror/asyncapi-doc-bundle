@@ -23,6 +23,7 @@ class JsonSpecificationControllerTest extends TestCase
                     new NativeClassFinder(),
                     new AttributeDocumentationStrategy(new PropertyExtractor()),
                     new Schema(),
+                    [],
                 )
             )
         );
@@ -35,7 +36,7 @@ class JsonSpecificationControllerTest extends TestCase
     "version": "1.0.0",
     "description": "This service is in charge of processing user signups"
   },
-  "servers": [],
+  "servers": {},
   "channels": {
     "user_signed_up": {
       "subscribe": {

@@ -48,6 +48,7 @@ final class Extension extends SymfonyExtension
             ->addArgument(new Reference('ferror.asyncapi_doc_bundle.class_finder.native'))
             ->addArgument(new Reference('ferror.asyncapi_doc_bundle.documentation.attributes'))
             ->addArgument(new Reference(Schema::class))
+            ->addArgument($config['servers'])
         ;
 
         $container
@@ -74,6 +75,7 @@ final class Extension extends SymfonyExtension
 
         $container
             ->register('ferror.asyncapi_doc_bundle.controller.ui', UserInterfaceController::class)
+            ->addArgument(new Reference('ferror.asyncapi_doc_bundle.generator.json'))
             ->addTag('controller.service_arguments')
         ;
 

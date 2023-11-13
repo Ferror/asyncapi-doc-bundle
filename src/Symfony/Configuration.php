@@ -19,6 +19,7 @@ final readonly class Configuration implements ConfigurationInterface
                 ->scalarNode('version')->end()
                 ->scalarNode('description')->defaultValue('')->end()
                 ->arrayNode('servers')
+                    ->arrayPrototype()
                     ->children()
                         ->scalarNode('url')->end()
                         ->scalarNode('protocol')->end()

@@ -23,6 +23,7 @@ class YamlSpecificationControllerTest extends TestCase
                     new NativeClassFinder(),
                     new AttributeDocumentationStrategy(new PropertyExtractor()),
                     new Schema(),
+                    [],
                 )
             )
         );

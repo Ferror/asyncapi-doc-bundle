@@ -78,7 +78,15 @@ info:
   title: 'Account Service'
   version: 1.0.0
   description: 'This service is in charge of processing user signups'
-servers: {  }
+servers:
+  production:
+    url: broker.mycompany.com
+    protocol: amqp
+    description: 'This is production broker.'
+  staging:
+    url: broker.mycompany.com
+    protocol: amqp
+    description: 'This is staging broker.'
 channels:
   user_signed_up:
     subscribe:

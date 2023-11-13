@@ -13,6 +13,7 @@ final readonly class SchemaGenerator
         private ClassFinderInterface $classFinder,
         private DocumentationStrategyInterface $documentationStrategy,
         private Schema $schema,
+        private array $servers,
     ) {
     }
 
@@ -22,7 +23,6 @@ final readonly class SchemaGenerator
 
         $channels = [];
         $messages = [];
-        $servers = [];
 
         foreach ($classes as $class) {
             $document = $this->documentationStrategy->document($class);
@@ -43,7 +43,7 @@ final readonly class SchemaGenerator
                 'version' => '1.0.0',
                 'description' => 'This service is in charge of processing user signups',
             ],
-            'servers' => $servers,
+            'servers' => $this->servers,
             'channels' => $channels,
             'components' => [
                 'messages' => $messages,

@@ -1,4 +1,13 @@
 ferror_asyncapi_doc_bundle:
   title: 'Service Example API'
   version: '1.2.3'
+  servers:
+    production:
+      url: broker.mycompany.com
+      protocol: amqp
+      description: This is production broker.
+    staging:
+      url: broker.mycompany.com
+      protocol: amqp
+      description: This is staging broker.
 
