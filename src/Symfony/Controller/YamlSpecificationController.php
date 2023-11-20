@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Ferror\AsyncapiDocBundle\Symfony\Controller;
 
-use Ferror\AsyncapiDocBundle\YamlGenerator;
+use Ferror\AsyncapiDocBundle\Generator\YamlGenerator;
 use Symfony\Component\HttpFoundation\Response;
 
 final readonly class YamlSpecificationController

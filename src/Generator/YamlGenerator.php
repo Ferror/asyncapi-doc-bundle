@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Ferror\AsyncapiDocBundle;
+namespace Ferror\AsyncapiDocBundle\Generator;
 
+use Ferror\AsyncapiDocBundle\GeneratorInterface;
+use Ferror\AsyncapiDocBundle\SchemaGenerator;
 use Symfony\Component\Yaml\Yaml;
 
 final readonly class YamlGenerator implements GeneratorInterface

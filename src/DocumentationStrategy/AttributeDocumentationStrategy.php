@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Ferror\AsyncapiDocBundle\DocumentationStrategy;
 
 use Ferror\AsyncapiDocBundle\Attribute\Message;
-use Ferror\AsyncapiDocBundle\PropertyExtractor;
 use ReflectionAttribute;
 use ReflectionClass;
 
@@ -23,7 +22,7 @@ final readonly class AttributeDocumentationStrategy implements DocumentationStra
         $messageAttributes = $reflection->getAttributes(Message::class);
 
         if (empty($messageAttributes)) {
-            throw new DocumentationStrategyException();
+            throw new DocumentationStrategyException('Error: class ' . $class . ' must have at least ' . Message::class . ' attribute.');
         }
 
         $message = $messageAttributes[0]->newInstance()->toArray();

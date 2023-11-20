@@ -2,15 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Ferror\AsyncapiDocBundle\Tests\Unit;
+namespace Ferror\AsyncapiDocBundle\Tests\Unit\Symfony\Controller;
 
-use Ferror\AsyncapiDocBundle\ClassFinder\NativeClassFinder;
+use Ferror\AsyncapiDocBundle\ClassFinder\ManualClassFinder;
 use Ferror\AsyncapiDocBundle\DocumentationStrategy\AttributeDocumentationStrategy;
-use Ferror\AsyncapiDocBundle\JsonGenerator;
-use Ferror\AsyncapiDocBundle\PropertyExtractor;
+use Ferror\AsyncapiDocBundle\DocumentationStrategy\PropertyExtractor;
+use Ferror\AsyncapiDocBundle\Generator\JsonGenerator;
 use Ferror\AsyncapiDocBundle\Schema;
+use Ferror\AsyncapiDocBundle\Schema\InfoObject;
 use Ferror\AsyncapiDocBundle\SchemaGenerator;
 use Ferror\AsyncapiDocBundle\Symfony\Controller\JsonSpecificationController;
+use Ferror\AsyncapiDocBundle\Tests\Examples\PaymentExecuted;
+use Ferror\AsyncapiDocBundle\Tests\Examples\ProductCreated;
+use Ferror\AsyncapiDocBundle\Tests\Examples\UserSignedUp;
 use PHPUnit\Framework\TestCase;
 
 class JsonSpecificationControllerTest extends TestCase
@@ -20,10 +24,15 @@ class JsonSpecificationControllerTest extends TestCase
         $controller = new JsonSpecificationController(
             new JsonGenerator(
                 new SchemaGenerator(
-                    new NativeClassFinder(),
+                    new ManualClassFinder([
+                        UserSignedUp::class,
+                        PaymentExecuted::class,
+                        ProductCreated::class,
+                    ]),
                     new AttributeDocumentationStrategy(new PropertyExtractor()),
                     new Schema(),
                     [],
+                    new InfoObject('Service Example API', 'This service is in charge of processing user signups', '1.2.3'),
                 )
             )
         );
@@ -32,8 +41,8 @@ class JsonSpecificationControllerTest extends TestCase
 {
   "asyncapi": "2.6.0",
   "info": {
-    "title": "Account Service",
-    "version": "1.0.0",
+    "title": "Service Example API",
+    "version": "1.2.3",
     "description": "This service is in charge of processing user signups"
   },
   "servers": {},

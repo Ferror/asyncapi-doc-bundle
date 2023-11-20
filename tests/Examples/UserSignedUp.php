@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ferror\AsyncapiDocBundle\Tests;
+namespace Ferror\AsyncapiDocBundle\Tests\Examples;
 
 use Ferror\AsyncapiDocBundle\Attribute\Message;
 use Ferror\AsyncapiDocBundle\Attribute\Property;
@@ -10,7 +10,7 @@ use Ferror\AsyncapiDocBundle\Schema\Format;
 use Ferror\AsyncapiDocBundle\Schema\PropertyType;
 
 #[Message(name: 'UserSignedUp', channel: 'user_signed_up')]
-readonly class UserSignedUp
+final readonly class UserSignedUp
 {
     #[Property(name: 'name', type: PropertyType::STRING, description: 'Name of the user', format: Format::STRING, example: 'John')]
     public string $name;

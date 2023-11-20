@@ -1,6 +1,11 @@
 ferror_asyncapi_doc_bundle:
   title: 'Service Example API'
+  description: 'This service is in charge of processing user signups'
   version: '1.2.3'
+  events:
+    - Ferror\AsyncapiDocBundle\Tests\Examples\UserSignedUp
+    - Ferror\AsyncapiDocBundle\Tests\Examples\PaymentExecuted
+    - Ferror\AsyncapiDocBundle\Tests\Examples\ProductCreated
   servers:
     production:
       url: broker.mycompany.com
@@ -10,4 +15,3 @@ ferror_asyncapi_doc_bundle:
       url: broker.mycompany.com
       protocol: amqp
       description: This is staging broker.
-

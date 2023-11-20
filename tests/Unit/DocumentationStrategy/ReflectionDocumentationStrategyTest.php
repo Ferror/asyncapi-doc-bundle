@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Ferror\AsyncapiDocBundle\Tests\Unit;
+namespace Ferror\AsyncapiDocBundle\Tests\Unit\DocumentationStrategy;
 
 use Ferror\AsyncapiDocBundle\DocumentationStrategy\ReflectionDocumentationStrategy;
-use Ferror\AsyncapiDocBundle\Tests\UserSignedUp;
+use Ferror\AsyncapiDocBundle\Tests\Examples\UserSignedUp;
 use PHPUnit\Framework\TestCase;
 
 class ReflectionDocumentationStrategyTest extends TestCase

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ferror\AsyncapiDocBundle;
+namespace Ferror\AsyncapiDocBundle\DocumentationStrategy;
 
 use Ferror\AsyncapiDocBundle\Attribute\Property;
 use Ferror\AsyncapiDocBundle\Attribute\PropertyArray;

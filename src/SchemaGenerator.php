@@ -6,6 +6,7 @@ namespace Ferror\AsyncapiDocBundle;
 
 use Ferror\AsyncapiDocBundle\ClassFinder\ClassFinderInterface;
 use Ferror\AsyncapiDocBundle\DocumentationStrategy\DocumentationStrategyInterface;
+use Ferror\AsyncapiDocBundle\Schema\InfoObject;
 
 final readonly class SchemaGenerator
 {
@@ -14,6 +15,7 @@ final readonly class SchemaGenerator
         private DocumentationStrategyInterface $documentationStrategy,
         private Schema $schema,
         private array $servers,
+        private InfoObject $infoObject,
     ) {
     }
 
@@ -39,9 +41,9 @@ final readonly class SchemaGenerator
         return [
             'asyncapi' => '2.6.0',
             'info' => [
-                'title' => 'Account Service',
-                'version' => '1.0.0',
-                'description' => 'This service is in charge of processing user signups',
+                'title' => $this->infoObject->title,
+                'version' => $this->infoObject->version,
+                'description' => $this->infoObject->description,
             ],
             'servers' => $this->servers,
             'channels' => $channels,

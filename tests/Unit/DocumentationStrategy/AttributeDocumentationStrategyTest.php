@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Ferror\AsyncapiDocBundle\Tests\Unit;
+namespace Ferror\AsyncapiDocBundle\Tests\Unit\DocumentationStrategy;
 
 use Ferror\AsyncapiDocBundle\DocumentationStrategy\AttributeDocumentationStrategy;
-use Ferror\AsyncapiDocBundle\PropertyExtractor;
+use Ferror\AsyncapiDocBundle\DocumentationStrategy\PropertyExtractor;
 use Ferror\AsyncapiDocBundle\Tests\Examples\ProductCreated;
-use Ferror\AsyncapiDocBundle\Tests\UserSignedUp;
+use Ferror\AsyncapiDocBundle\Tests\Examples\UserSignedUp;
 use PHPUnit\Framework\TestCase;
 
 class AttributeDocumentationStrategyTest extends TestCase

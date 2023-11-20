@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Ferror\AsyncapiDocBundle\Tests\Integration;
 
-use Ferror\AsyncapiDocBundle\Tests\UserSignedUp;
+use Ferror\AsyncapiDocBundle\Tests\Examples\UserSignedUp;
 use RuntimeException;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 
 class DumpSpecificationConsoleTest extends KernelTestCase
@@ -75,8 +75,8 @@ YAML;
         $expectedDisplay = <<<YAML
 asyncapi: 2.6.0
 info:
-  title: 'Account Service'
-  version: 1.0.0
+  title: 'Service Example API'
+  version: 1.2.3
   description: 'This service is in charge of processing user signups'
 servers:
   production:
