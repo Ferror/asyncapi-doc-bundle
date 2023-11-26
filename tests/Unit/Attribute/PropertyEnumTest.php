@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace Ferror\AsyncapiDocBundle\Tests\Unit\Attribute;
 
 use Ferror\AsyncapiDocBundle\Attribute\PropertyEnum;
+use Ferror\AsyncapiDocBundle\Tests\Examples\Suit;
 use Ferror\AsyncapiDocBundle\Tests\Examples\Week;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 class PropertyEnumTest extends TestCase
 {
-    public function testToArray(): void
+    public function testToArrayOnBackedEnum(): void
     {
         $property = new PropertyEnum('enum-name', Week::class);
 
@@ -26,5 +28,14 @@ class PropertyEnumTest extends TestCase
         $actual = $property->toArray();
 
         $this->assertEquals($expected, $actual);
+    }
+
+    public function testToArray(): void
+    {
+        $property = new PropertyEnum('enum-name', Suit::class);
+
+        $this->expectException(InvalidArgumentException::class);
+
+        $property->toArray();
     }
 }

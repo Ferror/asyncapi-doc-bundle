@@ -7,9 +7,9 @@ namespace Ferror\AsyncapiDocBundle\Attribute;
 use Attribute;
 use Ferror\AsyncapiDocBundle\PropertyTypeTranslator;
 use Ferror\AsyncapiDocBundle\Schema\Format;
+use InvalidArgumentException;
 use ReflectionEnum;
 use ReflectionEnumBackedCase;
-use ReflectionEnumPureCase;
 
 #[Attribute(Attribute::TARGET_PROPERTY)]
 class PropertyEnum extends AbstractProperty implements PropertyInterface
@@ -29,9 +29,16 @@ class PropertyEnum extends AbstractProperty implements PropertyInterface
     {
         $enum = new ReflectionEnum($this->enum);
 
+        if (!$enum->isBacked()) {
+            throw new InvalidArgumentException('Only Backend Enum can be documented');
+        }
+
         return array_merge(parent::toArray(), [
             'type' => PropertyTypeTranslator::translate($enum->getBackingType()?->getName()),
-            'enum' => array_map(static fn (ReflectionEnumPureCase|ReflectionEnumBackedCase $case ) => $case->getBackingValue(), $enum->getCases()),
+            'enum' => array_map(
+                static fn (ReflectionEnumBackedCase $case) => $case->getBackingValue(),
+                $enum->getCases()
+            ),
             'format' => $this->format?->value,
             'example' => $this->example,
         ]);
