@@ -8,7 +8,7 @@ namespace Ferror\AsyncapiDocBundle\Symfony\Console;
 use Ferror\AsyncapiDocBundle\DocumentationStrategy\DocumentationStrategyInterface;
 use Ferror\AsyncapiDocBundle\GeneratorInterface;
 use Ferror\AsyncapiDocBundle\Schema;
-use Ferror\AsyncapiDocBundle\Tests\UserSignedUp;
+use Ferror\AsyncapiDocBundle\Tests\Examples\UserSignedUp;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;

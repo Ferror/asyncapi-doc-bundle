@@ -12,12 +12,15 @@ use Ferror\AsyncapiDocBundle\Schema\PropertyType;
 #[Message(name: 'UserSignedUp', channel: 'user_signed_up')]
 final readonly class UserSignedUp
 {
-    #[Property(name: 'name', type: PropertyType::STRING, description: 'Name of the user', format: Format::STRING, example: 'John')]
-    public string $name;
-    #[Property(name: 'email', type: PropertyType::STRING, description: 'Email of the user', format: Format::EMAIL, example: 'john@example.com')]
-    public string $email;
-    #[Property(name: 'age', type: PropertyType::INTEGER, description: 'Age of the user', format: Format::INTEGER, example: '18')]
-    public int $age;
-    #[Property(name: 'isCitizen', type: PropertyType::BOOLEAN, description: 'Is user a citizen', format: Format::BOOLEAN, example: 'true')]
-    public bool $isCitizen;
+    public function __construct(
+        #[Property(name: 'name', type: PropertyType::STRING, description: 'Name of the user', format: Format::STRING, example: 'John')]
+        public string $name,
+        #[Property(name: 'email', type: PropertyType::STRING, description: 'Email of the user', format: Format::EMAIL, example: 'john@example.com')]
+        public string $email,
+        #[Property(name: 'age', type: PropertyType::INTEGER, description: 'Age of the user', format: Format::INTEGER, example: '18')]
+        public int $age,
+        #[Property(name: 'isCitizen', type: PropertyType::BOOLEAN, description: 'Is user a citizen', format: Format::BOOLEAN, example: 'true')]
+        public bool $isCitizen,
+    ) {
+    }
 }
