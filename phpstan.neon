@@ -9,6 +9,3 @@ parameters:
     paths:
         - src
         - tests
-    excludePaths:
-        - tests/UserSignedUp.php
-        - tests/PaymentExecuted.php

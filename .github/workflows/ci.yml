@@ -7,6 +7,9 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: [8.2, 8.3]
 
     steps:
       - # Copies the repository files to the Action Runner
@@ -17,7 +20,7 @@ jobs:
         name: Setup PHP
         uses: shivammathur/setup-php@2.25.4
         with:
-          php-version: 8.2
+          php-version: ${{ matrix.php }}
 
       - # Installs and caches PHP dependencies 
         name: Install Dependencies
