@@ -8,6 +8,7 @@ use Ferror\AsyncapiDocBundle\ClassFinder\ManualClassFinder;
 use Ferror\AsyncapiDocBundle\DocumentationStrategy\AttributeDocumentationStrategy;
 use Ferror\AsyncapiDocBundle\Generator\JsonGenerator;
 use Ferror\AsyncapiDocBundle\Generator\YamlGenerator;
+use Ferror\AsyncapiDocBundle\GeneratorFactory;
 use Ferror\AsyncapiDocBundle\Schema;
 use Ferror\AsyncapiDocBundle\Schema\InfoObject;
 use Ferror\AsyncapiDocBundle\SchemaGenerator;
@@ -62,6 +63,11 @@ final class Extension extends SymfonyExtension
         ;
 
         $container
+            ->register('ferror.asyncapi_doc_bundle.generator-factory', GeneratorFactory::class)
+            ->addArgument(new Reference('ferror.asyncapi_doc_bundle.generator.schema'))
+        ;
+
+        $container
             ->register('ferror.asyncapi_doc_bundle.generator.yaml', YamlGenerator::class)
             ->addArgument(new Reference('ferror.asyncapi_doc_bundle.generator.schema'))
         ;
@@ -91,7 +97,7 @@ final class Extension extends SymfonyExtension
 
         $container
             ->register('ferror.asyncapi_doc_bundle.console', DumpSpecificationConsole::class)
-            ->addArgument(new Reference('ferror.asyncapi_doc_bundle.generator.yaml'))
+            ->addArgument(new Reference('ferror.asyncapi_doc_bundle.generator-factory'))
             ->addArgument(new Reference('ferror.asyncapi_doc_bundle.documentation.attributes'))
             ->addArgument(new Reference(Schema::class))
             ->addTag('console.command')

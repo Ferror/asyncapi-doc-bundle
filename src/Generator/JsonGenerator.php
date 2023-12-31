@@ -6,6 +6,7 @@ namespace Ferror\AsyncapiDocBundle\Generator;
 
 use Ferror\AsyncapiDocBundle\GeneratorInterface;
 use Ferror\AsyncapiDocBundle\SchemaGenerator;
+use JsonException;
 
 final readonly class JsonGenerator implements GeneratorInterface
 {
@@ -14,6 +15,9 @@ final readonly class JsonGenerator implements GeneratorInterface
     ) {
     }
 
+    /**
+     * @throws JsonException
+     */
     public function generate(): string
     {
         return json_encode($this->generator->generate(), JSON_THROW_ON_ERROR | JSON_FORCE_OBJECT);

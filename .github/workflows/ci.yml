@@ -36,8 +36,15 @@ jobs:
 
       - # Runs unit and integration tests, like phpspec, phpunit etc.
         name: Run Tests
-        run: composer test
+        run: composer coverage
 
       - # Run AsyncAPI Validation
         name: AsyncAPI Validation
-        run: docker run --rm -v $(pwd):/app asyncapi/cli:0.54.3 validate /app/var/asyncapi.yaml
+        run: |
+          docker run --rm -v $(pwd):/app asyncapi/cli:0.54.3 validate /app/var/asyncapi.yaml
+          docker run --rm -v $(pwd):/app asyncapi/cli:0.54.3 validate /app/var/asyncapi.json
+
+      - name: Coveralls
+        uses: coverallsapp/github-action@v2.2.3
+        with:
+          file: var/coverage/clover.xml

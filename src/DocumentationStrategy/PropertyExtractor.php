@@ -12,11 +12,16 @@ use Ferror\AsyncapiDocBundle\Attribute\PropertyInterface;
 use Ferror\AsyncapiDocBundle\Attribute\PropertyObject;
 use ReflectionAttribute;
 use ReflectionClass;
+use ReflectionException;
+use RuntimeException;
 
 class PropertyExtractor
 {
     /**
      * @return iterable<PropertyInterface>
+     *
+     * @throws ReflectionException
+     * @throws RuntimeException
      */
     public function extract(string $class): iterable
     {
@@ -49,7 +54,7 @@ class PropertyExtractor
             }
 
             if (empty($propertyAttributes)) {
-                throw new \RuntimeException('Property attribute not found');
+                throw new RuntimeException('Property attribute for ' . $property->name . ' not found');
             }
 
             $propertyAttribute = $propertyAttributes[0]->newInstance();

@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace Ferror\AsyncapiDocBundle\Symfony\Console;
 
 
+use Ferror\AsyncapiDocBundle\DataFormat;
 use Ferror\AsyncapiDocBundle\DocumentationStrategy\DocumentationStrategyInterface;
-use Ferror\AsyncapiDocBundle\GeneratorInterface;
+use Ferror\AsyncapiDocBundle\GeneratorFactory;
 use Ferror\AsyncapiDocBundle\Schema;
 use Ferror\AsyncapiDocBundle\Tests\Examples\UserSignedUp;
 use Symfony\Component\Console\Command\Command;
@@ -19,12 +20,13 @@ use Symfony\Component\Yaml\Yaml;
 class DumpSpecificationConsole extends Command
 {
     public function __construct(
-        private readonly GeneratorInterface $generator,
+        private readonly GeneratorFactory $generatorFactory,
         private readonly DocumentationStrategyInterface $documentationStrategy,
         private readonly Schema $schema,
     ) {
         parent::__construct('ferror:asyncapi:dump');
         $this->addArgument('class', InputArgument::OPTIONAL, sprintf('Class name. Example %s', UserSignedUp::class));
+        $this->addArgument('format', InputArgument::OPTIONAL, 'Data format. Example json or yaml', 'yaml');
     }
 
     public function execute(InputInterface $input, OutputInterface $output): int
@@ -41,7 +43,9 @@ class DumpSpecificationConsole extends Command
             return Command::SUCCESS;
         }
 
-        $io->writeln($this->generator->generate());
+        $generator = $this->generatorFactory->create(DataFormat::from($input->getArgument('format')));
+
+        $io->writeln($generator->generate());
 
         return Command::SUCCESS;
     }
