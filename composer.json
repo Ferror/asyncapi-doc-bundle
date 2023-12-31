@@ -32,7 +32,7 @@
     },
     "scripts": {
         "test": "vendor/bin/phpunit",
-        "coverage": "vendor/bin/phpunit --coverage-html=var/coverage",
+        "coverage": "vendor/bin/phpunit --coverage-html=var/coverage --coverage-clover var/coverage/clover.xml",
         "analyse": "vendor/bin/phpstan analyse"
     },
     "config": {
