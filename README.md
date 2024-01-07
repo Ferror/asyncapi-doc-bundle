@@ -7,7 +7,7 @@ composer require ferror/asyncapi-doc-bundle
 ```
 
 ```php
-# config/bundles.php
+// config/bundles.php
 return [
     Ferror\AsyncapiDocBundle\Symfony\Bundle::class => ['all' => true],
 ];
@@ -16,7 +16,9 @@ return [
 # config/packages/asyncapi_doc_bundle.yaml
 ferror_asyncapi_doc_bundle:
   title: 'Service Example API'
-  version: '1.2.3'
+  version: '1.2.3' # Your API version
+  events: # The event class namespace
+    - Ferror\AsyncapiDocBundle\Tests\Examples\UserSignedUp
 ```
 ```yaml
 # config/routes.yaml
