@@ -34,7 +34,7 @@ class PropertyEnum extends AbstractProperty implements PropertyInterface
         }
 
         return array_merge(parent::toArray(), [
-            'type' => PropertyTypeTranslator::translate($enum->getBackingType()?->getName()),
+            'type' => PropertyTypeTranslator::translate($enum->getBackingType()->getName()),
             'enum' => array_map(
                 static fn (ReflectionEnumBackedCase $case) => $case->getBackingValue(),
                 $enum->getCases()
