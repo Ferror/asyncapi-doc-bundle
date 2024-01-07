@@ -16,6 +16,7 @@ final readonly class SchemaGenerator
         private Schema $schema,
         private array $servers,
         private InfoObject $infoObject,
+        private string $asyncApiVersion = '2.6.0'
     ) {
     }
 
@@ -39,7 +40,7 @@ final readonly class SchemaGenerator
         }
 
         return [
-            'asyncapi' => '2.6.0',
+            'asyncapi' => $this->asyncApiVersion,
             'info' => [
                 'title' => $this->infoObject->title,
                 'version' => $this->infoObject->version,
