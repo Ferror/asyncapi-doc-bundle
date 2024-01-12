@@ -7,9 +7,16 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
+    name: CI - PHP ${{ matrix.php }}, Dependencies ${{ matrix.dependencies }}
     strategy:
       matrix:
         php: [8.2, 8.3]
+        dependencies: [lowest, highest]
+        include:
+          -
+            php: 8.2
+            dependencies: lowest
+            coveralls: true
 
     steps:
       - # Copies the repository files to the Action Runner
@@ -25,6 +32,8 @@ jobs:
       - # Installs and caches PHP dependencies 
         name: Install Dependencies
         uses: ramsey/composer-install@2.2.0
+        with:
+          dependency-versions: ${{ matrix.dependencies }}
 
       - # Validates composer.json structure and required fields
         name: Validate composer.json
@@ -44,7 +53,9 @@ jobs:
           docker run --rm -v $(pwd):/app asyncapi/cli:0.54.3 validate /app/var/asyncapi.yaml
           docker run --rm -v $(pwd):/app asyncapi/cli:0.54.3 validate /app/var/asyncapi.json
 
-      - name: Coveralls
+      -
+        name: Coveralls
+        if: ${{ matrix.coveralls }}
         uses: coverallsapp/github-action@v2.2.3
         with:
           file: var/coverage/clover.xml
