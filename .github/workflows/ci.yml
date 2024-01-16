@@ -51,10 +51,10 @@ jobs:
       - # Run AsyncAPI Validation
         name: AsyncAPI Validation
         run: |
-          docker run --rm -v $(pwd):/app asyncapi/cli:0.54.3 validate /app/var/asyncapi.yaml
-          docker run --rm -v $(pwd):/app asyncapi/cli:0.54.3 validate /app/var/asyncapi.json
+          docker run --rm -v $(pwd):/app asyncapi/cli:1.3.0 validate /app/var/asyncapi.yaml
+          docker run --rm -v $(pwd):/app asyncapi/cli:1.3.0 validate /app/var/asyncapi.json
 
-      -
+      - # Upload Coverage to Coveralls
         name: Coveralls
         if: ${{ matrix.coveralls }}
         uses: coverallsapp/github-action@v2.2.3
