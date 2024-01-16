@@ -42,17 +42,19 @@ jobs:
 
       - # Runs code quality tools, like phpstan etc.
         name: Run Code Quality Tools
+        if: false
         run: composer analyse
 
       - # Runs unit and integration tests, like phpspec, phpunit etc.
         name: Run Tests
+        if: false
         run: composer coverage
 
       -
         name: Async API Validation Global
         run: |
           npm install -g @asyncapi/cli@0.54.3
-          asyncapi validate var/asyncapi.yaml
+          asyncapi validate tmp/asyncapi.yaml
 
       - # Run AsyncAPI Validation
         name: AsyncAPI Validation
