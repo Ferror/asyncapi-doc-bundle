@@ -55,7 +55,7 @@ jobs:
         if: true
         run: |
           npm install -g @asyncapi/cli@0.54.3
-          asyncapi validate tmp/asyncapi.yaml
+          asyncapi validate tmp/asyncapi.yaml | grep error && exit 1
 
       -
         name: AsyncAPI Validation 2
