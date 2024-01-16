@@ -52,7 +52,7 @@ jobs:
         name: Async API Validation Global
         run: |
           npm install -g @asyncapi/cli@0.54.3
-          asyncapi validate /app/var/asyncapi.yaml
+          asyncapi validate $(pwd)/var/asyncapi.yaml
 
       - # Run AsyncAPI Validation
         name: AsyncAPI Validation
