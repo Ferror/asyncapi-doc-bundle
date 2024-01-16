@@ -79,31 +79,33 @@ class JsonSpecificationControllerTest extends TestCase
               "type": "string",
               "description": "Name of the user",
               "format": "string",
-              "example": "John",
-              "required": true
+              "example": "John"
             },
             "email": {
               "type": "string",
               "description": "Email of the user",
               "format": "email",
-              "example": "john@example.com",
-               "required": true
+              "example": "john@example.com"
             },
             "age": {
               "type": "integer",
               "description": "Age of the user",
               "format": "int32",
-              "example": "18",
-              "required": true
+              "example": "18"
             },
             "isCitizen": {
               "type": "boolean",
               "description": "Is user a citizen",
               "format": "boolean",
-              "example": "true",
-              "required": true
+              "example": "true"
             }
-          }
+          },
+            "required": [
+                "name",
+                "email",
+                "age",
+                "isCitizen"
+            ]
         }
       },
       "PaymentExecuted": {
@@ -114,17 +116,19 @@ class JsonSpecificationControllerTest extends TestCase
               "type": "number",
               "description": "Payment amount",
               "format": "float",
-              "example": "1000",
-              "required": true
+              "example": "1000"
             },
             "createdAt": {
               "type": "string",
               "description": "Creation date",
               "format": "date-time",
-              "example": "2023-11-23 13:41:21",
-              "required": true
+              "example": "2023-11-23 13:41:21"
             }
-          }
+          },
+            "required": [
+                "amount",
+                "createdAt"
+            ]
         }
       },
       "ProductCreated": {
@@ -133,51 +137,53 @@ class JsonSpecificationControllerTest extends TestCase
           "properties": {
             "id": {
               "type": "integer",
-              "description": "",
-              "required": true
+              "description": ""
             },
             "amount": {
               "type": "number",
-              "description": "",
-              "required": true
+              "description": ""
             },
             "currency": {
               "type": "string",
-              "description": "",
-              "required": true
+              "description": ""
             },
             "isPaid": {
               "type": "boolean",
-              "description": "",
-              "required": true
+              "description": ""
             },
             "createdAt": {
               "type": "string",
               "description": "",
-              "format": "date-time",
-              "required": true
+              "format": "date-time"
             },
             "week": {
               "type": "integer",
-              "description": "",
-              "required": true
+              "description": ""
             },
             "payment": {
               "type": "string",
-              "description": "",
-              "required": true
+              "description": ""
             },
             "products": {
               "type": "string",
-              "description": "",
-              "required": true
+              "description": ""
             },
             "tags": {
               "type": "string",
-              "description": "",
-              "required": true
+              "description": ""
             }
-          }
+          },
+            "required": [
+                "id",
+                "amount",
+                "currency",
+                "isPaid",
+                "createdAt",
+                "week",
+                "payment",
+                "products",
+                "tags"
+            ]
         }
       }
     }

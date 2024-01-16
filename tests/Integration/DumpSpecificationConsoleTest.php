@@ -35,25 +35,26 @@ UserSignedUp:
         description: 'Name of the user'
         format: string
         example: John
-        required: true
       email:
         type: string
         description: 'Email of the user'
         format: email
         example: john@example.com
-        required: true
       age:
         type: integer
         description: 'Age of the user'
         format: int32
         example: '18'
-        required: true
       isCitizen:
         type: boolean
         description: 'Is user a citizen'
         format: boolean
         example: 'true'
-        required: true
+    required:
+      - name
+      - email
+      - age
+      - isCitizen
 
 
 YAML;
@@ -113,25 +114,26 @@ components:
             description: 'Name of the user'
             format: string
             example: John
-            required: true
           email:
             type: string
             description: 'Email of the user'
             format: email
             example: john@example.com
-            required: true
           age:
             type: integer
             description: 'Age of the user'
             format: int32
             example: '18'
-            required: true
           isCitizen:
             type: boolean
             description: 'Is user a citizen'
             format: boolean
             example: 'true'
-            required: true
+        required:
+          - name
+          - email
+          - age
+          - isCitizen
     PaymentExecuted:
       payload:
         type: object
@@ -141,13 +143,14 @@ components:
             description: 'Payment amount'
             format: float
             example: '1000'
-            required: true
           createdAt:
             type: string
             description: 'Creation date'
             format: date-time
             example: '2023-11-23 13:41:21'
-            required: true
+        required:
+          - amount
+          - createdAt
     ProductCreated:
       payload:
         type: object
@@ -155,40 +158,41 @@ components:
           id:
             type: integer
             description: ''
-            required: true
           amount:
             type: number
             description: ''
-            required: true
           currency:
             type: string
             description: ''
-            required: true
           isPaid:
             type: boolean
             description: ''
-            required: true
           createdAt:
             type: string
             description: ''
             format: date-time
-            required: true
           week:
             type: integer
             description: ''
-            required: true
           payment:
             type: string
             description: ''
-            required: true
           products:
             type: string
             description: ''
-            required: true
           tags:
             type: string
             description: ''
-            required: true
+        required:
+          - id
+          - amount
+          - currency
+          - isPaid
+          - createdAt
+          - week
+          - payment
+          - products
+          - tags
 
 
 YAML;
@@ -268,31 +272,33 @@ YAML;
               "type": "string",
               "description": "Name of the user",
               "format": "string",
-              "example": "John",
-              "required": true
+              "example": "John"
             },
             "email": {
               "type": "string",
               "description": "Email of the user",
               "format": "email",
-              "example": "john@example.com",
-              "required": true
+              "example": "john@example.com"
             },
             "age": {
               "type": "integer",
               "description": "Age of the user",
               "format": "int32",
-              "example": "18",
-              "required": true
+              "example": "18"
             },
             "isCitizen": {
               "type": "boolean",
               "description": "Is user a citizen",
               "format": "boolean",
-              "example": "true",
-              "required": true
+              "example": "true"
             }
-          }
+          },
+            "required": [
+                "name",
+                "email",
+                "age",
+                "isCitizen"
+            ]
         }
       },
       "PaymentExecuted": {
@@ -303,17 +309,19 @@ YAML;
               "type": "number",
               "description": "Payment amount",
               "format": "float",
-              "example": "1000",
-              "required": true
+              "example": "1000"
             },
             "createdAt": {
               "type": "string",
               "description": "Creation date",
               "format": "date-time",
-              "example": "2023-11-23 13:41:21",
-              "required": true
+              "example": "2023-11-23 13:41:21"
             }
-          }
+          },
+            "required": [
+                "amount",
+                "createdAt"
+            ]
         }
       },
       "ProductCreated": {
@@ -322,51 +330,53 @@ YAML;
           "properties": {
             "id": {
               "type": "integer",
-              "description": "",
-              "required": true
+              "description": ""
             },
             "amount": {
               "type": "number",
-              "description": "",
-              "required": true
+              "description": ""
             },
             "currency": {
               "type": "string",
-              "description": "",
-              "required": true
+              "description": ""
             },
             "isPaid": {
               "type": "boolean",
-              "description": "",
-              "required": true
+              "description": ""
             },
             "createdAt": {
               "type": "string",
               "description": "",
-              "format": "date-time",
-              "required": true
+              "format": "date-time"
             },
             "week": {
               "type": "integer",
-              "description": "",
-              "required": true
+              "description": ""
             },
             "payment": {
               "type": "string",
-              "description": "",
-              "required": true
+              "description": ""
             },
             "products": {
               "type": "string",
-              "description": "",
-              "required": true
+              "description": ""
             },
             "tags": {
               "type": "string",
-              "description": "",
-              "required": true
+              "description": ""
             }
-          }
+          },
+            "required": [
+                "id",
+                "amount",
+                "currency",
+                "isPaid",
+                "createdAt",
+                "week",
+                "payment",
+                "products",
+                "tags"
+            ]
         }
       }
     }

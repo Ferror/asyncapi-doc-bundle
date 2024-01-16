@@ -18,18 +18,22 @@ class SchemaTest extends TestCase
                 [
                     'name' => 'name',
                     'type' => 'string',
+                    'required' => true,
                 ],
                 [
                     'name' => 'email',
                     'type' => 'string',
+                    'required' => true,
                 ],
                 [
                     'name' => 'age',
                     'type' => 'int',
+                    'required' => true,
                 ],
                 [
                     'name' => 'isCitizen',
                     'type' => 'bool',
+                    'required' => true,
                 ],
             ],
         ];
@@ -51,6 +55,11 @@ UserSignedUp:
         type: integer
       isCitizen:
         type: boolean
+    required:
+      - name
+      - email
+      - age
+      - isCitizen
 
 YAML;
 
@@ -68,6 +77,7 @@ YAML;
                     'description' => 'Name of the user',
                     'example' => 'John',
                     'format' => 'string',
+                    'required' => true,
                 ],
                 [
                     'name' => 'email',
@@ -75,6 +85,7 @@ YAML;
                     'description' => 'Email of the user',
                     'format' => 'email',
                     'example' => 'john@example.com',
+                    'required' => true,
                 ],
                 [
                     'name' => 'age',
@@ -82,6 +93,7 @@ YAML;
                     'description' => 'Age of the user',
                     'format' => 'int',
                     'example' => '18',
+                    'required' => true,
                 ],
                 [
                     'name' => 'isCitizen',
@@ -89,6 +101,7 @@ YAML;
                     'description' => 'Is user a citizen',
                     'format' => 'boolean',
                     'example' => 'true',
+                    'required' => true,
                 ],
             ],
         ];
@@ -122,6 +135,11 @@ UserSignedUp:
         description: 'Is user a citizen'
         format: boolean
         example: 'true'
+    required:
+      - name
+      - email
+      - age
+      - isCitizen
 
 YAML;
 
