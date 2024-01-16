@@ -14,9 +14,9 @@ class PropertyObject extends AbstractProperty implements PropertyInterface
         public readonly string $class,
         string $description = '',
         public readonly array $items = [],
-        public readonly bool $required = true,
+        bool $required = true,
     ) {
-        parent::__construct($name, $description);
+        parent::__construct($name, $description, $required);
     }
 
     public function toArray(): array

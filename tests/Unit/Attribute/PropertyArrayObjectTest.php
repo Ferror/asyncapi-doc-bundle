@@ -20,6 +20,7 @@ class PropertyArrayObjectTest extends TestCase
             'type' => 'array',
             'format' => null,
             'example' => null,
+            'required' => true,
         ];
 
         $actual = $property->toArray();

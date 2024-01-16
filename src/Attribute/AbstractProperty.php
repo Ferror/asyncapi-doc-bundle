@@ -9,6 +9,7 @@ abstract class AbstractProperty
     public function __construct(
         public string $name,
         public string $description,
+        public bool $required,
     ) {
     }
 
@@ -17,6 +18,7 @@ abstract class AbstractProperty
         return [
             'name' => $this->name,
             'description' => $this->description,
+            'required' => $this->required,
         ];
     }
 }

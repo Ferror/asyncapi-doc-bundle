@@ -79,25 +79,29 @@ class JsonSpecificationControllerTest extends TestCase
               "type": "string",
               "description": "Name of the user",
               "format": "string",
-              "example": "John"
+              "example": "John",
+              "required": true
             },
             "email": {
               "type": "string",
               "description": "Email of the user",
               "format": "email",
-              "example": "john@example.com"
+              "example": "john@example.com",
+               "required": true
             },
             "age": {
               "type": "integer",
               "description": "Age of the user",
               "format": "int32",
-              "example": "18"
+              "example": "18",
+              "required": true
             },
             "isCitizen": {
               "type": "boolean",
               "description": "Is user a citizen",
               "format": "boolean",
-              "example": "true"
+              "example": "true",
+              "required": true
             }
           }
         }
@@ -110,13 +114,15 @@ class JsonSpecificationControllerTest extends TestCase
               "type": "number",
               "description": "Payment amount",
               "format": "float",
-              "example": "1000"
+              "example": "1000",
+              "required": true
             },
             "createdAt": {
               "type": "string",
               "description": "Creation date",
               "format": "date-time",
-              "example": "2023-11-23 13:41:21"
+              "example": "2023-11-23 13:41:21",
+              "required": true
             }
           }
         }
@@ -127,40 +133,49 @@ class JsonSpecificationControllerTest extends TestCase
           "properties": {
             "id": {
               "type": "integer",
-              "description": ""
+              "description": "",
+              "required": true
             },
             "amount": {
               "type": "number",
-              "description": ""
+              "description": "",
+              "required": true
             },
             "currency": {
               "type": "string",
-              "description": ""
+              "description": "",
+              "required": true
             },
             "isPaid": {
               "type": "boolean",
-              "description": ""
+              "description": "",
+              "required": true
             },
             "createdAt": {
               "type": "string",
               "description": "",
-              "format": "date-time"
+              "format": "date-time",
+              "required": true
             },
             "week": {
               "type": "integer",
-              "description": ""
+              "description": "",
+              "required": true
             },
             "payment": {
               "type": "string",
-              "description": ""
+              "description": "",
+              "required": true
             },
             "products": {
               "type": "string",
-              "description": ""
+              "description": "",
+              "required": true
             },
             "tags": {
               "type": "string",
-              "description": ""
+              "description": "",
+              "required": true
             }
           }
         }

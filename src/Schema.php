@@ -24,6 +24,10 @@ class Schema
             if (isset($property['example'])) {
                 $properties[$property['name']]['example'] = $property['example'];
             }
+
+            if (isset($property['required'])) {
+                $properties[$property['name']]['required'] = $property['required'];
+            }
         }
 
         $message[$document['name']] = [

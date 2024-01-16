@@ -24,6 +24,7 @@ class PropertyArrayTest extends TestCase
             'itemsType' => 'string',
             'format' => null,
             'example' => null,
+            'required' => true,
         ];
 
         $actual = $property->toArray();
