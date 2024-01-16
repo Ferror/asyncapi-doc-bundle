@@ -47,7 +47,6 @@ jobs:
 
       - # Runs unit and integration tests, like phpspec, phpunit etc.
         name: Run Tests
-        if: false
         run: composer coverage
 
       -
