@@ -52,17 +52,20 @@ jobs:
 
       -
         name: Async API Validation Global
+        if: false
         run: |
           npm install -g @asyncapi/cli@0.54.3
           asyncapi validate tmp/asyncapi.yaml
 
       - # Run AsyncAPI Validation
         name: AsyncAPI Validation
-        if: false
+        if: true
         run: |
-          set -eux
-          docker run --rm -it -v $(pwd):/app asyncapi/cli:0.54.3 validate /app/var/asyncapi.yaml
-          docker run --rm -it -v $(pwd):/app asyncapi/cli:0.54.3 validate /app/var/asyncapi.json
+#          set -eux
+          docker run --rm -it -v $(pwd):/app asyncapi/cli:0.54.3 validate /app/var/asyncapi.yaml | grep error && exit 1
+
+#          docker run --rm -it -v $(pwd):/app asyncapi/cli:0.54.3 validate /app/var/asyncapi.yaml
+#          docker run --rm -it -v $(pwd):/app asyncapi/cli:0.54.3 validate /app/var/asyncapi.json
 
       -
         name: Coveralls

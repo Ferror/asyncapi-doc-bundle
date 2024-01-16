@@ -19,6 +19,7 @@ channels:
   payment_executed:
     subscribe:
       message:
+        $ref: '#/components/messages/PaymentExecuted'
   product.created:
     subscribe:
       message:
