@@ -50,31 +50,11 @@ jobs:
         if: false
         run: composer coverage
 
-      -
-        name: Async API Validation 1
-        if: true
-        run: |
-          npm install -g @asyncapi/cli@0.54.3
-          asyncapi validate tmp/asyncapi.yaml | grep error && exit 1
-
-      -
-        name: AsyncAPI Validation 2
-        if: true
-        uses: docker://asyncapi/cli:0.54.3
-        with:
-          args: "validate /app/var/asyncapi.yaml"
-
-
-
       - # Run AsyncAPI Validation
         name: AsyncAPI Validation 3
         if: false
         run: |
-#          set -eux
-#          docker run --rm -it -v $(pwd):/app asyncapi/cli:0.54.3 validate /app/var/asyncapi.yaml | grep error && exit 1
-
-#          docker run --rm -it -v $(pwd):/app asyncapi/cli:0.54.3 validate /app/var/asyncapi.yaml
-#          docker run --rm -it -v $(pwd):/app asyncapi/cli:0.54.3 validate /app/var/asyncapi.json
+          docker run --rm -v $(pwd):/app asyncapi/cli:0.54.3 validate /app/var/asyncapi.yaml | grep error && exit 1
 
       -
         name: Coveralls
