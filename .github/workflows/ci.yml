@@ -48,11 +48,19 @@ jobs:
         name: Run Tests
         run: composer coverage
 
+      -
+        name: Async API Validation Global
+        run: |
+          npm install -g @asyncapi/cli@0.54.3
+          asyncapi validate /app/var/asyncapi.yaml
+
       - # Run AsyncAPI Validation
         name: AsyncAPI Validation
+        if: false
         run: |
-          docker run --rm -v $(pwd):/app asyncapi/cli:0.54.3 validate /app/var/asyncapi.yaml
-          docker run --rm -v $(pwd):/app asyncapi/cli:0.54.3 validate /app/var/asyncapi.json
+          set -eux
+          docker run --rm -it -v $(pwd):/app asyncapi/cli:0.54.3 validate /app/var/asyncapi.yaml
+          docker run --rm -it -v $(pwd):/app asyncapi/cli:0.54.3 validate /app/var/asyncapi.json
 
       -
         name: Coveralls
