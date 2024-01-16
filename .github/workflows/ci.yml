@@ -47,14 +47,14 @@ jobs:
 
       - # Runs unit and integration tests, like phpspec, phpunit etc.
         name: Run Tests
-        if: false
         run: composer coverage
 
       - # Run AsyncAPI Validation
         name: AsyncAPI Validation 3
-        if: false
+        if: true
         run: |
           docker run --rm -v $(pwd):/app asyncapi/cli:0.54.3 validate /app/var/asyncapi.yaml | grep error && exit 1
+          docker run --rm -v $(pwd):/app asyncapi/cli:0.54.3 validate /app/var/asyncapi.json | grep error && exit 1
 
       -
         name: Coveralls
