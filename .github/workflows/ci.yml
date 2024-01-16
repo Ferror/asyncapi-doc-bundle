@@ -61,6 +61,8 @@ jobs:
         name: AsyncAPI Validation 2
         if: true
         uses: docker://asyncapi/cli:0.54.3
+        with:
+          args: "validate /app/var/asyncapi.yaml"
 
 
 
