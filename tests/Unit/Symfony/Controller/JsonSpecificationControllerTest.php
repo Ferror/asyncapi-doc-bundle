@@ -45,7 +45,7 @@ class JsonSpecificationControllerTest extends TestCase
     "version": "1.2.3",
     "description": "This service is in charge of processing user signups"
   },
-  "servers": {},
+  "servers": [],
   "channels": {
     "user_signed_up": {
       "subscribe": {
