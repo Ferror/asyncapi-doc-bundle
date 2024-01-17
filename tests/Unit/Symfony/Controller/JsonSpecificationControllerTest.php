@@ -45,7 +45,7 @@ class JsonSpecificationControllerTest extends TestCase
     "version": "1.2.3",
     "description": "This service is in charge of processing user signups"
   },
-  "servers": {},
+  "servers": [],
   "channels": {
     "user_signed_up": {
       "subscribe": {
@@ -99,7 +99,13 @@ class JsonSpecificationControllerTest extends TestCase
               "format": "boolean",
               "example": "true"
             }
-          }
+          },
+            "required": [
+                "name",
+                "email",
+                "age",
+                "isCitizen"
+            ]
         }
       },
       "PaymentExecuted": {
@@ -118,7 +124,11 @@ class JsonSpecificationControllerTest extends TestCase
               "format": "date-time",
               "example": "2023-11-23 13:41:21"
             }
-          }
+          },
+            "required": [
+                "amount",
+                "createdAt"
+            ]
         }
       },
       "ProductCreated": {
@@ -162,7 +172,18 @@ class JsonSpecificationControllerTest extends TestCase
               "type": "string",
               "description": ""
             }
-          }
+          },
+            "required": [
+                "id",
+                "amount",
+                "currency",
+                "isPaid",
+                "createdAt",
+                "week",
+                "payment",
+                "products",
+                "tags"
+            ]
         }
       }
     }

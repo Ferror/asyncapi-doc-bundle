@@ -21,6 +21,7 @@ class PropertyObjectTest extends TestCase
             'description' => '',
             'type' => 'object',
             'items' => [],
+            'required' => true,
         ];
 
         $actual = $property->toArray();
@@ -47,8 +48,10 @@ class PropertyObjectTest extends TestCase
                     'type' => 'string',
                     'format' => null,
                     'example' => null,
+                    'required' => true,
                 ]
             ],
+            'required' => true,
         ];
 
         $actual = $property->toArray();

@@ -9,6 +9,7 @@ class Schema
     public function render(array $document): array
     {
         $properties = [];
+        $required = [];
 
         foreach ($document['properties'] as $property) {
             $properties[$property['name']]['type'] = PropertyTypeTranslator::translate($property['type']);
@@ -24,12 +25,17 @@ class Schema
             if (isset($property['example'])) {
                 $properties[$property['name']]['example'] = $property['example'];
             }
+
+            if (isset($property['required'])) {
+                $required[] = $property['name'];
+            }
         }
 
         $message[$document['name']] = [
             'payload' => [
                 'type' => 'object',
                 'properties' => $properties,
+                'required' => $required,
             ],
         ];
 

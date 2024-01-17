@@ -16,9 +16,9 @@ class PropertyArrayObject extends AbstractProperty implements PropertyInterface
         string $description = '',
         public ?Format $format = null,
         public ?string $example = null,
-        public bool $required = true,
+        bool $required = true,
     ) {
-        parent::__construct($name, $description);
+        parent::__construct($name, $description, $required);
     }
 
     public function toArray(): array

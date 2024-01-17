@@ -83,6 +83,11 @@ components:
             description: 'Is user a citizen'
             format: boolean
             example: 'true'
+        required:
+          - name
+          - email
+          - age
+          - isCitizen
     PaymentExecuted:
       payload:
         type: object
@@ -97,6 +102,9 @@ components:
             description: 'Creation date'
             format: date-time
             example: '2023-11-23 13:41:21'
+        required:
+          - amount
+          - createdAt
     ProductCreated:
       payload:
         type: object
@@ -129,6 +137,16 @@ components:
           tags:
             type: string
             description: ''
+        required:
+          - id
+          - amount
+          - currency
+          - isPaid
+          - createdAt
+          - week
+          - payment
+          - products
+          - tags
 
 YAML;
 

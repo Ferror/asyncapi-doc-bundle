@@ -27,6 +27,7 @@ class AttributeDocumentationStrategyTest extends TestCase
                     'description' => 'Name of the user',
                     'example' => 'John',
                     'format' => 'string',
+                    'required' => true,
                 ],
                 [
                     'name' => 'email',
@@ -34,6 +35,7 @@ class AttributeDocumentationStrategyTest extends TestCase
                     'description' => 'Email of the user',
                     'format' => 'email',
                     'example' => 'john@example.com',
+                    'required' => true,
                 ],
                 [
                     'name' => 'age',
@@ -41,6 +43,7 @@ class AttributeDocumentationStrategyTest extends TestCase
                     'description' => 'Age of the user',
                     'format' => 'int32',
                     'example' => '18',
+                    'required' => true,
                 ],
                 [
                     'name' => 'isCitizen',
@@ -48,6 +51,7 @@ class AttributeDocumentationStrategyTest extends TestCase
                     'description' => 'Is user a citizen',
                     'format' => 'boolean',
                     'example' => 'true',
+                    'required' => true,
                 ],
             ],
         ];
@@ -70,6 +74,7 @@ class AttributeDocumentationStrategyTest extends TestCase
                     'type' => 'integer',
                     'format' => null,
                     'example' => null,
+                    'required' => true,
                 ],
                 [
                     'name' => 'amount',
@@ -77,6 +82,7 @@ class AttributeDocumentationStrategyTest extends TestCase
                     'type' => 'number',
                     'format' => null,
                     'example' => null,
+                    'required' => true,
                 ],
                 [
                     'name' => 'currency',
@@ -84,6 +90,7 @@ class AttributeDocumentationStrategyTest extends TestCase
                     'type' => 'string',
                     'format' => null,
                     'example' => null,
+                    'required' => true,
                 ],
                 [
                     'name' => 'isPaid',
@@ -91,6 +98,7 @@ class AttributeDocumentationStrategyTest extends TestCase
                     'type' => 'boolean',
                     'format' => null,
                     'example' => null,
+                    'required' => true,
                 ],
                 [
                     'name' => 'createdAt',
@@ -98,6 +106,7 @@ class AttributeDocumentationStrategyTest extends TestCase
                     'type' => 'string',
                     'format' => 'date-time',
                     'example' => null,
+                    'required' => true,
                 ],
                 [
                     'name' => 'week',
@@ -106,12 +115,14 @@ class AttributeDocumentationStrategyTest extends TestCase
                     'enum' => [1, 2, 3, 4, 5, 6, 7],
                     'format' => null,
                     'example' => null,
+                    'required' => true,
                 ],
                 [
                     'name' => 'payment',
                     'description' => '',
                     'type' => 'object',
                     'items' => [],
+                    'required' => true,
                 ],
                 [
                     'name' => 'products',
@@ -119,6 +130,7 @@ class AttributeDocumentationStrategyTest extends TestCase
                     'type' => 'array',
                     'format' => null,
                     'example' => null,
+                    'required' => true,
                 ],
                 [
                     'name' => 'tags',
@@ -127,6 +139,7 @@ class AttributeDocumentationStrategyTest extends TestCase
                     'format' => null,
                     'example' => null,
                     'itemsType' => 'string',
+                    'required' => true,
                 ],
             ],
         ];
