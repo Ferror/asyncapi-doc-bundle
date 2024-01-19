@@ -13,7 +13,7 @@ final readonly class SchemaGenerator
     public function __construct(
         private ClassFinderInterface $classFinder,
         private DocumentationStrategyInterface $documentationStrategy,
-        private Schema $schema,
+        private SchemaInterface $schema,
         private array $servers,
         private InfoObject $infoObject,
         private string $asyncApiVersion = '2.6.0'
@@ -29,8 +29,8 @@ final readonly class SchemaGenerator
 
         foreach ($classes as $class) {
             $document = $this->documentationStrategy->document($class);
-            $channel = $this->schema->renderChannels($document);
-            $message = $this->schema->render($document);
+            $channel = $this->schema->renderChannel($document);
+            $message = $this->schema->renderMessage($document);
 
             $channelKey = key($channel);
             $messageKey = key($message);

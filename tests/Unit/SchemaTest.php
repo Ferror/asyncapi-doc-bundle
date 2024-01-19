@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Ferror\AsyncapiDocBundle\Tests\Unit;
 
-use Ferror\AsyncapiDocBundle\Schema;
+use Ferror\AsyncapiDocBundle\Schema\SchemaV2;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Yaml\Yaml;
 
@@ -38,9 +38,9 @@ class SchemaTest extends TestCase
             ],
         ];
 
-        $schema = new Schema();
+        $schema = new SchemaV2();
 
-        $specification = $schema->render($document);
+        $specification = $schema->renderMessage($document);
 
         $expectedSpecification = <<<YAML
 UserSignedUp:
@@ -106,9 +106,9 @@ YAML;
             ],
         ];
 
-        $schema = new Schema();
+        $schema = new SchemaV2();
 
-        $specification = $schema->render($document);
+        $specification = $schema->renderMessage($document);
 
         $expectedSpecification = <<<YAML
 UserSignedUp:

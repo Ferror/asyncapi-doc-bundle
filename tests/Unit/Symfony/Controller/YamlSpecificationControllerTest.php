@@ -8,8 +8,8 @@ use Ferror\AsyncapiDocBundle\ClassFinder\ManualClassFinder;
 use Ferror\AsyncapiDocBundle\DocumentationStrategy\AttributeDocumentationStrategy;
 use Ferror\AsyncapiDocBundle\DocumentationStrategy\PropertyExtractor;
 use Ferror\AsyncapiDocBundle\Generator\YamlGenerator;
-use Ferror\AsyncapiDocBundle\Schema;
 use Ferror\AsyncapiDocBundle\Schema\InfoObject;
+use Ferror\AsyncapiDocBundle\Schema\SchemaV2;
 use Ferror\AsyncapiDocBundle\SchemaGenerator;
 use Ferror\AsyncapiDocBundle\Symfony\Controller\YamlSpecificationController;
 use Ferror\AsyncapiDocBundle\Tests\Examples\PaymentExecuted;
@@ -30,7 +30,7 @@ class YamlSpecificationControllerTest extends TestCase
                         ProductCreated::class,
                     ]),
                     new AttributeDocumentationStrategy(new PropertyExtractor()),
-                    new Schema(),
+                    new SchemaV2(),
                     [],
                     new InfoObject('Service Example API', 'This service is in charge of processing user signups', '1.2.3')
                 )
