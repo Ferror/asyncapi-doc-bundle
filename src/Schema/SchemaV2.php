@@ -2,11 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Ferror\AsyncapiDocBundle;
+namespace Ferror\AsyncapiDocBundle\Schema;
 
-class Schema
+use Ferror\AsyncapiDocBundle\PropertyTypeTranslator;
+use Ferror\AsyncapiDocBundle\SchemaInterface;
+
+class SchemaV2 implements SchemaInterface
 {
-    public function render(array $document): array
+    public function supports(string $version): bool
+    {
+        [$major, $minor, $patch] = explode('.', $version);
+
+        return $major === '2';
+    }
+
+    public function renderMessage(array $document): array
     {
         $properties = [];
         $required = [];
@@ -42,7 +52,7 @@ class Schema
         return $message;
     }
 
-    public function renderChannels(array $document): array
+    public function renderChannel(array $document): array
     {
         $channel[$document['channel']] = [
             $document['channelType'] => [

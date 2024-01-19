@@ -9,9 +9,10 @@ use Ferror\AsyncapiDocBundle\DocumentationStrategy\AttributeDocumentationStrateg
 use Ferror\AsyncapiDocBundle\Generator\JsonGenerator;
 use Ferror\AsyncapiDocBundle\Generator\YamlGenerator;
 use Ferror\AsyncapiDocBundle\GeneratorFactory;
-use Ferror\AsyncapiDocBundle\Schema;
 use Ferror\AsyncapiDocBundle\Schema\InfoObject;
+use Ferror\AsyncapiDocBundle\Schema\SchemaV2;
 use Ferror\AsyncapiDocBundle\SchemaGenerator;
+use Ferror\AsyncapiDocBundle\SchemaInterface;
 use Ferror\AsyncapiDocBundle\Symfony\Console\DumpSpecificationConsole;
 use Ferror\AsyncapiDocBundle\Symfony\Controller\JsonSpecificationController;
 use Ferror\AsyncapiDocBundle\Symfony\Controller\UserInterfaceController;
@@ -43,7 +44,7 @@ final class Extension extends SymfonyExtension
         ;
 
         $container
-            ->register(Schema::class)
+            ->register(SchemaInterface::class, SchemaV2::class)
         ;
 
         $container
@@ -57,7 +58,7 @@ final class Extension extends SymfonyExtension
             ->register('ferror.asyncapi_doc_bundle.generator.schema', SchemaGenerator::class)
             ->addArgument(new Reference('ferror.asyncapi_doc_bundle.class_finder.manual'))
             ->addArgument(new Reference('ferror.asyncapi_doc_bundle.documentation.attributes'))
-            ->addArgument(new Reference(Schema::class))
+            ->addArgument(new Reference(SchemaInterface::class))
             ->addArgument($config['servers'])
             ->addArgument(new Reference(InfoObject::class))
         ;
@@ -99,7 +100,7 @@ final class Extension extends SymfonyExtension
             ->register('ferror.asyncapi_doc_bundle.console', DumpSpecificationConsole::class)
             ->addArgument(new Reference('ferror.asyncapi_doc_bundle.generator-factory'))
             ->addArgument(new Reference('ferror.asyncapi_doc_bundle.documentation.attributes'))
-            ->addArgument(new Reference(Schema::class))
+            ->addArgument(new Reference(SchemaInterface::class))
             ->addTag('console.command')
         ;
     }
