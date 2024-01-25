@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Ferror\AsyncapiDocBundle;
+namespace Ferror\AsyncapiDocBundle\Generator;
 
-use Ferror\AsyncapiDocBundle\Generator\JsonGenerator;
-use Ferror\AsyncapiDocBundle\Generator\YamlGenerator;
-use InvalidArgumentException;
+use Ferror\AsyncapiDocBundle\DataFormat;
+use Ferror\AsyncapiDocBundle\GeneratorInterface;
+use Ferror\AsyncapiDocBundle\Schema\V2\SchemaRenderer;
 
 final readonly class GeneratorFactory
 {
-    public function __construct(private SchemaGenerator $generator)
+    public function __construct(private SchemaRenderer $generator)
     {
     }
 

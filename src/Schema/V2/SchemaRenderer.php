@@ -2,21 +2,22 @@
 
 declare(strict_types=1);
 
-namespace Ferror\AsyncapiDocBundle;
+namespace Ferror\AsyncapiDocBundle\Schema\V2;
 
 use Ferror\AsyncapiDocBundle\ClassFinder\ClassFinderInterface;
 use Ferror\AsyncapiDocBundle\DocumentationStrategy\DocumentationStrategyInterface;
-use Ferror\AsyncapiDocBundle\Schema\InfoObject;
+use Ferror\AsyncapiDocBundle\SchemaRendererInterface;
 
-final readonly class SchemaGenerator
+final readonly class SchemaRenderer implements SchemaRendererInterface
 {
     public function __construct(
         private ClassFinderInterface $classFinder,
         private DocumentationStrategyInterface $documentationStrategy,
-        private SchemaInterface $schema,
+        private ChannelRenderer $channelRenderer,
+        private MessageRenderer $messageRenderer,
+        private InfoRenderer $infoRenderer,
         private array $servers,
-        private InfoObject $infoObject,
-        private string $asyncApiVersion = '2.6.0'
+        private string $schemaVersion,
     ) {
     }
 
@@ -29,8 +30,8 @@ final readonly class SchemaGenerator
 
         foreach ($classes as $class) {
             $document = $this->documentationStrategy->document($class);
-            $channel = $this->schema->renderChannel($document);
-            $message = $this->schema->renderMessage($document);
+            $channel = $this->channelRenderer->render($document);
+            $message = $this->messageRenderer->render($document);
 
             $channelKey = key($channel);
             $messageKey = key($message);
@@ -40,12 +41,8 @@ final readonly class SchemaGenerator
         }
 
         return [
-            'asyncapi' => $this->asyncApiVersion,
-            'info' => [
-                'title' => $this->infoObject->title,
-                'version' => $this->infoObject->version,
-                'description' => $this->infoObject->description,
-            ],
+            'asyncapi' => $this->schemaVersion,
+            'info' => $this->infoRenderer->render(),
             'servers' => $this->servers,
             'channels' => $channels,
             'components' => [

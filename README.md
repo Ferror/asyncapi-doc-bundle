@@ -15,6 +15,7 @@ return [
 ```yaml
 # config/packages/asyncapi_doc_bundle.yaml
 ferror_asyncapi_doc_bundle:
+  asyncapi_version: '2.6.0' # Async API specification version (default: 2.6.0)
   title: 'Service Example API'
   version: '1.2.3' # Your API version
   events: # The event class namespace

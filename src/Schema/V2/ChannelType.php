@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ferror\AsyncapiDocBundle\Schema;
+namespace Ferror\AsyncapiDocBundle\Schema\V2;
 
 enum ChannelType: string
 {
