@@ -1,0 +1,15 @@
+deptrac:
+  paths:
+    - ./src
+  layers:
+    - name: SchemaV2
+      collectors:
+        - type: className
+          value: \\Schema\\V2\\
+    - name: SchemaV3
+      collectors:
+        - type: className
+          value: \\Schema\\V3\\
+  ruleset:
+    SchemaV2:
+    SchemaV3:

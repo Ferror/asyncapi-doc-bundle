@@ -44,6 +44,10 @@ jobs:
         name: Run Code Quality Tools
         run: composer analyse
 
+      - # Runs code architecture tests
+        name: Run Deptrac Tests
+        run: composer deptrac
+
       - # Runs unit and integration tests, like phpspec, phpunit etc.
         name: Run Tests
         run: composer coverage
