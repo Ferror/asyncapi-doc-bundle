@@ -7,8 +7,8 @@ namespace Ferror\AsyncapiDocBundle\Symfony\Console;
 
 use Ferror\AsyncapiDocBundle\DataFormat;
 use Ferror\AsyncapiDocBundle\DocumentationStrategy\DocumentationStrategyInterface;
-use Ferror\AsyncapiDocBundle\GeneratorFactory;
-use Ferror\AsyncapiDocBundle\SchemaInterface;
+use Ferror\AsyncapiDocBundle\Generator\GeneratorFactory;
+use Ferror\AsyncapiDocBundle\Schema\V2\MessageRenderer;
 use Ferror\AsyncapiDocBundle\Tests\Examples\UserSignedUp;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -22,7 +22,7 @@ class DumpSpecificationConsole extends Command
     public function __construct(
         private readonly GeneratorFactory $generatorFactory,
         private readonly DocumentationStrategyInterface $documentationStrategy,
-        private readonly SchemaInterface $schema,
+        private readonly MessageRenderer $messageRenderer,
     ) {
         parent::__construct('ferror:asyncapi:dump');
         $this->addArgument('class', InputArgument::OPTIONAL, sprintf('Class name. Example %s', UserSignedUp::class));
@@ -36,7 +36,7 @@ class DumpSpecificationConsole extends Command
         if ($input->getArgument('class')) {
             $document = $this->documentationStrategy->document($input->getArgument('class'));
 
-            $schema = $this->schema->renderMessage($document);
+            $schema = $this->messageRenderer->render($document);
 
             $io->writeln(Yaml::dump($schema, 10, 2));
 

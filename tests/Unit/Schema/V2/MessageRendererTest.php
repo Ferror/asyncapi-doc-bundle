@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Ferror\AsyncapiDocBundle\Tests\Unit;
+namespace Ferror\AsyncapiDocBundle\Tests\Unit\Schema\V2;
 
-use Ferror\AsyncapiDocBundle\Schema\SchemaV2;
+use Ferror\AsyncapiDocBundle\Schema\V2\MessageRenderer;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Yaml\Yaml;
 
-class SchemaTest extends TestCase
+class MessageRendererTest extends TestCase
 {
     public function testReflection(): void
     {
@@ -38,9 +38,9 @@ class SchemaTest extends TestCase
             ],
         ];
 
-        $schema = new SchemaV2();
+        $schema = new MessageRenderer();
 
-        $specification = $schema->renderMessage($document);
+        $specification = $schema->render($document);
 
         $expectedSpecification = <<<YAML
 UserSignedUp:
@@ -106,9 +106,9 @@ YAML;
             ],
         ];
 
-        $schema = new SchemaV2();
+        $schema = new MessageRenderer();
 
-        $specification = $schema->renderMessage($document);
+        $specification = $schema->render($document);
 
         $expectedSpecification = <<<YAML
 UserSignedUp:

@@ -8,9 +8,10 @@ use Ferror\AsyncapiDocBundle\ClassFinder\ManualClassFinder;
 use Ferror\AsyncapiDocBundle\DocumentationStrategy\AttributeDocumentationStrategy;
 use Ferror\AsyncapiDocBundle\DocumentationStrategy\PropertyExtractor;
 use Ferror\AsyncapiDocBundle\Generator\YamlGenerator;
-use Ferror\AsyncapiDocBundle\Schema\InfoObject;
-use Ferror\AsyncapiDocBundle\Schema\SchemaV2;
-use Ferror\AsyncapiDocBundle\SchemaGenerator;
+use Ferror\AsyncapiDocBundle\Schema\V2\ChannelRenderer;
+use Ferror\AsyncapiDocBundle\Schema\V2\InfoRenderer;
+use Ferror\AsyncapiDocBundle\Schema\V2\MessageRenderer;
+use Ferror\AsyncapiDocBundle\Schema\V2\SchemaRenderer;
 use Ferror\AsyncapiDocBundle\Symfony\Controller\YamlSpecificationController;
 use Ferror\AsyncapiDocBundle\Tests\Examples\PaymentExecuted;
 use Ferror\AsyncapiDocBundle\Tests\Examples\ProductCreated;
@@ -23,16 +24,18 @@ class YamlSpecificationControllerTest extends TestCase
     {
         $controller = new YamlSpecificationController(
             new YamlGenerator(
-                new SchemaGenerator(
+                new SchemaRenderer(
                     new ManualClassFinder([
                         UserSignedUp::class,
                         PaymentExecuted::class,
                         ProductCreated::class,
                     ]),
                     new AttributeDocumentationStrategy(new PropertyExtractor()),
-                    new SchemaV2(),
+                    new ChannelRenderer(),
+                    new MessageRenderer(),
+                    new InfoRenderer('Service Example API', 'This service is in charge of processing user signups', '1.2.3'),
                     [],
-                    new InfoObject('Service Example API', 'This service is in charge of processing user signups', '1.2.3')
+                    '2.6.0',
                 )
             )
         );

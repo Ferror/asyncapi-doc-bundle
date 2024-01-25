@@ -15,6 +15,7 @@ final readonly class Configuration implements ConfigurationInterface
         $root = $builder->getRootNode();
         $root
             ->children()
+                ->scalarNode('asyncapi_version')->defaultValue('2.6.0')->end()
                 ->scalarNode('title')->end()
                 ->scalarNode('version')->end()
                 ->scalarNode('description')->defaultValue('')->end()
