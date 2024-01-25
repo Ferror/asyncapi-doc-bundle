@@ -16,6 +16,10 @@ analyse:
 	$(APP) composer analyse
 
 .PHONY:
+deptrac:
+	$(APP) composer deptrac
+
+.PHONY:
 test:
 	$(APP) composer test
 
