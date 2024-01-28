@@ -16,6 +16,8 @@ class AttributeDocumentationStrategyTest extends TestCase
     {
         $documentation = new AttributeDocumentationStrategy(new PropertyExtractor());
 
+        $actual = $documentation->document(UserSignedUp::class)->toArray();
+
         $expected = [
             'name' => 'UserSignedUp',
             'channel' => 'user_signed_up',
@@ -56,12 +58,14 @@ class AttributeDocumentationStrategyTest extends TestCase
             ],
         ];
 
-        $this->assertEquals($expected, $documentation->document(UserSignedUp::class));
+        $this->assertEquals($expected, $actual);
     }
 
     public function testProductCreated(): void
     {
         $documentation = new AttributeDocumentationStrategy(new PropertyExtractor());
+
+        $actual = $documentation->document(ProductCreated::class)->toArray();
 
         $expected = [
             'name' => 'ProductCreated',
@@ -144,6 +148,6 @@ class AttributeDocumentationStrategyTest extends TestCase
             ],
         ];
 
-        $this->assertEquals($expected, $documentation->document(ProductCreated::class));
+        $this->assertEquals($expected, $actual);
     }
 }

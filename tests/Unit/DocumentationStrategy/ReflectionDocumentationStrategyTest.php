@@ -16,32 +16,44 @@ class ReflectionDocumentationStrategyTest extends TestCase
 
         $expected = [
             'name' => 'UserSignedUp',
+            'channel' => 'user_signed_up',
+            'channelType' => 'subscribe',
             'properties' => [
                 [
                     'name' => 'name',
                     'type' => 'string',
+                    'required' => true,
+                    'description' => '',
+                    'format' => null,
+                    'example' => null,
                 ],
                 [
                     'name' => 'email',
                     'type' => 'string',
+                    'required' => true,
+                    'description' => '',
+                    'format' => null,
+                    'example' => null,
                 ],
                 [
                     'name' => 'age',
-                    'type' => 'int',
+                    'type' => 'integer',
+                    'required' => true,
+                    'description' => '',
+                    'format' => null,
+                    'example' => null,
                 ],
                 [
                     'name' => 'isCitizen',
-                    'type' => 'bool',
+                    'type' => 'boolean',
+                    'required' => true,
+                    'description' => '',
+                    'format' => null,
+                    'example' => null,
                 ],
             ],
-            'required' => [
-                'name',
-                'email',
-                'age',
-                'isCitizen',
-            ]
         ];
 
-        $this->assertEquals($expected, $documentation->document(UserSignedUp::class));
+        $this->assertEquals($expected, $documentation->document(UserSignedUp::class)->toArray());
     }
 }

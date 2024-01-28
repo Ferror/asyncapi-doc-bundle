@@ -26,7 +26,7 @@ final readonly class DocumentationEditor
         }
 
         foreach ($strategies as $documentationStrategy) {
-            $result = array_merge($result, $documentationStrategy->document($class));
+            $result = array_merge($result, $documentationStrategy->document($class)->toArray());
         }
 
         return $result;

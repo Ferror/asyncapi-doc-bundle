@@ -36,7 +36,7 @@ class DumpSpecificationConsole extends Command
         if ($input->getArgument('class')) {
             $document = $this->documentationStrategy->document($input->getArgument('class'));
 
-            $schema = $this->messageRenderer->render($document);
+            $schema = $this->messageRenderer->render($document->toArray());
 
             $io->writeln(Yaml::dump($schema, 10, 2));
 
