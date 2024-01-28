@@ -14,6 +14,7 @@ final readonly class PaymentExecuted
 {
     public function __construct(
         public float $amount,
+        #[Property(name: 'createdAt', type: PropertyType::STRING, description: 'Creation date', format: Format::DATETIME, example: '2023-11-23 13:41:21')]
         public string $createdAt,
     ) {
     }

@@ -66,19 +66,12 @@ final class Extension extends SymfonyExtension
 
         $container
             ->register(DocumentationEditor::class)
-            ->addArgument(new Reference('ferror.asyncapi_doc_bundle.class_finder.manual'))
-            ->addArgument(new Reference('ferror.asyncapi_doc_bundle.documentation.attributes'))
-            ->addArgument(new Reference(ChannelRenderer::class))
-            ->addArgument(new Reference(MessageRenderer::class))
-            ->addArgument(new Reference(InfoRenderer::class))
-            ->addArgument($config['servers'])
-            ->addArgument($config['asyncapi_version'])
         ;
 
         $container
             ->register(SchemaV2Renderer::class)
             ->addArgument(new Reference('ferror.asyncapi_doc_bundle.class_finder.manual'))
-            ->addArgument(new Reference('ferror.asyncapi_doc_bundle.documentation.attributes'))
+            ->addArgument(new Reference(DocumentationEditor::class))
             ->addArgument(new Reference(ChannelRenderer::class))
             ->addArgument(new Reference(MessageRenderer::class))
             ->addArgument(new Reference(InfoRenderer::class))
