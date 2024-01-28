@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push: ~
+  pull_request: ~
+  workflow_dispatch: ~
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    name: CI Demo - PHP ${{ matrix.php }}
+    strategy:
+      matrix:
+        php: [8.2, 8.3]
+
+    steps:
+      - # Copies the repository files to the Action Runner
+        name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          path: example/
+
+      - # Installs PHP and other necessary tools
+        name: Setup PHP
+        uses: shivammathur/setup-php@2.29.0
+        with:
+          php-version: ${{ matrix.php }}
+
+      - # Installs and caches PHP dependencies 
+        name: Install Dependencies
+        uses: ramsey/composer-install@2.2.0
+
+      - # Validates composer.json structure and required fields
+        name: Validate composer.json
+        run: composer validate --ansi --strict --no-check-publish
+
+      - # Runs unit and integration tests, like phpspec, phpunit etc.
+        name: Run Tests
+        run: composer test
+
+      - # Run AsyncAPI Validation
+        name: AsyncAPI Validation
+        run: |
+          docker run --rm -v $(pwd):/app asyncapi/cli:1.3.0 validate /app/var/asyncapi.yaml
+          docker run --rm -v $(pwd):/app asyncapi/cli:1.3.0 validate /app/var/asyncapi.json
