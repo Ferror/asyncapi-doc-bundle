@@ -3,3 +3,4 @@ ferror_asyncapi_doc_bundle:
   version: '1.2.3'
   events:
     - App\ProductCreated
+    - App\UserSignedUp
