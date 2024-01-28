@@ -7,7 +7,3 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
-
-###> phpunit/phpunit ###
-.phpunit.result.cache
-###< phpunit/phpunit ###
