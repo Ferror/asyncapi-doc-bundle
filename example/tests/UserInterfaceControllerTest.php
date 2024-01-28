@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App;
 
-use Ferror\AsyncapiDocBundle\Tests\Integration\Service\Kernel;
 use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Component\HttpFoundation\Request;
