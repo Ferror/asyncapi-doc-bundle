@@ -36,7 +36,7 @@ jobs:
 
       - # Runs unit and integration tests, like phpspec, phpunit etc.
         name: Run Tests
-        run: cd exmaple && composer test
+        run: cd example && composer test
 
       - # Run AsyncAPI Validation
         name: AsyncAPI Validation
