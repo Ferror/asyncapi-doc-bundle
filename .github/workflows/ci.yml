@@ -35,7 +35,6 @@ jobs:
         uses: ramsey/composer-install@2.2.0
         with:
           dependency-versions: ${{ matrix.dependencies }}
-          working-directory: "example"
 
       - # Validates composer.json structure and required fields
         name: Validate composer.json

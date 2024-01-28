@@ -29,6 +29,8 @@ jobs:
       - # Installs and caches PHP dependencies 
         name: Install Dependencies
         uses: ramsey/composer-install@2.2.0
+        with:
+          working-directory: example
 
       - # Validates composer.json structure and required fields
         name: Validate composer.json
