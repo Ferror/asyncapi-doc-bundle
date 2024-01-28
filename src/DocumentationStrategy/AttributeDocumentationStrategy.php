@@ -15,7 +15,7 @@ final readonly class AttributeDocumentationStrategy implements DocumentationStra
     ) {
     }
 
-    public function document(string $class): array
+    public function document(string $class): Message
     {
         $reflection = new ReflectionClass($class);
         /** @var ReflectionAttribute<Message>[] $messageAttributes */
@@ -25,10 +25,10 @@ final readonly class AttributeDocumentationStrategy implements DocumentationStra
             throw new DocumentationStrategyException('Error: class ' . $class . ' must have at least ' . Message::class . ' attribute.');
         }
 
-        $message = $messageAttributes[0]->newInstance()->toArray();
+        $message = $messageAttributes[0]->newInstance();
 
         foreach ($this->propertyExtractor->extract($class) as $property) {
-            $message['properties'][] = $property->toArray();
+            $message->addProperty($property);
         }
 
         return $message;

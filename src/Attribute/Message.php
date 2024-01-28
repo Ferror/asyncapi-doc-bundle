@@ -16,7 +16,7 @@ class Message implements PropertyInterface
     public function __construct(
         public readonly string $name,
         public readonly string $channel,
-        public readonly array $properties = [],
+        public array $properties = [],
         public readonly ChannelType $channelType = ChannelType::SUBSCRIBE,
     ) {
     }
@@ -29,5 +29,10 @@ class Message implements PropertyInterface
             'properties' => array_map(static fn(PropertyInterface $property) => $property->toArray(), $this->properties),
             'channelType' => $this->channelType->value,
         ];
+    }
+
+    public function addProperty(PropertyInterface $property): void
+    {
+        $this->properties[] = $property;
     }
 }

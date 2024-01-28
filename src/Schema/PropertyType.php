@@ -13,4 +13,14 @@ enum PropertyType: string
     case BOOLEAN = 'boolean';
     case INTEGER = 'integer';
     case FLOAT = 'number';
+
+    public static function fromNative(string $type): self
+    {
+        return match ($type) {
+            'bool', 'boolean' => self::BOOLEAN,
+            'int', 'integer' => self::INTEGER,
+            'float', 'number' => self::FLOAT,
+            default => self::STRING,
+        };
+    }
 }

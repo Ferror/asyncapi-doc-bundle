@@ -30,6 +30,7 @@ final readonly class SchemaRenderer implements SchemaRendererInterface
 
         foreach ($classes as $class) {
             $document = $this->documentationStrategy->document($class);
+            $document = $document->toArray();
             $channel = $this->channelRenderer->render($document);
             $message = $this->messageRenderer->render($document);
 
