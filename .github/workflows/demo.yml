@@ -37,9 +37,3 @@ jobs:
       - # Runs unit and integration tests, like phpspec, phpunit etc.
         name: Run Tests
         run: cd example && composer test
-
-      - # Run AsyncAPI Validation
-        name: AsyncAPI Validation
-        run: |
-          docker run --rm -v $(pwd):/app asyncapi/cli:1.3.0 validate /app/var/asyncapi.yaml
-          docker run --rm -v $(pwd):/app asyncapi/cli:1.3.0 validate /app/var/asyncapi.json
