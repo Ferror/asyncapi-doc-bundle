@@ -4,21 +4,15 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "82898ad376b5df5f5170cfdb9d7ddbb7",
+    "content-hash": "ea0216a4d2063b8efc94630c4eac06e1",
     "packages": [
         {
             "name": "ferror/asyncapi-doc-bundle",
             "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Ferror/asyncapi-doc-bundle.git",
-                "reference": "6138d504a62622801f471c85819598abae2814ae"
-            },
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Ferror/asyncapi-doc-bundle/zipball/6138d504a62622801f471c85819598abae2814ae",
-                "reference": "6138d504a62622801f471c85819598abae2814ae",
-                "shasum": ""
+                "type": "path",
+                "url": "..",
+                "reference": "f06d38a21b29b3179a354542cf774d63bfb253f8"
             },
             "require": {
                 "php": "^8.2",
@@ -39,22 +33,37 @@
                 "symfony/framework-bundle": "^6.4|^7.0",
                 "symfony/var-dumper": "^6.4|^7.0"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
                     "Ferror\\AsyncapiDocBundle\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Ferror\\AsyncapiDocBundle\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "vendor/bin/phpunit"
+                ],
+                "coverage": [
+                    "vendor/bin/phpunit --coverage-html=var/coverage --coverage-clover var/coverage/clover.xml"
+                ],
+                "analyse": [
+                    "vendor/bin/phpstan analyse"
+                ],
+                "deptrac": [
+                    "vendor/bin/deptrac analyse"
+                ]
+            },
             "license": [
                 "MIT"
             ],
-            "support": {
-                "issues": "https://github.com/Ferror/asyncapi-doc-bundle/issues",
-                "source": "https://github.com/Ferror/asyncapi-doc-bundle/tree/0.1.0-alpha.3"
-            },
-            "time": "2024-01-25T22:50:00+00:00"
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "psr/cache",

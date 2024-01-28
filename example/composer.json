@@ -27,7 +27,7 @@
     "repositories": {
         "ferror/asyncapi-doc-bundle": {
             "type": "path",
-            "url": "/../"
+            "url": "../"
         }
     },
     "replace": {
