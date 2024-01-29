@@ -7,7 +7,7 @@ namespace Ferror\AsyncapiDocBundle\Attribute;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_PROPERTY)]
-class PropertyObject extends AbstractProperty implements PropertyInterface
+class PropertyObject extends AbstractProperty
 {
     public function __construct(
         string $name,
@@ -25,5 +25,9 @@ class PropertyObject extends AbstractProperty implements PropertyInterface
             'type' => 'object',
             'items' => array_map(static fn(PropertyInterface $property) => $property->toArray(), $this->items),
         ]);
+    }
+
+    public function enrich(Property|PropertyArray|PropertyEnum|PropertyObject|PropertyArrayObject $property): void
+    {
     }
 }

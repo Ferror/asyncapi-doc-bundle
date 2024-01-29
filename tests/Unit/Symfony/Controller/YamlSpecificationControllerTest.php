@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Ferror\AsyncapiDocBundle\Tests\Unit\Symfony\Controller;
 
 use Ferror\AsyncapiDocBundle\ClassFinder\ManualClassFinder;
+use Ferror\AsyncapiDocBundle\DocumentationEditor;
 use Ferror\AsyncapiDocBundle\DocumentationStrategy\AttributeDocumentationStrategy;
 use Ferror\AsyncapiDocBundle\DocumentationStrategy\PropertyExtractor;
+use Ferror\AsyncapiDocBundle\DocumentationStrategy\ReflectionDocumentationStrategy;
 use Ferror\AsyncapiDocBundle\Generator\YamlGenerator;
 use Ferror\AsyncapiDocBundle\Schema\V2\ChannelRenderer;
 use Ferror\AsyncapiDocBundle\Schema\V2\InfoRenderer;
@@ -30,7 +32,10 @@ class YamlSpecificationControllerTest extends TestCase
                         PaymentExecuted::class,
                         ProductCreated::class,
                     ]),
-                    new AttributeDocumentationStrategy(new PropertyExtractor()),
+                    new DocumentationEditor([
+                        new AttributeDocumentationStrategy(new PropertyExtractor()),
+                        new ReflectionDocumentationStrategy(),
+                    ]),
                     new ChannelRenderer(),
                     new MessageRenderer(),
                     new InfoRenderer('Service Example API', 'This service is in charge of processing user signups', '1.2.3'),
@@ -97,14 +102,8 @@ components:
         properties:
           amount:
             type: number
-            description: 'Payment amount'
-            format: float
-            example: '1000'
           createdAt:
             type: string
-            description: 'Creation date'
-            format: date-time
-            example: '2023-11-23 13:41:21'
         required:
           - amount
           - createdAt

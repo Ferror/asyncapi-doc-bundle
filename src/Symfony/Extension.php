@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Ferror\AsyncapiDocBundle\Symfony;
 
 use Ferror\AsyncapiDocBundle\ClassFinder\ManualClassFinder;
+use Ferror\AsyncapiDocBundle\DocumentationEditor;
 use Ferror\AsyncapiDocBundle\DocumentationStrategy\AttributeDocumentationStrategy;
+use Ferror\AsyncapiDocBundle\DocumentationStrategy\ReflectionDocumentationStrategy;
 use Ferror\AsyncapiDocBundle\Generator\GeneratorFactory;
 use Ferror\AsyncapiDocBundle\Generator\JsonGenerator;
 use Ferror\AsyncapiDocBundle\Generator\YamlGenerator;
@@ -44,6 +46,12 @@ final class Extension extends SymfonyExtension
 
         $container
             ->register('ferror.asyncapi_doc_bundle.documentation.attributes', AttributeDocumentationStrategy::class)
+            ->addTag('ferror.asyncapi_doc_bundle.documentation-strategy')
+        ;
+
+        $container
+            ->register('ferror.asyncapi_doc_bundle.documentation.reflection', ReflectionDocumentationStrategy::class)
+            ->addTag('ferror.asyncapi_doc_bundle.documentation-strategy')
         ;
 
         // Async API v2
@@ -57,9 +65,13 @@ final class Extension extends SymfonyExtension
         ;
 
         $container
+            ->register(DocumentationEditor::class)
+        ;
+
+        $container
             ->register(SchemaV2Renderer::class)
             ->addArgument(new Reference('ferror.asyncapi_doc_bundle.class_finder.manual'))
-            ->addArgument(new Reference('ferror.asyncapi_doc_bundle.documentation.attributes'))
+            ->addArgument(new Reference(DocumentationEditor::class))
             ->addArgument(new Reference(ChannelRenderer::class))
             ->addArgument(new Reference(MessageRenderer::class))
             ->addArgument(new Reference(InfoRenderer::class))

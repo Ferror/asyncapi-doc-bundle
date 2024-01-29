@@ -13,15 +13,13 @@ use Ferror\AsyncapiDocBundle\Attribute\PropertyObject;
 use ReflectionAttribute;
 use ReflectionClass;
 use ReflectionException;
-use RuntimeException;
 
 class PropertyExtractor
 {
     /**
-     * @return iterable<PropertyInterface>
+     * @return iterable<Property|PropertyArray|PropertyEnum|PropertyObject|PropertyArrayObject>
      *
      * @throws ReflectionException
-     * @throws RuntimeException
      */
     public function extract(string $class): iterable
     {
@@ -53,14 +51,12 @@ class PropertyExtractor
                 $propertyAttributes = $property->getAttributes(PropertyArrayObject::class);
             }
 
-            if (empty($propertyAttributes)) {
-                throw new RuntimeException('Property attribute for ' . $property->name . ' not found');
+            if ($propertyAttributes) {
+                $propertyAttribute = $propertyAttributes[0]->newInstance();
+                $propertyAttribute->name = $property->name;
+
+                yield $propertyAttribute;
             }
-
-            $propertyAttribute = $propertyAttributes[0]->newInstance();
-            $propertyAttribute->name = $property->name;
-
-            yield $propertyAttribute;
         }
     }
 }

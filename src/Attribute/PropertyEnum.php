@@ -7,12 +7,14 @@ namespace Ferror\AsyncapiDocBundle\Attribute;
 use Attribute;
 use Ferror\AsyncapiDocBundle\PropertyTypeTranslator;
 use Ferror\AsyncapiDocBundle\Schema\Format;
+use Ferror\AsyncapiDocBundle\Schema\PropertyType;
 use InvalidArgumentException;
 use ReflectionEnum;
 use ReflectionEnumBackedCase;
+use ReflectionException;
 
 #[Attribute(Attribute::TARGET_PROPERTY)]
-class PropertyEnum extends AbstractProperty implements PropertyInterface
+class PropertyEnum extends AbstractProperty
 {
     public function __construct(
         string $name,
@@ -25,6 +27,9 @@ class PropertyEnum extends AbstractProperty implements PropertyInterface
         parent::__construct($name, $description, $required);
     }
 
+    /**
+     * @throws ReflectionException
+     */
     public function toArray(): array
     {
         $enum = new ReflectionEnum($this->enum);
@@ -42,5 +47,18 @@ class PropertyEnum extends AbstractProperty implements PropertyInterface
             'format' => $this->format?->value,
             'example' => $this->example,
         ]);
+    }
+
+    public function enrich(Property|PropertyArray|PropertyEnum|PropertyObject|PropertyArrayObject $property): void
+    {
+        if ($property->name === $this->name && $property::class === $this::class) {
+            if (empty($this->format)) {
+                $this->format = $property->format;
+            }
+
+            if (empty($this->example)) {
+                $this->example = $property->example;
+            }
+        }
     }
 }

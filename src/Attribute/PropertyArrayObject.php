@@ -8,7 +8,7 @@ use Attribute;
 use Ferror\AsyncapiDocBundle\Schema\Format;
 
 #[Attribute(Attribute::TARGET_PROPERTY)]
-class PropertyArrayObject extends AbstractProperty implements PropertyInterface
+class PropertyArrayObject extends AbstractProperty
 {
     public function __construct(
         string $name,
@@ -28,5 +28,9 @@ class PropertyArrayObject extends AbstractProperty implements PropertyInterface
             'format' => $this->format?->value,
             'example' => $this->example,
         ]);
+    }
+
+    public function enrich(Property|PropertyArray|PropertyEnum|PropertyObject|PropertyArrayObject $property): void
+    {
     }
 }

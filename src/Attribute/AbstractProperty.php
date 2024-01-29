@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Ferror\AsyncapiDocBundle\Attribute;
 
-abstract class AbstractProperty
+abstract class AbstractProperty implements PropertyInterface
 {
     public function __construct(
         public string $name,

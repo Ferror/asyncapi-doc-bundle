@@ -9,7 +9,7 @@ use Ferror\AsyncapiDocBundle\Schema\Format;
 use Ferror\AsyncapiDocBundle\Schema\PropertyType;
 
 #[Attribute(Attribute::TARGET_PROPERTY)]
-class PropertyArray extends AbstractProperty implements PropertyInterface
+class PropertyArray extends AbstractProperty
 {
     public function __construct(
         string $name,
@@ -30,5 +30,9 @@ class PropertyArray extends AbstractProperty implements PropertyInterface
             'example' => $this->example,
             'itemsType' => $this->itemsType->value,
         ]);
+    }
+
+    public function enrich(Property|PropertyArray|PropertyEnum|PropertyObject|PropertyArrayObject $property): void
+    {
     }
 }

@@ -12,8 +12,13 @@ use ReflectionClass;
 use ReflectionException;
 use ReflectionNamedType;
 
-final readonly class ReflectionDocumentationStrategy implements DocumentationStrategyInterface
+final readonly class ReflectionDocumentationStrategy implements PrioritisedDocumentationStrategyInterface
 {
+    public static function getDefaultPriority(): int
+    {
+        return 20;
+    }
+
     /**
      * @param class-string $class
      *
@@ -38,13 +43,25 @@ final readonly class ReflectionDocumentationStrategy implements DocumentationStr
             $type = $property->getType();
             $name = $property->getName();
 
-            $message->addProperty(
-                new Property(
-                    name: $name,
-                    type: PropertyType::fromNative($type?->getName()),
-                    required: $type && !$type->allowsNull(),
-                )
-            );
+            if (null === $type) {
+                break;
+            }
+
+            // ATM we don't support array types in ReflectionStrategy
+            if (in_array($type->getName(), ['array', 'object', 'resource'])) {
+                break;
+            }
+
+            // ATM we support only builtin types like integer, string, boolean, float
+            if ($type->isBuiltin()) {
+                $message->addProperty(
+                    new Property(
+                        name: $name,
+                        type: PropertyType::fromNative($type->getName()),
+                        required: !$type->allowsNull(),
+                    )
+                );
+            }
         }
 
         return $message;

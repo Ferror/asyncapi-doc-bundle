@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace Ferror\AsyncapiDocBundle\Schema\V2;
 
 use Ferror\AsyncapiDocBundle\ClassFinder\ClassFinderInterface;
-use Ferror\AsyncapiDocBundle\DocumentationStrategy\DocumentationStrategyInterface;
+use Ferror\AsyncapiDocBundle\DocumentationEditor;
 use Ferror\AsyncapiDocBundle\SchemaRendererInterface;
 
 final readonly class SchemaRenderer implements SchemaRendererInterface
 {
     public function __construct(
         private ClassFinderInterface $classFinder,
-        private DocumentationStrategyInterface $documentationStrategy,
+        private DocumentationEditor $documentationEditor,
         private ChannelRenderer $channelRenderer,
         private MessageRenderer $messageRenderer,
         private InfoRenderer $infoRenderer,
@@ -29,7 +29,7 @@ final readonly class SchemaRenderer implements SchemaRendererInterface
         $messages = [];
 
         foreach ($classes as $class) {
-            $document = $this->documentationStrategy->document($class);
+            $document = $this->documentationEditor->document($class);
             $document = $document->toArray();
             $channel = $this->channelRenderer->render($document);
             $message = $this->messageRenderer->render($document);
