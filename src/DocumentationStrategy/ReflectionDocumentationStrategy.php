@@ -12,8 +12,13 @@ use ReflectionClass;
 use ReflectionException;
 use ReflectionNamedType;
 
-final readonly class ReflectionDocumentationStrategy implements DocumentationStrategyInterface
+final readonly class ReflectionDocumentationStrategy implements PrioritisedDocumentationStrategyInterface
 {
+    public static function getDefaultPriority(): int
+    {
+        return 20;
+    }
+
     /**
      * @param class-string $class
      *
