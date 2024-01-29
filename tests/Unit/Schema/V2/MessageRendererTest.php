@@ -145,4 +145,50 @@ YAML;
 
         $this->assertEquals($expectedSpecification, Yaml::dump($specification, 10, 2));
     }
+
+    public function testDoesNotRenderEmptyData(): void
+    {
+        $document = [
+            'name' => 'UserSignedUp',
+            'properties' => [
+                [
+                    'name' => 'firstName',
+                    'type' => 'string',
+                    'description' => '',
+                    'example' => '',
+                    'format' => null,
+                ],
+                [
+                    'name' => 'secondName',
+                    'type' => 'string',
+                    'description' => '',
+                    'example' => '',
+                    'format' => '',
+                ],
+            ],
+        ];
+
+        $schema = new MessageRenderer();
+
+        $actual = $schema->render($document);
+
+        $expected = [
+            'UserSignedUp' => [
+                'payload' => [
+                    'type' => 'object',
+                    'properties' => [
+                        'firstName' => [
+                            'type' => 'string',
+                        ],
+                        'secondName' => [
+                            'type' => 'string',
+                        ],
+                    ],
+                    'required' => [],
+                ],
+            ],
+        ];
+
+        $this->assertEquals($expected, $actual);
+    }
 }

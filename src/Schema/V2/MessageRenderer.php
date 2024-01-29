@@ -16,19 +16,19 @@ class MessageRenderer
         foreach ($document['properties'] as $property) {
             $properties[$property['name']]['type'] = PropertyTypeTranslator::translate($property['type']);
 
-            if (isset($property['description'])) {
+            if (!empty($property['description'])) {
                 $properties[$property['name']]['description'] = $property['description'];
             }
 
-            if (isset($property['format'])) {
+            if (!empty($property['format'])) {
                 $properties[$property['name']]['format'] = $property['format'];
             }
 
-            if (isset($property['example'])) {
+            if (!empty($property['example'])) {
                 $properties[$property['name']]['example'] = $property['example'];
             }
 
-            if (isset($property['required'])) {
+            if (isset($property['required']) && $property['required']) {
                 $required[] = $property['name'];
             }
         }
