@@ -23,22 +23,25 @@ final class DocumentationEditorTest extends TestCase
         $actual = $documentationEditor->document(PaymentExecuted::class)->toArray();
 
         $expected = [
-            'name' => "PaymentExecuted",
-            'channel' => "payment_executed",
-            "channelType" => "subscribe",
+            'name' => 'PaymentExecuted',
+            'channel' => 'payment_executed',
+            'channelType' => 'subscribe',
             'properties' => [
                 [
-                    "name" => "amount",
-                    "required" => true,
-                    "type" => "float",
+                    'name' => 'amount',
+                    'required' => true,
+                    'type' => 'number',
+                    'description' => '',
+                    'format' => null,
+                    'example' => null,
                 ],
                 [
-                    "name" => "createdAt",
-                    "description" => "Creation date",
-                    "required" => true,
-                    "type" => "string",
-                    "format" => "date-time",
-                    "example" => "2023-11-23 13:41:21",
+                    'name' => 'createdAt',
+                    'description' => '',
+                    'required' => true,
+                    'type' => 'string',
+                    'format' => null,
+                    'example' => null,
                 ],
             ],
         ];

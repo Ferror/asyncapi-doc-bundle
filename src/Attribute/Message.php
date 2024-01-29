@@ -11,7 +11,7 @@ use Ferror\AsyncapiDocBundle\Schema\V2\ChannelType;
 class Message
 {
     /**
-     * @param PropertyInterface[] $properties
+     * @param array<Property|PropertyArray|PropertyEnum|PropertyObject|PropertyArrayObject> $properties
      */
     public function __construct(
         public readonly string $name,
@@ -31,7 +31,7 @@ class Message
         ];
     }
 
-    public function addProperty(PropertyInterface $property): void
+    public function addProperty(Property|PropertyArray|PropertyEnum|PropertyObject|PropertyArrayObject $property): void
     {
         $this->properties[] = $property;
     }

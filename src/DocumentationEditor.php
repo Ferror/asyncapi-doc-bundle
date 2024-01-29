@@ -26,7 +26,7 @@ final readonly class DocumentationEditor
             $strategies[$documentationStrategy::getDefaultPriority()] = $documentationStrategy;
         }
 
-        $firstStrategy = array_pop($strategies);
+        $firstStrategy = array_shift($strategies);
 
         $documentedMessage = $firstStrategy->document($class);
 

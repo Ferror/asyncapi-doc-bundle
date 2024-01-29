@@ -8,6 +8,7 @@ use Ferror\AsyncapiDocBundle\ClassFinder\ManualClassFinder;
 use Ferror\AsyncapiDocBundle\DocumentationEditor;
 use Ferror\AsyncapiDocBundle\DocumentationStrategy\AttributeDocumentationStrategy;
 use Ferror\AsyncapiDocBundle\DocumentationStrategy\PropertyExtractor;
+use Ferror\AsyncapiDocBundle\DocumentationStrategy\ReflectionDocumentationStrategy;
 use Ferror\AsyncapiDocBundle\Generator\JsonGenerator;
 use Ferror\AsyncapiDocBundle\Schema\V2\ChannelRenderer;
 use Ferror\AsyncapiDocBundle\Schema\V2\InfoRenderer;
@@ -32,7 +33,8 @@ class JsonSpecificationControllerTest extends TestCase
                         ProductCreated::class,
                     ]),
                     new DocumentationEditor([
-                        new AttributeDocumentationStrategy(new PropertyExtractor())
+                        new AttributeDocumentationStrategy(new PropertyExtractor()),
+                        new ReflectionDocumentationStrategy(),
                     ]),
                     new ChannelRenderer(),
                     new MessageRenderer(),
@@ -119,16 +121,10 @@ class JsonSpecificationControllerTest extends TestCase
           "type": "object",
           "properties": {
             "amount": {
-              "type": "number",
-              "description": "Payment amount",
-              "format": "float",
-              "example": "1000"
+              "type": "number"
             },
             "createdAt": {
-              "type": "string",
-              "description": "Creation date",
-              "format": "date-time",
-              "example": "2023-11-23 13:41:21"
+              "type": "string"
             }
           },
           "required": [

@@ -17,7 +17,7 @@ use ReflectionException;
 class PropertyExtractor
 {
     /**
-     * @return iterable<PropertyInterface>
+     * @return iterable<Property|PropertyArray|PropertyEnum|PropertyObject|PropertyArrayObject>
      *
      * @throws ReflectionException
      */

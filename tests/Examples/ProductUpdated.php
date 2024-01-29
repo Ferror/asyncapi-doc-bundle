@@ -14,6 +14,9 @@ use Ferror\AsyncapiDocBundle\Attribute\PropertyObject;
 use Ferror\AsyncapiDocBundle\Schema\Format;
 use Ferror\AsyncapiDocBundle\Schema\PropertyType;
 
+/**
+ * This class represents an example of documenting by AttributeStrategy. The properties are provided via objects.
+ */
 #[Message(
     name: 'ProductUpdated',
     channel: 'product.updated',

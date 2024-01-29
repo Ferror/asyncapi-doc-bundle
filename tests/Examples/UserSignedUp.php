@@ -9,6 +9,9 @@ use Ferror\AsyncapiDocBundle\Attribute\Property;
 use Ferror\AsyncapiDocBundle\Schema\Format;
 use Ferror\AsyncapiDocBundle\Schema\PropertyType;
 
+/**
+ * This class represents a SIMPLE example of documenting by AttributeStrategy.
+ */
 #[Message(name: 'UserSignedUp', channel: 'user_signed_up')]
 final readonly class UserSignedUp
 {

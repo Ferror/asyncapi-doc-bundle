@@ -140,14 +140,8 @@ components:
         properties:
           amount:
             type: number
-            description: 'Payment amount'
-            format: float
-            example: '1000'
           createdAt:
             type: string
-            description: 'Creation date'
-            format: date-time
-            example: '2023-11-23 13:41:21'
         required:
           - amount
           - createdAt
@@ -297,16 +291,10 @@ YAML;
           "type": "object",
           "properties": {
             "amount": {
-              "type": "number",
-              "description": "Payment amount",
-              "format": "float",
-              "example": "1000"
+              "type": "number"
             },
             "createdAt": {
-              "type": "string",
-              "description": "Creation date",
-              "format": "date-time",
-              "example": "2023-11-23 13:41:21"
+              "type": "string"
             }
           },
           "required": [
