@@ -1,5 +1,13 @@
 # Async API Symfony Bundle
 
+The library was inspired by [nelmio/api-doc-bundle](https://github.com/nelmio/NelmioApiDocBundle); To create a code-first experience
+for PHP and Symfony engineers. This piece of software enables you to document events and messages via PHP built-in Attributes.
+
+Features
+* Code-first async messages documentation
+* Built-in ability to present code powered by [Async API React Component](https://github.com/asyncapi/asyncapi-react)
+* Automated documentation powered by PHP Reflection
+
 ## Installation
 
 ```bash
