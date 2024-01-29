@@ -284,12 +284,12 @@ YAML;
               "example": "true"
             }
           },
-            "required": [
-                "name",
-                "email",
-                "age",
-                "isCitizen"
-            ]
+          "required": [
+            "name",
+            "email",
+            "age",
+            "isCitizen"
+          ]
         }
       },
       "PaymentExecuted": {
@@ -309,10 +309,10 @@ YAML;
               "example": "2023-11-23 13:41:21"
             }
           },
-            "required": [
-                "amount",
-                "createdAt"
-            ]
+          "required": [
+            "amount",
+            "createdAt"
+          ]
         }
       },
       "ProductCreated": {
@@ -348,17 +348,17 @@ YAML;
               "type": "string"
             }
           },
-            "required": [
-                "id",
-                "amount",
-                "currency",
-                "isPaid",
-                "createdAt",
-                "week",
-                "payment",
-                "products",
-                "tags"
-            ]
+          "required": [
+            "id",
+            "amount",
+            "currency",
+            "isPaid",
+            "createdAt",
+            "week",
+            "payment",
+            "products",
+            "tags"
+          ]
         }
       }
     }
