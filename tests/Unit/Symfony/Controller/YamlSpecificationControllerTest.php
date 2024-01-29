@@ -114,32 +114,23 @@ components:
         properties:
           id:
             type: integer
-            description: ''
           amount:
             type: number
-            description: ''
           currency:
             type: string
-            description: ''
           isPaid:
             type: boolean
-            description: ''
           createdAt:
             type: string
-            description: ''
             format: date-time
           week:
             type: integer
-            description: ''
           payment:
             type: string
-            description: ''
           products:
             type: string
-            description: ''
           tags:
             type: string
-            description: ''
         required:
           - id
           - amount

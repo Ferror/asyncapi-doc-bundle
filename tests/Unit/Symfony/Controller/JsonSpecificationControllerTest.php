@@ -139,41 +139,32 @@ class JsonSpecificationControllerTest extends TestCase
           "type": "object",
           "properties": {
             "id": {
-              "type": "integer",
-              "description": ""
+              "type": "integer"
             },
             "amount": {
-              "type": "number",
-              "description": ""
+              "type": "number"
             },
             "currency": {
-              "type": "string",
-              "description": ""
+              "type": "string"
             },
             "isPaid": {
-              "type": "boolean",
-              "description": ""
+              "type": "boolean"
             },
             "createdAt": {
               "type": "string",
-              "description": "",
               "format": "date-time"
             },
             "week": {
-              "type": "integer",
-              "description": ""
+              "type": "integer"
             },
             "payment": {
-              "type": "string",
-              "description": ""
+              "type": "string"
             },
             "products": {
-              "type": "string",
-              "description": ""
+              "type": "string"
             },
             "tags": {
-              "type": "string",
-              "description": ""
+              "type": "string"
             }
           },
             "required": [
