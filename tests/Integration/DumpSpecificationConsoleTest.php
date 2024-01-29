@@ -81,15 +81,6 @@ info:
   title: 'Service Example API'
   version: 1.2.3
   description: 'This service is in charge of processing user signups'
-servers:
-  production:
-    url: broker.mycompany.com
-    protocol: amqp
-    description: 'This is production broker.'
-  staging:
-    url: broker.mycompany.com
-    protocol: amqp
-    description: 'This is staging broker.'
 channels:
   user_signed_up:
     subscribe:
@@ -178,6 +169,15 @@ components:
           - payment
           - products
           - tags
+servers:
+  production:
+    url: broker.mycompany.com
+    protocol: amqp
+    description: 'This is production broker.'
+  staging:
+    url: broker.mycompany.com
+    protocol: amqp
+    description: 'This is staging broker.'
 
 
 YAML;

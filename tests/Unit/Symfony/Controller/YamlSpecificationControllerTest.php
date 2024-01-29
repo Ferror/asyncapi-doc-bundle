@@ -51,7 +51,6 @@ info:
   title: 'Service Example API'
   version: 1.2.3
   description: 'This service is in charge of processing user signups'
-servers: {  }
 channels:
   user_signed_up:
     subscribe:
