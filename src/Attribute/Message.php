@@ -38,9 +38,19 @@ class Message
 
     public function enrich(self $self): self
     {
+        // UPDATE EXISTING
         foreach ($this->properties as $property) {
             foreach ($self->properties as $selfProperty) {
                 $property->enrich($selfProperty);
+            }
+        }
+
+        // ADD MISSING
+        $propertiesNames = array_map(fn ($property) => $property->name, $this->properties);
+
+        foreach ($self->properties as $property) {
+            if (!in_array($property->name, $propertiesNames, true)) {
+                $this->properties[] = $property;
             }
         }
 

@@ -20,15 +20,22 @@ final readonly class DocumentationEditor
 
     public function document(string $class): Message
     {
-        $result = [];
         $strategies = [];
 
         foreach ($this->documentationStrategies as $documentationStrategy) {
             $strategies[$documentationStrategy::getDefaultPriority()] = $documentationStrategy;
         }
 
+        $firstStrategy = array_pop($strategies);
+
+        $documentedMessage = $firstStrategy->document($class);
+
         foreach ($strategies as $documentationStrategy) {
-            return $documentationStrategy->document($class);
+            $message = $documentationStrategy->document($class);
+
+            $documentedMessage = $documentedMessage->enrich($message);
         }
+
+        return $documentedMessage;
     }
 }

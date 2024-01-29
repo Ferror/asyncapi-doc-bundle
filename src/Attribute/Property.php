@@ -45,6 +45,10 @@ class Property extends AbstractProperty
             if (empty($this->example)) {
                 $this->example = $property->example;
             }
+
+            if (empty($this->description)) {
+                $this->description = $property->description;
+            }
         }
     }
 }
