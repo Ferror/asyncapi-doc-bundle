@@ -41,14 +41,19 @@ final readonly class SchemaRenderer implements SchemaRendererInterface
             $messages[$messageKey] = $message[$messageKey];
         }
 
-        return [
+        $schema = [
             'asyncapi' => $this->schemaVersion,
             'info' => $this->infoRenderer->render(),
-            'servers' => $this->servers,
             'channels' => $channels,
             'components' => [
                 'messages' => $messages,
             ],
         ];
+
+        if ($this->servers) {
+            $schema['servers'] = $this->servers;
+        }
+
+        return $schema;
     }
 }
