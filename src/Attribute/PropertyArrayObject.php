@@ -32,7 +32,5 @@ class PropertyArrayObject extends AbstractProperty
 
     public function enrich(Property|PropertyArray|PropertyEnum|PropertyObject|PropertyArrayObject $property): void
     {
-        if ($property->name === $this->name && $property::class === $this::class) {
-        }
     }
 }
