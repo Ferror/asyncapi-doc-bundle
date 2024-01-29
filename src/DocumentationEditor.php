@@ -4,31 +4,31 @@ declare(strict_types=1);
 
 namespace Ferror\AsyncapiDocBundle;
 
-use Ferror\AsyncapiDocBundle\DocumentationStrategy\PrioritisedDocumentationStrategy;
+
+use Ferror\AsyncapiDocBundle\Attribute\Message;
+use Ferror\AsyncapiDocBundle\DocumentationStrategy\PrioritisedDocumentationStrategyInterface;
 
 final readonly class DocumentationEditor
 {
     /**
-     * @param PrioritisedDocumentationStrategy[] $documentationStrategies
+     * @param PrioritisedDocumentationStrategyInterface[] $documentationStrategies
      */
     public function __construct(
         private array $documentationStrategies,
     ) {
     }
 
-    public function document(string $class): array
+    public function document(string $class): Message
     {
         $result = [];
         $strategies = [];
 
         foreach ($this->documentationStrategies as $documentationStrategy) {
-            $strategies[$documentationStrategy->priority] = $documentationStrategy->strategy;
+            $strategies[$documentationStrategy::getDefaultPriority()] = $documentationStrategy;
         }
 
         foreach ($strategies as $documentationStrategy) {
-            $result = array_merge($result, $documentationStrategy->document($class)->toArray());
+            return $documentationStrategy->document($class);
         }
-
-        return $result;
     }
 }

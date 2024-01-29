@@ -8,7 +8,7 @@ use Attribute;
 use Ferror\AsyncapiDocBundle\Schema\V2\ChannelType;
 
 #[Attribute(Attribute::TARGET_CLASS)]
-class Message implements PropertyInterface
+class Message
 {
     /**
      * @param PropertyInterface[] $properties
@@ -34,5 +34,16 @@ class Message implements PropertyInterface
     public function addProperty(PropertyInterface $property): void
     {
         $this->properties[] = $property;
+    }
+
+    public function enrich(self $self): self
+    {
+        foreach ($this->properties as $property) {
+            foreach ($self->properties as $selfProperty) {
+                $property->enrich($selfProperty);
+            }
+        }
+
+        return $this;
     }
 }

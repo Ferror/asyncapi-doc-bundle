@@ -20,7 +20,7 @@ final class DocumentationEditorTest extends TestCase
             new AttributeDocumentationStrategy(),
         ]);
 
-        $actual = $documentationEditor->document(PaymentExecuted::class);
+        $actual = $documentationEditor->document(PaymentExecuted::class)->toArray();
 
         $expected = [
             'name' => "PaymentExecuted",

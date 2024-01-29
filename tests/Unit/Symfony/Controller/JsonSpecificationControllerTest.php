@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Ferror\AsyncapiDocBundle\Tests\Unit\Symfony\Controller;
 
 use Ferror\AsyncapiDocBundle\ClassFinder\ManualClassFinder;
+use Ferror\AsyncapiDocBundle\DocumentationEditor;
 use Ferror\AsyncapiDocBundle\DocumentationStrategy\AttributeDocumentationStrategy;
 use Ferror\AsyncapiDocBundle\DocumentationStrategy\PropertyExtractor;
 use Ferror\AsyncapiDocBundle\Generator\JsonGenerator;
@@ -30,7 +31,9 @@ class JsonSpecificationControllerTest extends TestCase
                         PaymentExecuted::class,
                         ProductCreated::class,
                     ]),
-                    new AttributeDocumentationStrategy(new PropertyExtractor()),
+                    new DocumentationEditor([
+                        new AttributeDocumentationStrategy(new PropertyExtractor())
+                    ]),
                     new ChannelRenderer(),
                     new MessageRenderer(),
                     new InfoRenderer('Service Example API', 'This service is in charge of processing user signups', '1.2.3'),
