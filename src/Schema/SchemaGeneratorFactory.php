@@ -26,7 +26,7 @@ final readonly class SchemaGeneratorFactory
         }
 
         if ($major === '3') {
-            return $this->schemaGeneratorV2;
+            return $this->schemaGeneratorV3;
         }
 
         throw new InvalidArgumentException("Not supported Async API Schema $version");
