@@ -14,17 +14,30 @@ final class OperationRendererTest extends TestCase
     {
         $renderer = new OperationRenderer();
 
-        $document = [];
+        $document = [
+            'name' => 'UserSignedUp',
+            'properties' => [],
+            'operations' => [
+                [
+                    'name' => 'UserSignedUpOperation',
+                    'type' => 'send',
+                    'channels' => [
+                        [
+                            'name' => 'UserSignedUpChannel',
+                            'type' => 'subscribe',
+                        ]
+                    ],
+                ]
+            ],
+        ];
 
         $actual = $renderer->render($document);
 
         $expected = [
             'UserSignedUpOperation' => [
                 'action' => 'send',
-                'messages' => [
-                    'UserSignedUp' => [
-                        '$ref' => '#/components/messages/UserSignedUp',
-                    ]
+                'channel' => [
+                    '$ref' => '#/channels/UserSignedUpChannel',
                 ]
             ]
         ];
@@ -36,7 +49,22 @@ final class OperationRendererTest extends TestCase
     {
         $renderer = new OperationRenderer();
 
-        $document = [];
+        $document = [
+            'name' => 'UserSignedUp',
+            'properties' => [],
+            'operations' => [
+                [
+                    'name' => 'UserSignedUpOperation',
+                    'type' => 'receive',
+                    'channels' => [
+                        [
+                            'name' => 'UserSignedUpChannel',
+                            'type' => 'subscribe',
+                        ]
+                    ],
+                ]
+            ],
+        ];
 
         $actual = $renderer->render($document);
 
@@ -44,7 +72,7 @@ final class OperationRendererTest extends TestCase
             'UserSignedUpOperation' => [
                 'action' => 'receive',
                 'channel' => [
-                    '$ref' => '#/channels/UserSignedUpChannel'
+                    '$ref' => '#/channels/UserSignedUpChannel',
                 ]
             ]
         ];
