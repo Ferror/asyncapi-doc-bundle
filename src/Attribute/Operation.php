@@ -16,4 +16,16 @@ class Operation
         public array $channels = [],
     ) {
     }
+
+    public function toArray(): array
+    {
+        return [
+            'name' => $this->name,
+            'type' => $this->type->value,
+            'channels' => array_map(
+                static fn (Channel $channel) => $channel->toArray(),
+                $this->channels
+            ),
+        ];
+    }
 }

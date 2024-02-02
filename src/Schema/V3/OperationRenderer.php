@@ -8,6 +8,19 @@ final readonly class OperationRenderer
 {
     public function render(array $document): array
     {
-        return [];
+        $operations = [];
+
+        foreach ($document['operations'] as $operation) {
+            foreach ($operation['channels'] as $channel) {
+                $operations[$operation['name']] = [
+                    'action' => $operation['type'],
+                    'channel' => [
+                         '$ref' => '#/channels/' . $channel['name'],
+                    ],
+                ];
+            }
+        }
+
+        return $operations;
     }
 }
