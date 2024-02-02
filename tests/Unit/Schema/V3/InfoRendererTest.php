@@ -13,7 +13,11 @@ final class InfoRendererTest extends TestCase
     {
         $renderer = new InfoRenderer();
 
-        $document = [];
+        $document = [
+            'version' => '2.6.0',
+            'title' => 'Async API Title',
+            'description' => 'Async API Description',
+        ];
 
         $actual = $renderer->render($document);
 

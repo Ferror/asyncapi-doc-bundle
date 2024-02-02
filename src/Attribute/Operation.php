@@ -13,6 +13,7 @@ class Operation
     public function __construct(
         public string $name,
         public OperationType $type = OperationType::SEND,
+        public array $channels = [],
     ) {
     }
 }

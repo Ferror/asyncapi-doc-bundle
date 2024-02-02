@@ -13,7 +13,18 @@ final class ChannelRendererTest extends TestCase
     {
         $renderer = new ChannelRenderer();
 
-        $document = [];
+        $document = [
+            'name' => 'UserSignedUp',
+            'properties' => [],
+            'operations' => [
+                'UserSignedUpOperation'
+            ],
+            'channels' => [
+                [
+                    'name' => 'UserSignedUpChannel',
+                ],
+            ],
+        ];
 
         $actual = $renderer->render($document);
 
