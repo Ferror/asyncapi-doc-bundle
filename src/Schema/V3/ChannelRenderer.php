@@ -13,8 +13,8 @@ class ChannelRenderer
         foreach ($document['channels'] as $channel) {
             $channels[$channel['name']] = [
                 'messages' => [
-                    $channel['name'] => [
-                        '$ref' => '#/components/messages/' . $channel['name'],
+                    $document['name'] => [
+                        '$ref' => '#/components/messages/' . $document['name'],
                     ]
                 ],
             ];
