@@ -28,4 +28,9 @@ class Operation
             ),
         ];
     }
+
+    public function addChannel(Channel $channel): void
+    {
+        $this->channels[] = $channel;
+    }
 }
