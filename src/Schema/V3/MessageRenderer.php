@@ -6,7 +6,7 @@ namespace Ferror\AsyncapiDocBundle\Schema\V3;
 
 use Ferror\AsyncapiDocBundle\PropertyTypeTranslator;
 
-class MessageRenderer
+final readonly class MessageRenderer
 {
     public function render(array $document): array
     {

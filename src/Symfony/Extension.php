@@ -20,6 +20,7 @@ use Ferror\AsyncapiDocBundle\Schema\V2\MessageRenderer as MessageV2Renderer;
 use Ferror\AsyncapiDocBundle\Schema\V3\MessageRenderer as MessageV3Renderer;
 use Ferror\AsyncapiDocBundle\Schema\V2\SchemaRenderer as SchemaV2Renderer;
 use Ferror\AsyncapiDocBundle\Schema\V3\SchemaRenderer as SchemaV3Renderer;
+use Ferror\AsyncapiDocBundle\Schema\V3\ServerRenderer as ServerV3Renderer;
 use Ferror\AsyncapiDocBundle\SchemaRendererInterface;
 use Ferror\AsyncapiDocBundle\Symfony\Console\DumpSpecificationConsole;
 use Ferror\AsyncapiDocBundle\Symfony\Controller\JsonSpecificationController;
@@ -86,6 +87,10 @@ final class Extension extends SymfonyExtension
         $container->register(ChannelV3Renderer::class);
         $container->register(MessageV3Renderer::class);
         $container
+            ->register(ServerV3Renderer::class)
+            ->addArgument($config['servers'])
+        ;
+        $container
             ->register(InfoV3Renderer::class)
             ->addArgument($config['title'])
             ->addArgument($config['description'])
@@ -99,7 +104,7 @@ final class Extension extends SymfonyExtension
             ->addArgument(new Reference(InfoV3Renderer::class))
             ->addArgument(new Reference(MessageV3Renderer::class))
             ->addArgument(new Reference(ChannelV3Renderer::class))
-            ->addArgument($config['servers'])
+            ->addArgument(new Reference(ServerV3Renderer::class))
             ->addArgument($config['asyncapi_version'])
         ;
 

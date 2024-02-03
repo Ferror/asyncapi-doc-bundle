@@ -13,6 +13,7 @@ use Ferror\AsyncapiDocBundle\Schema\V3\ChannelRenderer;
 use Ferror\AsyncapiDocBundle\Schema\V3\InfoRenderer;
 use Ferror\AsyncapiDocBundle\Schema\V3\MessageRenderer;
 use Ferror\AsyncapiDocBundle\Schema\V3\SchemaRenderer;
+use Ferror\AsyncapiDocBundle\Schema\V3\ServerRenderer;
 use Ferror\AsyncapiDocBundle\Tests\Examples\UserSignedUp;
 use PHPUnit\Framework\TestCase;
 
@@ -31,7 +32,7 @@ final class SchemaRendererTest extends TestCase
             new InfoRenderer('Service Example API', 'This service is in charge of processing user signups', '1.0.0'),
             new MessageRenderer(),
             new ChannelRenderer(),
-            [],
+            new ServerRenderer([]),
             '3.0.0',
         );
 

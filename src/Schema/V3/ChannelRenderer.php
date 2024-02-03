@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Ferror\AsyncapiDocBundle\Schema\V3;
 
-class ChannelRenderer
+final readonly class ChannelRenderer
 {
     public function render(array $document): array
     {

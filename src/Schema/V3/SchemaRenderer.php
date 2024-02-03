@@ -16,7 +16,7 @@ final readonly class SchemaRenderer implements SchemaRendererInterface
         private InfoRenderer $infoRenderer,
         private MessageRenderer $messageRenderer,
         private ChannelRenderer $channelRenderer,
-        private array $servers,
+        private ServerRenderer $serverRenderer,
         private string $schemaVersion,
     ) {
     }
@@ -51,8 +51,10 @@ final readonly class SchemaRenderer implements SchemaRendererInterface
             ],
         ];
 
-        if ($this->servers) {
-            $schema['servers'] = $this->servers;
+        $servers = $this->serverRenderer->render();
+
+        if ($servers) {
+            $schema['servers'] = $servers;
         }
 
         return $schema;
