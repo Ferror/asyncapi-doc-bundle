@@ -63,7 +63,7 @@ jobs:
 
       - # Upload Coverage to Coveralls
         name: Coveralls
-        if: ${{ matrix.coveralls }}
+        if: ${{ matrix.coveralls && github.event_name == 'pull_request' }}
         uses: coverallsapp/github-action@v2.2.3
         with:
           file: var/coverage/clover.xml
