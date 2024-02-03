@@ -6,11 +6,11 @@ namespace Ferror\AsyncapiDocBundle\Generator;
 
 use Ferror\AsyncapiDocBundle\DataFormat;
 use Ferror\AsyncapiDocBundle\GeneratorInterface;
-use Ferror\AsyncapiDocBundle\Schema\V2\SchemaRenderer;
+use Ferror\AsyncapiDocBundle\SchemaRendererInterface;
 
 final readonly class GeneratorFactory
 {
-    public function __construct(private SchemaRenderer $generator)
+    public function __construct(private SchemaRendererInterface $generator)
     {
     }
 

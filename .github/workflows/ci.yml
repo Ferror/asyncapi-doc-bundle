@@ -8,10 +8,13 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
-    name: CI - PHP ${{ matrix.php }}, Dependencies ${{ matrix.dependencies }}
+    name: CI - PHP ${{ matrix.php }}, Dependencies ${{ matrix.dependencies }}, Schema ${{ matrix.schema }}
+    env:
+      ASYNCAPI_VERSION: ${{ matrix.schema }}
     strategy:
       matrix:
         php: [8.2, 8.3]
+        schema: [3.0.0, 2.6.0]
         dependencies: [lowest, highest]
         include:
           -

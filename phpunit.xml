@@ -23,6 +23,7 @@
 
     <php>
         <env name="KERNEL_CLASS" value="Ferror\AsyncapiDocBundle\Tests\Integration\Service\Kernel" />
+        <env name="ASYNCAPI_VERSION" value="3.0.0" />
     </php>
 
     <source
