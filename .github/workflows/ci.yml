@@ -8,10 +8,13 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
-    name: CI - PHP ${{ matrix.php }}, Dependencies ${{ matrix.dependencies }}
+    name: CI - PHP ${{ matrix.php }}, Dependencies ${{ matrix.dependencies }}, Schema ${{ matrix.schema }}
+    env:
+      ASYNCAPI_VERSION: ${{ matrix.schema }}
     strategy:
       matrix:
         php: [8.2, 8.3]
+        schema: [3.0.0, 2.6.0]
         dependencies: [lowest, highest]
         include:
           -
@@ -55,12 +58,12 @@ jobs:
       - # Run AsyncAPI Validation
         name: AsyncAPI Validation
         run: |
-          docker run --rm -v $(pwd):/app asyncapi/cli:1.4.4 validate /app/var/asyncapi.yaml
-          docker run --rm -v $(pwd):/app asyncapi/cli:1.4.4 validate /app/var/asyncapi.json
+          docker run --rm -v $(pwd):/app asyncapi/cli:1.4.4 validate /app/var/${{ matrix.schema }}/asyncapi.yaml
+          docker run --rm -v $(pwd):/app asyncapi/cli:1.4.4 validate /app/var/${{ matrix.schema }}/asyncapi.json
 
       - # Upload Coverage to Coveralls
         name: Coveralls
-        if: ${{ matrix.coveralls }}
+        if: ${{ matrix.coveralls && github.event_name == 'pull_request' }}
         uses: coverallsapp/github-action@v2.2.3
         with:
           file: var/coverage/clover.xml

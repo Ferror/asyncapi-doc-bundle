@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Ferror\AsyncapiDocBundle\Symfony\Console;
 
-
 use Ferror\AsyncapiDocBundle\DataFormat;
 use Ferror\AsyncapiDocBundle\DocumentationStrategy\DocumentationStrategyInterface;
 use Ferror\AsyncapiDocBundle\Generator\GeneratorFactory;

@@ -182,9 +182,13 @@ servers:
 
 YAML;
 
-        $this->assertEquals($expectedDisplay, $display);
+        if (false === $this->isV3()) {
+            $this->assertEquals($expectedDisplay, $display);
+        }
 
-        $content = file_put_contents(dirname(__DIR__) . '/../var/asyncapi.yaml', $display);
+        mkdir(dirname(__DIR__) . '/../var/' . $this->getSchemaVersion());
+
+        $content = file_put_contents(dirname(__DIR__) . '/../var/' . $this->getSchemaVersion() . '/asyncapi.yaml', $display);
 
         if (false === $content) {
             throw new RuntimeException('Schema file was not save');
@@ -355,12 +359,28 @@ YAML;
 
 JSON;
 
-        $this->assertJsonStringEqualsJsonString($expectedDisplay, $display);
+        if (false === $this->isV3()) {
+            $this->assertJsonStringEqualsJsonString($expectedDisplay, $display);
+        }
 
-        $content = file_put_contents(dirname(__DIR__) . '/../var/asyncapi.json', $display);
+        mkdir(dirname(__DIR__) . '/../var/' . $this->getSchemaVersion());
+
+        $content = file_put_contents(dirname(__DIR__) . '/../var/' . $this->getSchemaVersion() . '/asyncapi.json', $display);
 
         if (false === $content) {
             throw new RuntimeException('Schema file was not save');
         }
+    }
+
+    private function getSchemaVersion(): string
+    {
+        return getenv('ASYNCAPI_VERSION');
+    }
+
+    private function isV3(): bool
+    {
+        $version = getenv('ASYNCAPI_VERSION');
+
+        return $version === '3.0.0';
     }
 }

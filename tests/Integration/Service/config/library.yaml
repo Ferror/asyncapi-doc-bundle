@@ -1,5 +1,5 @@
 ferror_asyncapi_doc_bundle:
-  asyncapi_version: '2.6.0'
+  asyncapi_version: '%env(ASYNCAPI_VERSION)%'
   title: 'Service Example API'
   description: 'This service is in charge of processing user signups'
   version: '1.2.3'
