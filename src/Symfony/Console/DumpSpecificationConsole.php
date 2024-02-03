@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Ferror\AsyncapiDocBundle\Symfony\Console;
 
-
 use Ferror\AsyncapiDocBundle\DataFormat;
 use Ferror\AsyncapiDocBundle\DocumentationStrategy\DocumentationStrategyInterface;
 use Ferror\AsyncapiDocBundle\Generator\GeneratorFactory;
 use Ferror\AsyncapiDocBundle\Schema\V2\MessageRenderer;
-use Ferror\AsyncapiDocBundle\SchemaRendererInterface;
 use Ferror\AsyncapiDocBundle\Tests\Examples\UserSignedUp;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
