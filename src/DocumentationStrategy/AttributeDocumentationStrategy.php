@@ -37,17 +37,7 @@ final readonly class AttributeDocumentationStrategy implements PrioritisedDocume
             throw new DocumentationStrategyException('Error: class ' . $class . ' must have at least ' . Message::class . ' attribute.');
         }
 
-        /** @var ReflectionAttribute<Operation>[] $operationAttributes */
-        $operationAttributes = $reflection->getAttributes(Operation::class);
-
-        /** @var ReflectionAttribute<Channel>[] $channelAttributes */
-        $channelAttributes = $reflection->getAttributes(Channel::class);
-
         $message = $messageAttributes[0]->newInstance();
-        $operation = $operationAttributes[0]->newInstance();
-        $channel = $channelAttributes[0]->newInstance();
-
-        $operation->addChannel($channel);
 
         foreach ($this->propertyExtractor->extract($class) as $property) {
             $message->addProperty($property);
@@ -59,6 +49,14 @@ final readonly class AttributeDocumentationStrategy implements PrioritisedDocume
 
         foreach ($channelAttributes as $channelAttribute) {
             $message->addChannel($channelAttribute->newInstance());
+        }
+
+        // Channels are optional as it's possible to document just Messages.
+        /** @var ReflectionAttribute<Operation>[] $operationAttributes */
+        $operationAttributes = $reflection->getAttributes(Operation::class);
+
+        foreach ($operationAttributes as $operationAttribute) {
+            $message->addOperation($operationAttribute->newInstance());
         }
 
         return $message;

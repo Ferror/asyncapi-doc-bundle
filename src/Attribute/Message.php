@@ -27,6 +27,7 @@ class Message
             'name' => $this->name,
             'properties' => array_map(static fn(PropertyInterface $property) => $property->toArray(), $this->properties),
             'channels' => array_map(static fn(Channel $channel) => $channel->toArray(), $this->channels),
+            'operations' => array_map(static fn(Operation $operation) => $operation->toArray(), $this->operations),
         ];
     }
 
@@ -38,6 +39,11 @@ class Message
     public function addChannel(Channel $channel): void
     {
         $this->channels[] = $channel;
+    }
+
+    public function addOperation(Operation $operation): void
+    {
+        $this->operations[] = $operation;
     }
 
     public function enrich(self $self): self
