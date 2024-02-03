@@ -6,6 +6,7 @@ namespace Ferror\AsyncapiDocBundle\DocumentationStrategy;
 
 use Ferror\AsyncapiDocBundle\Attribute\Channel;
 use Ferror\AsyncapiDocBundle\Attribute\Message;
+use Ferror\AsyncapiDocBundle\Attribute\Operation;
 use ReflectionAttribute;
 use ReflectionClass;
 use ReflectionException;
@@ -48,6 +49,14 @@ final readonly class AttributeDocumentationStrategy implements PrioritisedDocume
 
         foreach ($channelAttributes as $channelAttribute) {
             $message->addChannel($channelAttribute->newInstance());
+        }
+
+        // Channels are optional as it's possible to document just Messages.
+        /** @var ReflectionAttribute<Operation>[] $operationAttributes */
+        $operationAttributes = $reflection->getAttributes(Operation::class);
+
+        foreach ($operationAttributes as $operationAttribute) {
+            $message->addOperation($operationAttribute->newInstance());
         }
 
         return $message;
