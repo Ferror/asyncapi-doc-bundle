@@ -16,9 +16,6 @@ final class ChannelRendererTest extends TestCase
         $document = [
             'name' => 'UserSignedUp',
             'properties' => [],
-            'operations' => [
-                'UserSignedUpOperation'
-            ],
             'channels' => [
                 [
                     'name' => 'UserSignedUpChannel',

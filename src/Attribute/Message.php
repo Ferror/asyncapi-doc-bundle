@@ -17,7 +17,6 @@ class Message
         public readonly string $name,
         public array $properties = [],
         public array $channels = [],
-        public array $operations = [],
     ) {
     }
 

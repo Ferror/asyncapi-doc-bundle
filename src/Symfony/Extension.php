@@ -12,9 +12,12 @@ use Ferror\AsyncapiDocBundle\Generator\GeneratorFactory;
 use Ferror\AsyncapiDocBundle\Generator\JsonGenerator;
 use Ferror\AsyncapiDocBundle\Generator\YamlGenerator;
 use Ferror\AsyncapiDocBundle\Schema\SchemaGeneratorFactory;
-use Ferror\AsyncapiDocBundle\Schema\V2\ChannelRenderer;
-use Ferror\AsyncapiDocBundle\Schema\V2\InfoRenderer;
-use Ferror\AsyncapiDocBundle\Schema\V2\MessageRenderer;
+use Ferror\AsyncapiDocBundle\Schema\V2\ChannelRenderer as ChannelV2Renderer;
+use Ferror\AsyncapiDocBundle\Schema\V3\ChannelRenderer as ChannelV3Renderer;
+use Ferror\AsyncapiDocBundle\Schema\V2\InfoRenderer as InfoV2Renderer;
+use Ferror\AsyncapiDocBundle\Schema\V3\InfoRenderer as InfoV3Renderer;
+use Ferror\AsyncapiDocBundle\Schema\V2\MessageRenderer as MessageV2Renderer;
+use Ferror\AsyncapiDocBundle\Schema\V3\MessageRenderer as MessageV3Renderer;
 use Ferror\AsyncapiDocBundle\Schema\V2\SchemaRenderer as SchemaV2Renderer;
 use Ferror\AsyncapiDocBundle\Schema\V3\SchemaRenderer as SchemaV3Renderer;
 use Ferror\AsyncapiDocBundle\SchemaRendererInterface;
@@ -54,34 +57,50 @@ final class Extension extends SymfonyExtension
             ->addTag('ferror.asyncapi_doc_bundle.documentation-strategy')
         ;
 
-        // Async API v2
-        $container->register(ChannelRenderer::class);
-        $container->register(MessageRenderer::class);
         $container
-            ->register(InfoRenderer::class)
+            ->register(DocumentationEditor::class)
+        ;
+
+        // Async API v2
+        $container->register(ChannelV2Renderer::class);
+        $container->register(MessageV2Renderer::class);
+        $container
+            ->register(InfoV2Renderer::class)
             ->addArgument($config['title'])
             ->addArgument($config['description'])
             ->addArgument($config['version'])
         ;
 
         $container
-            ->register(DocumentationEditor::class)
-        ;
-
-        $container
             ->register(SchemaV2Renderer::class)
             ->addArgument(new Reference('ferror.asyncapi_doc_bundle.class_finder.manual'))
             ->addArgument(new Reference(DocumentationEditor::class))
-            ->addArgument(new Reference(ChannelRenderer::class))
-            ->addArgument(new Reference(MessageRenderer::class))
-            ->addArgument(new Reference(InfoRenderer::class))
+            ->addArgument(new Reference(ChannelV2Renderer::class))
+            ->addArgument(new Reference(MessageV2Renderer::class))
+            ->addArgument(new Reference(InfoV2Renderer::class))
             ->addArgument($config['servers'])
             ->addArgument($config['asyncapi_version'])
         ;
 
         // Async API v3
+        $container->register(ChannelV3Renderer::class);
+        $container->register(MessageV3Renderer::class);
+        $container
+            ->register(InfoV3Renderer::class)
+            ->addArgument($config['title'])
+            ->addArgument($config['description'])
+            ->addArgument($config['version'])
+        ;
+
         $container
             ->register(SchemaV3Renderer::class)
+            ->addArgument(new Reference('ferror.asyncapi_doc_bundle.class_finder.manual'))
+            ->addArgument(new Reference(DocumentationEditor::class))
+            ->addArgument(new Reference(InfoV3Renderer::class))
+            ->addArgument(new Reference(MessageV3Renderer::class))
+            ->addArgument(new Reference(ChannelV3Renderer::class))
+            ->addArgument($config['servers'])
+            ->addArgument($config['asyncapi_version'])
         ;
 
         // Version Agnostic
@@ -134,7 +153,7 @@ final class Extension extends SymfonyExtension
             ->register('ferror.asyncapi_doc_bundle.console', DumpSpecificationConsole::class)
             ->addArgument(new Reference('ferror.asyncapi_doc_bundle.generator-factory'))
             ->addArgument(new Reference('ferror.asyncapi_doc_bundle.documentation.attributes'))
-            ->addArgument(new Reference(MessageRenderer::class))
+            ->addArgument(new Reference(MessageV2Renderer::class))
             ->addTag('console.command')
         ;
     }

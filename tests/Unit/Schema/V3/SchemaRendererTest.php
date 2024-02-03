@@ -12,7 +12,6 @@ use Ferror\AsyncapiDocBundle\DocumentationStrategy\ReflectionDocumentationStrate
 use Ferror\AsyncapiDocBundle\Schema\V3\ChannelRenderer;
 use Ferror\AsyncapiDocBundle\Schema\V3\InfoRenderer;
 use Ferror\AsyncapiDocBundle\Schema\V3\MessageRenderer;
-use Ferror\AsyncapiDocBundle\Schema\V3\OperationRenderer;
 use Ferror\AsyncapiDocBundle\Schema\V3\SchemaRenderer;
 use Ferror\AsyncapiDocBundle\Tests\Examples\UserSignedUp;
 use PHPUnit\Framework\TestCase;
@@ -29,9 +28,8 @@ final class SchemaRendererTest extends TestCase
                 new AttributeDocumentationStrategy(new PropertyExtractor()),
                 new ReflectionDocumentationStrategy(),
             ]),
-            new InfoRenderer(),
+            new InfoRenderer('Service Example API', 'This service is in charge of processing user signups', '1.0.0'),
             new MessageRenderer(),
-            new OperationRenderer(),
             new ChannelRenderer(),
             [],
             '3.0.0',
@@ -42,30 +40,16 @@ final class SchemaRendererTest extends TestCase
         $expected = [
             'asyncapi' => '3.0.0',
             'info' => [
-                'title' => 'Account Service',
+                'title' => 'Service Example API',
                 'version' => '1.0.0',
                 'description' => 'This service is in charge of processing user signups',
             ],
             'channels' => [
-                'userSignedUpChannel' => [
+                'user_signed_up' => [
                     'messages' => [
                         'UserSignedUp' => [
                             '$ref' => '#/components/messages/UserSignedUp',
                         ],
-                    ],
-                ],
-            ],
-            'operations' => [
-                'sendUserSignedUpOperation' => [
-                    'action' => 'send',
-                    'channel' => [
-                        '$ref' => '#/channels/userSignedUpChannel',
-                    ],
-                ],
-                'receiveUserSignedUpOperation' => [
-                    'action' => 'receive',
-                    'channel' => [
-                        '$ref' => '#/channels/userSignedUpChannel',
                     ],
                 ],
             ],
@@ -75,16 +59,32 @@ final class SchemaRendererTest extends TestCase
                         'payload' => [
                             'type' => 'object',
                             'properties' => [
-                                'displayName' => [
+                                'name' => [
                                     'type' => 'string',
                                     'description' => 'Name of the user',
+                                    'format' => 'string',
+                                    'example' => 'John',
                                 ],
                                 'email' => [
                                     'type' => 'string',
-                                    'format' => 'email',
                                     'description' => 'Email of the user',
+                                    'format' => 'email',
+                                    'example' => 'john@example.com',
+                                ],
+                                'age' => [
+                                    'type' => 'integer',
+                                    'description' => 'Age of the user',
+                                    'format' => 'int32',
+                                    'example' => 18,
+                                ],
+                                'isCitizen' => [
+                                    'type' => 'boolean',
+                                    'description' => 'Is user a citizen',
+                                    'format' => 'boolean',
+                                    'example' => true,
                                 ],
                             ],
+                            'required' => ['name', 'email', 'age', 'isCitizen'],
                         ],
                     ],
                 ],
