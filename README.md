@@ -55,8 +55,10 @@ ferror_asyncapi_doc_bundle_html:
 
 ```php
 use Ferror\AsyncapiDocBundle\Attribute\Message;
+use Ferror\AsyncapiDocBundle\Attribute\Channel;
 
-#[Message(name: 'ProductCreated', channel: 'product.created')]
+#[Message(name: 'ProductCreated')]
+#[Channel(name: 'product.created')] // optional
 final readonly class ProductCreated
 {
     public function __construct(
@@ -81,7 +83,8 @@ use Ferror\AsyncapiDocBundle\Attribute as AA;
 use Ferror\AsyncapiDocBundle\Schema\Format;
 use Ferror\AsyncapiDocBundle\Schema\PropertyType;
 
-#[AA\Message(name: 'ProductCreated', channel: 'product.created')]
+#[AA\Message(name: 'ProductCreated')]
+#[AA\Channel(name: 'product.created')] // optional
 final readonly class ProductCreated
 {
     public function __construct(

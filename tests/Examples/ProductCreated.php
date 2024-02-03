@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Ferror\AsyncapiDocBundle\Tests\Examples;
 
 use DateTime;
+use Ferror\AsyncapiDocBundle\Attribute\Channel;
 use Ferror\AsyncapiDocBundle\Attribute\Message;
 use Ferror\AsyncapiDocBundle\Attribute\Property;
 use Ferror\AsyncapiDocBundle\Attribute\PropertyArray;
@@ -17,7 +18,8 @@ use Ferror\AsyncapiDocBundle\Schema\PropertyType;
 /**
  * This class represents an example of documenting by AttributeStrategy. It contains all types.
  */
-#[Message(name: 'ProductCreated', channel: 'product.created')]
+#[Message(name: 'ProductCreated')]
+#[Channel(name: 'product.created')]
 final readonly class ProductCreated
 {
     /**

@@ -12,18 +12,18 @@ final class MessageTest extends TestCase
 {
     public function testEnrichAddsProperty(): void
     {
-        $message = new Message('name', 'channel');
+        $message = new Message('name');
 
-        $message->enrich(new Message('name', 'channel', [new Property('name')]));
+        $message->enrich(new Message('name', [new Property('name')]));
 
         $this->assertCount(1, $message->properties);
     }
 
     public function testEnrichUpdatesProperty(): void
     {
-        $message = new Message('name', 'channel', [new Property('name')]);
+        $message = new Message('name', [new Property('name')]);
 
-        $message->enrich(new Message('name', 'channel', [new Property('name', 'Nice Description')]));
+        $message->enrich(new Message('name', [new Property('name', 'Nice Description')]));
 
         $this->assertEquals('Nice Description', $message->properties[0]->description);
     }

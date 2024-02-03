@@ -8,14 +8,18 @@ class ChannelRenderer
 {
     public function render(array $document): array
     {
-        $channel[$document['channel']] = [
-            $document['channelType'] => [
-                'message' => [
-                    '$ref' => '#/components/messages/' . $document['name'],
-                ],
-            ],
-        ];
+        $channels = [];
 
-        return $channel;
+        foreach ($document['channels'] as $channel) {
+            $channels[$channel['name']] = [
+                $channel['type'] => [
+                    'message' => [
+                        '$ref' => '#/components/messages/' . $document['name'],
+                    ],
+                ],
+            ];
+        }
+
+        return $channels;
     }
 }

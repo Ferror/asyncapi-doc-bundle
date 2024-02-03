@@ -17,8 +17,6 @@ class ReflectionDocumentationStrategyTest extends TestCase
 
         $expected = [
             'name' => 'UserSignedUp',
-            'channel' => 'user_signed_up',
-            'channelType' => 'subscribe',
             'properties' => [
                 [
                     'name' => 'name',
@@ -53,6 +51,7 @@ class ReflectionDocumentationStrategyTest extends TestCase
                     'example' => null,
                 ],
             ],
+            'channels' => [],
         ];
 
         $this->assertEquals($expected, $documentation->document(UserSignedUp::class)->toArray());
@@ -64,8 +63,6 @@ class ReflectionDocumentationStrategyTest extends TestCase
 
         $expected = [
             'name' => 'ProductCreated',
-            'channel' => 'product.created',
-            'channelType' => 'subscribe',
             'properties' => [
                 [
                     'name' => 'id',
@@ -100,6 +97,7 @@ class ReflectionDocumentationStrategyTest extends TestCase
                     'example' => null
                 ],
             ],
+            'channels' => [],
         ];
 
 
