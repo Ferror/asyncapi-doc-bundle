@@ -20,8 +20,6 @@ class AttributeDocumentationStrategyTest extends TestCase
 
         $expected = [
             'name' => 'UserSignedUp',
-            'channel' => 'user_signed_up',
-            'channelType' => 'subscribe',
             'properties' => [
                 [
                     'name' => 'name',
@@ -56,6 +54,12 @@ class AttributeDocumentationStrategyTest extends TestCase
                     'required' => true,
                 ],
             ],
+            'channels' => [
+                [
+                    'name' => 'user_signed_up',
+                    'type' => 'subscribe',
+                ],
+            ],
         ];
 
         $this->assertEquals($expected, $actual);
@@ -69,8 +73,6 @@ class AttributeDocumentationStrategyTest extends TestCase
 
         $expected = [
             'name' => 'ProductCreated',
-            'channel' => 'product.created',
-            'channelType' => 'subscribe',
             'properties' => [
                 [
                     'name' => 'id',
@@ -144,6 +146,12 @@ class AttributeDocumentationStrategyTest extends TestCase
                     'example' => null,
                     'itemsType' => 'string',
                     'required' => true,
+                ],
+            ],
+            'channels' => [
+                [
+                    'name' => 'product.created',
+                    'type' => 'subscribe',
                 ],
             ],
         ];

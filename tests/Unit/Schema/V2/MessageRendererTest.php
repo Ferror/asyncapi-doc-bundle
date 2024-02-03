@@ -6,7 +6,6 @@ namespace Ferror\AsyncapiDocBundle\Tests\Unit\Schema\V2;
 
 use Ferror\AsyncapiDocBundle\Schema\V2\MessageRenderer;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Yaml\Yaml;
 
 class MessageRendererTest extends TestCase
 {
@@ -40,30 +39,29 @@ class MessageRendererTest extends TestCase
 
         $schema = new MessageRenderer();
 
-        $specification = $schema->render($document);
+        $actual = $schema->render($document);
 
-        $expectedSpecification = <<<YAML
-UserSignedUp:
-  payload:
-    type: object
-    properties:
-      name:
-        type: string
-      email:
-        type: string
-      age:
-        type: integer
-      isCitizen:
-        type: boolean
-    required:
-      - name
-      - email
-      - age
-      - isCitizen
+        $expected = [
+            'UserSignedUp' => [
+                'payload' => [
+                    'type' => 'object',
+                    'properties' => [
+                        'name' => ['type' => 'string'],
+                        'email' => ['type' => 'string'],
+                        'age' => ['type' => 'integer'],
+                        'isCitizen' => ['type' => 'boolean'],
+                    ],
+                    'required' => [
+                        'name',
+                        'email',
+                        'age',
+                        'isCitizen',
+                    ],
+                ],
+            ],
+        ];
 
-YAML;
-
-        $this->assertEquals($expectedSpecification, Yaml::dump($specification, 10, 2));
+        $this->assertEquals($expected, $actual);
     }
 
     public function testAttributes(): void
@@ -108,42 +106,49 @@ YAML;
 
         $schema = new MessageRenderer();
 
-        $specification = $schema->render($document);
+        $actual = $schema->render($document);
 
-        $expectedSpecification = <<<YAML
-UserSignedUp:
-  payload:
-    type: object
-    properties:
-      name:
-        type: string
-        description: 'Name of the user'
-        format: string
-        example: John
-      email:
-        type: string
-        description: 'Email of the user'
-        format: email
-        example: john@example.com
-      age:
-        type: integer
-        description: 'Age of the user'
-        format: int
-        example: '18'
-      isCitizen:
-        type: boolean
-        description: 'Is user a citizen'
-        format: boolean
-        example: 'true'
-    required:
-      - name
-      - email
-      - age
-      - isCitizen
+        $expected = [
+            'UserSignedUp' => [
+                'payload' => [
+                    'type' => 'object',
+                    'properties' => [
+                        'name' => [
+                            'type' => 'string',
+                            'description' => 'Name of the user',
+                            'format' => 'string',
+                            'example' => 'John',
+                        ],
+                        'email' => [
+                            'type' => 'string',
+                            'description' => 'Email of the user',
+                            'format' => 'email',
+                            'example' => 'john@example.com',
+                        ],
+                        'age' => [
+                            'type' => 'integer',
+                            'description' => 'Age of the user',
+                            'format' => 'int',
+                            'example' => '18',
+                        ],
+                        'isCitizen' => [
+                            'type' => 'boolean',
+                            'description' => 'Is user a citizen',
+                            'format' => 'boolean',
+                            'example' => 'true',
+                        ],
+                    ],
+                    'required' => [
+                        'name',
+                        'email',
+                        'age',
+                        'isCitizen',
+                    ],
+                ],
+            ],
+        ];
 
-YAML;
-
-        $this->assertEquals($expectedSpecification, Yaml::dump($specification, 10, 2));
+        $this->assertEquals($expected, $actual);
     }
 
     public function testDoesNotRenderEmptyData(): void

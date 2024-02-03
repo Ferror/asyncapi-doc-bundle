@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Ferror\AsyncapiDocBundle\Tests\Examples;
 
 use DateTime;
+use Ferror\AsyncapiDocBundle\Attribute\Channel;
 use Ferror\AsyncapiDocBundle\Attribute\Message;
 use Ferror\AsyncapiDocBundle\Attribute\Property;
 use Ferror\AsyncapiDocBundle\Attribute\PropertyArray;
@@ -19,7 +20,6 @@ use Ferror\AsyncapiDocBundle\Schema\PropertyType;
  */
 #[Message(
     name: 'ProductUpdated',
-    channel: 'product.updated',
     properties: [
         new Property(name: 'id', type: PropertyType::INTEGER),
         new Property(name: 'amount', type: PropertyType::FLOAT),
@@ -32,6 +32,7 @@ use Ferror\AsyncapiDocBundle\Schema\PropertyType;
         new PropertyArray(name: 'tags', itemsType: PropertyType::STRING),
     ],
 )]
+#[Channel(name: 'product.updated')]
 final readonly class ProductUpdated
 {
     /**

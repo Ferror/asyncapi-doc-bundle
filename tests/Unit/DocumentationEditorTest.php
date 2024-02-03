@@ -24,8 +24,6 @@ final class DocumentationEditorTest extends TestCase
 
         $expected = [
             'name' => 'PaymentExecuted',
-            'channel' => 'payment_executed',
-            'channelType' => 'subscribe',
             'properties' => [
                 [
                     'name' => 'amount',
@@ -44,6 +42,7 @@ final class DocumentationEditorTest extends TestCase
                     'example' => null,
                 ],
             ],
+            'channels' => [],
         ];
 
         $this->assertEquals($expected, $actual);

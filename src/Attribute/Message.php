@@ -5,19 +5,18 @@ declare(strict_types=1);
 namespace Ferror\AsyncapiDocBundle\Attribute;
 
 use Attribute;
-use Ferror\AsyncapiDocBundle\Schema\V2\ChannelType;
 
 #[Attribute(Attribute::TARGET_CLASS)]
 class Message
 {
     /**
      * @param array<Property|PropertyArray|PropertyEnum|PropertyObject|PropertyArrayObject> $properties
+     * @param Channel[] $channels
      */
     public function __construct(
         public readonly string $name,
-        public readonly string $channel,
         public array $properties = [],
-        public readonly ChannelType $channelType = ChannelType::SUBSCRIBE,
+        public array $channels = [],
     ) {
     }
 
@@ -25,15 +24,19 @@ class Message
     {
         return [
             'name' => $this->name,
-            'channel' => $this->channel,
             'properties' => array_map(static fn(PropertyInterface $property) => $property->toArray(), $this->properties),
-            'channelType' => $this->channelType->value,
+            'channels' => array_map(static fn(Channel $channel) => $channel->toArray(), $this->channels),
         ];
     }
 
     public function addProperty(Property|PropertyArray|PropertyEnum|PropertyObject|PropertyArrayObject $property): void
     {
         $this->properties[] = $property;
+    }
+
+    public function addChannel(Channel $channel): void
+    {
+        $this->channels[] = $channel;
     }
 
     public function enrich(self $self): self

@@ -5,13 +5,15 @@ declare(strict_types=1);
 namespace App;
 
 use DateTime;
+use Ferror\AsyncapiDocBundle\Attribute\Channel;
 use Ferror\AsyncapiDocBundle\Attribute\Message;
 use Ferror\AsyncapiDocBundle\Attribute\Property;
 use Ferror\AsyncapiDocBundle\Attribute\PropertyArray;
 use Ferror\AsyncapiDocBundle\Schema\Format;
 use Ferror\AsyncapiDocBundle\Schema\PropertyType;
 
-#[Message(name: 'ProductCreated', channel: 'product.created')]
+#[Message(name: 'ProductCreated')]
+#[Channel(name: 'product.created')]
 final readonly class ProductCreated
 {
     /**
