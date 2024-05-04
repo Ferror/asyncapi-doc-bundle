@@ -60,6 +60,7 @@ class AttributeDocumentationStrategyTest extends TestCase
                     'type' => 'subscribe',
                 ],
             ],
+            'operations' => [],
         ];
 
         $this->assertEquals($expected, $actual);
@@ -154,6 +155,7 @@ class AttributeDocumentationStrategyTest extends TestCase
                     'type' => 'subscribe',
                 ],
             ],
+            'operations' => [],
         ];
 
         $this->assertEquals($expected, $actual);

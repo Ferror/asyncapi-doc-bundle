@@ -43,6 +43,7 @@ final class DocumentationEditorTest extends TestCase
                 ],
             ],
             'channels' => [],
+            'operations' => [],
         ];
 
         $this->assertEquals($expected, $actual);

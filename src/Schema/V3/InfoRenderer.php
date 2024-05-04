@@ -6,12 +6,19 @@ namespace Ferror\AsyncapiDocBundle\Schema\V3;
 
 final readonly class InfoRenderer
 {
-    public function render(array $document): array
+    public function __construct(
+        public string $title,
+        public string $description,
+        public string $version,
+    ) {
+    }
+
+    public function render(): array
     {
         return [
-            'title' => $document['title'],
-            'version' => $document['version'],
-            'description' => $document['description'],
+            'title' => $this->title,
+            'version' => $this->version,
+            'description' => $this->description,
         ];
     }
 }
