@@ -52,6 +52,7 @@ class ReflectionDocumentationStrategyTest extends TestCase
                 ],
             ],
             'channels' => [],
+            'operations' => [],
         ];
 
         $this->assertEquals($expected, $documentation->document(UserSignedUp::class)->toArray());
@@ -98,8 +99,8 @@ class ReflectionDocumentationStrategyTest extends TestCase
                 ],
             ],
             'channels' => [],
+            'operations' => [],
         ];
-
 
         $actual = $documentation->document(ProductCreated::class)->toArray();
 
