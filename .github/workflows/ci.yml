@@ -29,7 +29,7 @@ jobs:
 
       - # Installs PHP and other necessary tools
         name: Setup PHP
-        uses: shivammathur/setup-php@2.25.4
+        uses: shivammathur/setup-php@2.37.1
         with:
           php-version: ${{ matrix.php }}
 
